@@ -4,12 +4,7 @@
 }
 
 .logo {
-    width: 50px;
-    height: 45px;
-}
-
-.name {
-    font-size: 0.95rem;
+    width: 46px;
 }
 
 @font-face {
@@ -17,23 +12,43 @@
     src: url(../assets/fonts/custom-font.ttf);
 }
 
-.sub-name {
-    font-size: 0.7rem;
+.name {
+    font-size: 0.8rem;
     letter-spacing: 0.05em;
     font-family: font;
 }
-
-.custom-border {
-   border: 2px solid #0084ff;
-   border-radius: 5px;
+@font-face {
+  font-family: nav-link ;
+  src: url(../assets//fonts/head.ttf);
 }
-
 .nav-link {
     font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-family: nav-link ;
 }
 
-.mode {
-    width: 32px; 
-    height: 32px;
-    padding: 0;
+.logo-img.dark-mode-logo {
+  filter: invert(1) brightness(1.2);
+}
+
+.theme-switch-input {
+  cursor: pointer;
+  width: 3rem !important;
+  height: 1.6rem !important;
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.theme-switch-input.light-switch {
+  background-color: #fff;
+  border-color: #ced4da;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23212529' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3ccircle cx='12' cy='12' r='4.5'%3e%3c/circle%3e%3cline x1='12' y1='2' x2='12' y2='4'%3e%3c/line%3e%3cline x1='12' y1='20' x2='12' y2='22'%3e%3c/line%3e%3cline x1='4.93' y1='4.93' x2='6.34' y2='6.34'%3e%3c/line%3e%3cline x1='17.66' y1='17.66' x2='19.07' y2='19.07'%3e%3c/line%3e%3cline x1='2' y1='12' x2='4' y2='12'%3e%3c/line%3e%3cline x1='20' y1='12' x2='22' y2='12'%3e%3c/line%3e%3cline x1='4.93' y1='19.07' x2='6.34' y2='17.66'%3e%3c/line%3e%3cline x1='17.66' y1='6.34' x2='19.07' y2='4.93'%3e%3c/line%3e%3c/svg%3e");
+}
+
+.theme-switch-input.dark-switch {
+  background-color: #212529;
+  border-color: #495057;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z'%3e%3c/path%3e%3c/svg%3e");
 }

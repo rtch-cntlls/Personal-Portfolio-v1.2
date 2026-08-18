@@ -6,102 +6,134 @@ import {
   HiOutlineCog, 
   HiOutlineBriefcase 
 } from 'react-icons/hi';
-import { BiPalette } from 'react-icons/bi';
-import { FiSun, FiMoon } from 'react-icons/fi';
+import { motion } from 'framer-motion';
 import Logo from '../../assets/images/logo.png';
+
+const navContainerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.10,
+      delayChildren: 0.05,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      staggerChildren: 0.05,
+      staggerDirection: -1,
+    },
+  },
+};
+
+const navItemVariants = {
+  hidden: { opacity: 0, y: -20 },
+  show: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { type: 'spring', stiffness: 300, damping: 24 } 
+  },
+  exit: { opacity: 0, y: -10 },
+};
 
 export default function Navbar() {
   const [darkMode, setDarkMode] = useState(false);
-  const [themeColor, setThemeColor] = useState('primary');
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-bs-theme', darkMode ? 'dark' : 'light');
   }, [darkMode]);
 
-  const changeTheme = (color) => {
-    setThemeColor(color);
-  };
+  const navLinks = [
+    { href: '#hero', icon: <HiOutlineHome size={15} />, label: 'Home' },
+    { href: '#about', icon: <HiOutlineUser size={15} />, label: 'About' },
+    { href: '#skills', icon: <HiOutlineCode size={15} />, label: 'Skills' },
+    { href: '#services', icon: <HiOutlineCog size={15} />, label: 'Services' },
+    { href: '#projects', icon: <HiOutlineBriefcase size={15} />, label: 'Projects' },
+  ];
 
   return (
-    <nav className={`navbar navbar-expand-lg ${darkMode ? 'navbar-dark bg-black border-bottom border-secondary border-opacity-50' : 'navbar-light bg-white shadow-sm'} fixed-top`}>
+    <nav className={`navbar navbar-expand-lg ${darkMode ? 'navbar-dark bg-black text-light border-bottom border-secondary border-opacity-50' : 'navbar-light bg-white shadow-sm'} fixed-top`}>
       <div className="container">
         <a className="navbar-brand d-flex align-items-center gap-2 text-decoration-none" href="#hero">
-          <div className={`${darkMode ? 'bg-light' : 'bg-white'} custom-border p-1 shadow-sm d-flex align-items-center justify-content-center logo`}>
-            <img src={Logo} alt="Rtch Cntlls Logo" className="w-100 h-100" />
+          <div className={`${darkMode ? 'bg-dark' : 'bg-white'} d-flex align-items-center justify-content-center logo`}>
+            <img 
+              src={Logo} 
+              alt="Rtch Cntlls Logo" 
+              className={`w-100 h-100 logo-img ${darkMode ? 'dark-mode-logo' : ''}`} 
+            />
           </div>
           <div className="d-flex flex-column">
             <span className={`fw-bold lh-sm name ${darkMode ? 'text-light' : 'text-dark'}`}>
-              Rtch Cntlls
+              Rtch 
             </span>
-            <span className="text-primary fw-medium text-uppercase tracking-wider sub-name">
-              Web Developer
+            <span className={`fw-bold lh-sm name ${darkMode ? 'text-light' : 'text-dark'}`}>
+              Cntlls 
             </span>
           </div>
         </a>
  
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation" >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        <div className="d-flex align-items-center gap-2 d-lg-none">
+          <div className="form-check form-switch m-0 ps-0">
+            <input
+              className={`form-check-input ms-0 shadow-none theme-switch-input ${darkMode ? 'dark-switch' : 'light-switch'}`}
+              type="checkbox"
+              role="switch"
+              id="darkModeSwitchMobile"
+              checked={darkMode}
+              onChange={() => setDarkMode(!darkMode)}
+              title="Toggle Dark/Light Mode"
+            />
+          </div>
+          <button
+            className="navbar-toggler shadow-none"
+            type="button"
+            onClick={() => setIsExpanded(!isExpanded)}
+            aria-controls="navbarNav"
+            aria-expanded={isExpanded}
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+        </div>
  
-        <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
-          <ul className="navbar-nav align-items-lg-center gap-lg-4 mx-auto">
-            <li className="nav-item">
-              <a className={`${darkMode ? 'text-light' : 'text-dark'} nav-link d-flex align-items-center gap-1`} href="#hero">
-                <HiOutlineHome size={16} /> Home
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className={`${darkMode ? 'text-light' : 'text-dark'} nav-link d-flex align-items-center gap-1`} href="#about">
-                <HiOutlineUser size={16} /> About
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className={`${darkMode ? 'text-light' : 'text-dark'} nav-link d-flex align-items-center gap-1`} href="#skills">
-                <HiOutlineCode size={16} /> Skills
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className={`${darkMode ? 'text-light' : 'text-dark'} nav-link d-flex align-items-center gap-1`} href="#services">
-                <HiOutlineCog size={16} /> Services
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className={`${darkMode ? 'text-light' : 'text-dark'} nav-link d-flex align-items-center gap-1`} href="#projects">
-                <HiOutlineBriefcase size={16} /> Projects
-              </a>
-            </li>
-          </ul>
+        <div className={`collapse navbar-collapse justify-content-between ${isExpanded ? 'show' : ''}`} id="navbarNav">
+          <motion.ul 
+            className="navbar-nav align-items-lg-center gap-lg-4 mx-auto"
+            variants={navContainerVariants}
+            initial="hidden"
+            animate="show"
+          >
+            {navLinks.map((link, index) => (
+              <motion.li 
+                key={index} 
+                className="nav-item"
+                variants={navItemVariants}
+              >
+                <a 
+                  className={`${darkMode ? 'text-light' : 'text-dark'} nav-link d-flex align-items-center gap-1`} 
+                  href={link.href}
+                  onClick={() => setIsExpanded(false)}
+                >
+                  {link.icon} {link.label}
+                </a>
+              </motion.li>
+            ))}
+          </motion.ul>
 
-          <div className="d-flex align-items-center gap-2 mt-3 mt-lg-0">
-            <div className="dropdown">
-              <button 
-                className={`btn btn-outline-${themeColor} btn-sm dropdown-toggle d-flex align-items-center gap-1`} 
-                type="button" 
-                data-bs-toggle="dropdown" 
-                aria-expanded="false" >
-                <BiPalette size={16} /> Theme
-              </button>
-              <ul className="dropdown-menu dropdown-menu-end shadow-sm">
-                <li><button className="dropdown-item text-primary" onClick={() => changeTheme('primary')}>■ Blue</button></li>
-                <li><button className="dropdown-item text-success" onClick={() => changeTheme('success')}>■ Green</button></li>
-                <li><button className="dropdown-item text-warning" onClick={() => changeTheme('warning')}>■ Yellow</button></li>
-                <li><button className="dropdown-item text-danger" onClick={() => changeTheme('danger')}>■ Red</button></li>
-              </ul>
+          <div className="d-none d-lg-flex align-items-center">
+            <div className="form-check form-switch m-0 ps-0">
+              <input
+                className={`form-check-input ms-0 shadow-none theme-switch-input ${darkMode ? 'dark-switch' : 'light-switch'}`}
+                type="checkbox"
+                role="switch"
+                id="darkModeSpeedDesktop"
+                checked={darkMode}
+                onChange={() => setDarkMode(!darkMode)}
+                title="Toggle Dark/Light Mode"
+              />
             </div>
-
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className={`btn btn-sm ${darkMode ? 'btn-light' : 'btn-dark'} d-flex align-items-center justify-content-center mode`}
-              title="Toggle Dark/Light Mode" >
-              {darkMode ? <FiSun size={16} /> : <FiMoon size={16} />}
-            </button>
           </div>
         </div>
       </div>
