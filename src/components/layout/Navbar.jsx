@@ -112,7 +112,7 @@ export default function Navbar() {
                 variants={navItemVariants}
               >
                 <a 
-                  className={`${darkMode ? 'text-light' : 'text-dark'} nav-link d-flex align-items-center gap-1`} 
+                  className={`${darkMode ? 'text-light' : 'text-secondary'} nav-link d-flex align-items-center gap-1`} 
                   href={link.href}
                   onClick={() => setIsExpanded(false)}
                 >
