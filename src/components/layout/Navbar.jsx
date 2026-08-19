@@ -48,9 +48,9 @@ export default function Navbar() {
   const navLinks = [
     { href: '#hero', icon: <HiOutlineHome size={15} />, label: 'Home' },
     { href: '#about', icon: <HiOutlineUser size={15} />, label: 'About' },
-    { href: '#skills', icon: <HiOutlineCode size={15} />, label: 'Skills' },
+    { href: '#project', icon: <HiOutlineBriefcase size={15} />, label: 'Projects' },
     { href: '#services', icon: <HiOutlineCog size={15} />, label: 'Services' },
-    { href: '#projects', icon: <HiOutlineBriefcase size={15} />, label: 'Projects' },
+    { href: '#skills', icon: <HiOutlineCode size={15} />, label: 'Skills' },
   ];
 
   return (

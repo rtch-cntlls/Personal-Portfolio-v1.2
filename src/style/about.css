@@ -11,3 +11,14 @@
 .cursor-pointer {
     cursor: pointer;
 }
+
+@font-face {
+    font-family: Title;
+    src: url(../assets/fonts/head.ttf);
+}
+.title{
+    font-family: Title;
+}
+.text-custom{
+    color: #5aacfd;
+}

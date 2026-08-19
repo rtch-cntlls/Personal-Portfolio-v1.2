@@ -24,8 +24,34 @@ export default function Content({ isDarkMode, currentText }) {
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.5,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, scale: 0.8, y: 20 },
+    show: { 
+      opacity: 1, 
+      scale: 1, 
+      y: 0,
+      transition: { type: 'spring', stiffness: 300, damping: 20 } 
+    },
+  };
+
   return (
-    <div className="col-lg-7 text-lg-start text-center">
+    <motion.div 
+      className="col-lg-7 text-lg-start text-center"
+      initial={{ opacity: 0, x: -100 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 1, ease: 'easeOut' }}
+    >
       <div className={`head fw-bold ${isDarkMode ? 'text-light' : 'text-dark'}`}>
         <h1 className="m-0 d-flex align-items-center justify-content-center justify-content-lg-start">
           <span>{currentText}</span>
@@ -102,10 +128,15 @@ export default function Content({ isDarkMode, currentText }) {
         </a>
       </div>
 
-      <div className="stats-cards-section pt-2">
+      <motion.div 
+        className="stats-cards-section pt-2"
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+      >
         <div className="row g-3 justify-content-center justify-content-lg-start">
           {stats.map((stat) => (
-            <div className="col-4" key={stat.id}>
+            <motion.div className="col-4" key={stat.id} variants={cardVariants}>
               <div 
                 className={`position-relative p-3 rounded-0 border h-100 d-flex flex-column align-items-center align-items-lg-start bg-transparent stat-card-box ${
                   isDarkMode ? 'border-secondary text-light' : 'border-dark-subtle text-dark'
@@ -130,10 +161,10 @@ export default function Content({ isDarkMode, currentText }) {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

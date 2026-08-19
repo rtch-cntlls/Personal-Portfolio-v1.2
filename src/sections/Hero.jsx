@@ -50,32 +50,7 @@ export default function Hero() {
   }, [currentText, isDeleting, phraseIndex]);
 
   return (
-    <section id="hero" className="d-flex align-items-center pt-5 overflow-hidden">
-      <div className="hero-grid-pattern">
-        <div className="grid-square" style={{ top: '40px', left: '120px' }}></div>
-        <div className="grid-square" style={{ top: '80px', left: '360px' }}></div>
-        <div className="grid-square" style={{ top: '40px', left: '680px' }}></div>
-        <div className="grid-square" style={{ top: '120px', left: '920px' }}></div>
-        <div className="grid-square" style={{ top: '80px', left: '1160px' }}></div>
-        <div className="grid-square" style={{ top: '40px', left: '1440px' }}></div>
-
-        <div className="grid-square" style={{ top: '240px', left: '200px' }}></div>
-        <div className="grid-square" style={{ top: '320px', left: '560px' }}></div>
-        <div className="grid-square" style={{ top: '280px', left: '840px' }}></div>
-        <div className="grid-square" style={{ top: '360px', left: '1280px' }}></div>
-        <div className="grid-square" style={{ top: '200px', left: '1600px' }}></div>
-
-        <div className="grid-square" style={{ top: '520px', left: '80px' }}></div>
-        <div className="grid-square" style={{ top: '600px', left: '320px' }}></div>
-        <div className="grid-square" style={{ top: '560px', left: '600px' }}></div>
-        <div className="grid-square" style={{ top: '640px', left: '880px' }}></div>
-        <div className="grid-square" style={{ top: '520px', left: '1120px' }}></div>
-        <div className="grid-square" style={{ top: '600px', left: '1400px' }}></div>
-        <div className="grid-square" style={{ top: '560px', left: '1680px' }}></div>
-        <div className="grid-square" style={{ top: '640px', left: '440px' }}></div>
-        <div className="grid-square" style={{ top: '520px', left: '1840px' }}></div>
-      </div>
-
+    <section id="hero" className="d-flex align-items-center pt-5 overflow-hidden position-relative">
       <div className="container py-5 px-5 position-relative z-2">
         <div className="row align-items-center">
           <Content isDarkMode={isDarkMode} currentText={currentText} />
