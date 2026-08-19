@@ -56,21 +56,13 @@ export default function Navbar() {
   return (
     <nav className={`navbar navbar-expand-lg ${darkMode ? 'navbar-dark bg-black text-light border-bottom border-secondary border-opacity-50' : 'navbar-light bg-white shadow-sm'} fixed-top`}>
       <div className="container">
-        <a className="navbar-brand d-flex align-items-center gap-2 text-decoration-none" href="#hero">
+        <a className="navbar-brand" href="#hero">
           <div className={`${darkMode ? 'bg-dark' : 'bg-white'} d-flex align-items-center justify-content-center logo`}>
             <img 
               src={Logo} 
               alt="Rtch Cntlls Logo" 
               className={`w-100 h-100 logo-img ${darkMode ? 'dark-mode-logo' : ''}`} 
             />
-          </div>
-          <div className="d-flex flex-column">
-            <span className={`fw-bold lh-sm name ${darkMode ? 'text-light' : 'text-dark'}`}>
-              Rtch 
-            </span>
-            <span className={`fw-bold lh-sm name ${darkMode ? 'text-light' : 'text-dark'}`}>
-              Cntlls 
-            </span>
           </div>
         </a>
  

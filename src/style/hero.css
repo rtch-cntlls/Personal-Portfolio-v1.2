@@ -1,7 +1,6 @@
 @font-face {
     font-family: headline;
     src: url(../assets/fonts/developer.ttf);
-
 }
 .headline h1, .r, .tch, .c, .n, .tl, .l, .s{
     font-family: headline;
@@ -12,7 +11,7 @@
     display: inline-block;
     line-height: 0.85;
     padding: 0 0.05em;
-    color: white;
+    color: #5aacfd;
 }
 .tch{
     display: inline-block;
@@ -21,60 +20,92 @@
 }
 @font-face {
     font-family: head;
-    src: url(../assets//fonts/head.ttf);
+    src: url(../assets/fonts/head.ttf);
 }
-.head h1{
+.head {
+    min-height: 2.5rem;
+}
+.head h1 span {
     font-family: head;
     font-size: 2rem;
     text-transform: uppercase;
+    display: inline-block;
+    text-align: left;
 }
-.designer{
+.cursor-caret {
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+}
+.designer-selected-wrapper {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #ffffff;
+    padding: 0;
+}
+
+.designer {
     display: inline-block;
     line-height: 1.1;
     font-family: head;
-    font-size: 3rem;
+    font-size: 2.5rem;
     text-transform: uppercase;
-    background: linear-gradient(135deg, #001732, #0074e0, #a3dbfe);
-    color: white;
+    background: black;
+    color: #3e9bf8;
 }
+
+.resize-handle {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background-color: #ffffff;
+    border: 1.5px solid #000000;
+    z-index: 5;
+}
+
+.handle-tl { top: -4px; left: -4px; }
+.handle-tm { top: -4px; left: calc(50% - 3.5px); }
+.handle-tr { top: -4px; right: -4px; }
+.handle-bl { bottom: -4px; left: -4px; }
+.handle-bm { bottom: -4px; left: calc(50% - 3.5px); }
+.handle-br { bottom: -4px; right: -4px; }
+
+.stat-handle {
+    width: 6px;
+    height: 6px;
+    background-color: #6c757d;
+    border: 1px solid #ffffff;
+}
+
 @font-face {
     font-family: stack;
     src: url(../assets/fonts/stack.ttf);
 }
 .sub-headline .stack{
-    font-family: stack;
+    font-family: head;
     font-weight: bolder;
-    font-size: 3rem;
+    text-transform: uppercase;
 }
 @font-face {
     font-family: full;
     src: url(../assets/fonts/full.ttf);
 }
 .sub-headline .full, .f, .and, .d{
-    font-family: full;
+    font-family: head;
     font-size: 2.5rem;
     font-weight: bolder;
-    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 .sub-headline .full, .stack{
     color: #0079f2;
-}
-.sub-headline .developer{
-    color: #b20018;
-}
-.sub-headline .f{
-    font-size: 2.8rem;
-}
-.sub-headline .d{
-    font-size: 3.5rem;
 }
 @font-face {
     font-family: developer;
     src: url(../assets/fonts/developer.ttf);
 }
-.sub-headline .developer{
-    font-family: developer;
-    font-size: 3rem;
+.sub-headline .developer, .d{
+    font-family: head;
+    font-size: 2.5rem;
     text-transform: uppercase;
 }
 
@@ -96,9 +127,13 @@
     max-width: 540px;
     font-size: 1.1rem;
 }
-
 .img-container {
-    max-width: 380px;
+    max-width: 420px;
+}
+
+.avatar-wrapper {
+    height: 440px;
+    width: 100%;
 }
 
 .fallback-avatar-text {
@@ -110,7 +145,6 @@
     transform: translate(10px, 10px);
     z-index: -1;
 }
-
 
 :root {
     --grid-size: 40px;
@@ -164,4 +198,9 @@
 [data-bs-theme="dark"] .grid-square {
     background-color: rgba(255, 255, 255, 0.04); 
     border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
 }

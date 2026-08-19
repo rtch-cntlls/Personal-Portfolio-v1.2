@@ -6,17 +6,6 @@
 .logo {
     width: 46px;
 }
-
-@font-face {
-    font-family: font;
-    src: url(../assets/fonts/custom-font.ttf);
-}
-
-.name {
-    font-size: 0.8rem;
-    letter-spacing: 0.05em;
-    font-family: font;
-}
 @font-face {
   font-family: nav-link ;
   src: url(../assets//fonts/head.ttf);
