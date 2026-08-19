@@ -1,0 +1,13 @@
+
+.window-dot-size {
+    width: 10px;
+    height: 10px;
+}
+
+.about-content-area {
+    min-height: 330px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

@@ -73,8 +73,8 @@
 .stat-handle {
     width: 6px;
     height: 6px;
-    background-color: #6c757d;
-    border: 1px solid #ffffff;
+    background-color: #ffffff;
+    border: 1px solid #000000;
 }
 
 @font-face {
@@ -203,4 +203,32 @@
 .stat-label {
     font-size: 0.7rem;
     letter-spacing: 0.5px;
+}
+
+.camera-focus-tl {
+    top: -6px;
+    left: -6px;
+    width: 16px;
+    height: 16px;
+}
+
+.camera-focus-tr {
+    top: -6px;
+    right: -6px;
+    width: 16px;
+    height: 16px;
+}
+
+.camera-focus-bl {
+    bottom: -6px;
+    left: -6px;
+    width: 16px;
+    height: 16px;
+}
+
+.camera-focus-br {
+    bottom: -6px;
+    right: -6px;
+    width: 16px;
+    height: 16px;
 }
