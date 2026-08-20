@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import PhilippinesMapImg from '../assets/images/PH.png';
-import HelloWorld from '../assets/images/Bio.png';
-import CTU from '../assets/images/CTU.png';
+import HelloWorld from '../assets/images/1.png';
+import CTU from '../assets/images/2.png';
 
 export default function About() {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -70,7 +70,7 @@ export default function About() {
                                     <div className="font-monospace mb-2 text-uppercase small opacity-75">// Active File: bio.md</div>
                                     <div className="row align-items-center">
                                         <div className="col-lg-7">
-                                            <h2 className={`mb-2 title ${isDarkMode ? 'text-custom ' : 'text-dark '}`}>Hello, World.</h2>
+                                            <h2 className={`mb-2 fw-bold ${isDarkMode ? 'text-custom ' : 'text-dark '}`}>Hello, World.</h2>
                                             <p className={`lead fs-6 opacity-90 mb-4 ${isDarkMode ? 'text-muted' : 'text-dark'}`}>
                                                 I'm a passionate developer who bridges the gap between creative visual design and robust software engineering. 
                                                 I like building things that live on the web, combining clean user interfaces with efficient logic.
@@ -85,13 +85,18 @@ export default function About() {
                                                 </table>
                                             </div>
                                         </div>
-                                        <div className="col-lg-5 text-center mt-3 mt-lg-0">
-                                            <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                                        <div className="col-lg-5 text-center mt-4 mt-lg-0">
+                                            <div className="position-relative p-3 mx-auto d-inline-block">
+                                                <div className={`position-absolute border-top border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-tl`}></div>
+                                                <div className={`position-absolute border-top border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-tr`}></div>
+                                                <div className={`position-absolute border-bottom border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-bl`}></div>
+                                                <div className={`position-absolute border-bottom border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-br`}></div>
+
                                                 <img 
                                                     src={HelloWorld} 
-                                                    alt="" 
-                                                    className="w-100 h-100 object-fit-contain"
-                                                    style={{ maxHeight: '180px' }}
+                                                    alt="Bio" 
+                                                    className="img-fluid object-fit-contain z-2 position-relative"
+                                                    style={{ maxHeight: '250px' }}
                                                 />
                                             </div>
                                         </div>
@@ -104,27 +109,32 @@ export default function About() {
                                     <div className="font-monospace mb-2 text-uppercase small opacity-75">// Active File: education.md</div>
                                     <div className="row align-items-center">
                                         <div className="col-lg-7">
-                                            <h2 className={`mb-2 title ${isDarkMode ? 'text-custom ' : 'text-dark '}`}>Academic Background.</h2>
+                                            <h2 className={`mb-2 fw-bold ${isDarkMode ? 'text-custom ' : 'text-dark '}`}>Academic Background.</h2>
                                             <p className={`lead fs-6 opacity-90 mb-4 ${isDarkMode ? 'text-muted' : 'text-dark'}`}>
-                                                Continuously expanding technical foundations through formal studies and persistent self-driven engineering projects.
+                                            As an Information Technology graduate, I love building my technical skills through hands-on personal projects. I am always exploring new tools to expand what I can create.
                                             </p>
                                             <div className="table-responsive">
                                                 <table className={`table table-sm font-monospace small ${isDarkMode ? 'table-dark text-light' : ''}`}>
                                                     <tbody>
                                                         <tr><td className="opacity-50 w-25">Degree:</td><td>Bachelor of Science in Information Technology</td></tr>
                                                         <tr><td className="opacity-50">Focus:</td><td>Web Development & IT Infrastructure</td></tr>
-                                                        <tr><td className="opacity-50">Status:</td><td>Graduate / Lifelong Learner</td></tr>
+                                                        <tr><td className="opacity-50">Status:</td><td><span className="text-success fw-bold">● Graduate / Lifelong Learner</span></td></tr>
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
-                                        <div className="col-lg-5 text-center mt-3 mt-lg-0">
-                                            <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                                        <div className="col-lg-5 text-center mt-4 mt-lg-0">
+                                            <div className="position-relative p-3 mx-auto d-inline-block">
+                                                <div className={`position-absolute border-top border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-tl`}></div>
+                                                <div className={`position-absolute border-top border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-tr`}></div>
+                                                <div className={`position-absolute border-bottom border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-bl`}></div>
+                                                <div className={`position-absolute border-bottom border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-br`}></div>
+
                                                 <img 
                                                     src={CTU} 
-                                                    alt="" 
-                                                    className="w-100 h-100 object-fit-contain"
-                                                    style={{ maxHeight: '180px' }}
+                                                    alt="CTU" 
+                                                    className="img-fluid object-fit-contain z-2 position-relative"
+                                                    style={{ maxHeight: '250px' }}
                                                 />
                                             </div>
                                         </div>
@@ -137,7 +147,7 @@ export default function About() {
                                     <div className="font-monospace mb-2 text-uppercase small opacity-75">// Active File: location.md</div>
                                     <div className="row align-items-center">
                                         <div className="col-lg-7">
-                                            <h2 className={`mb-2 title ${isDarkMode ? 'text-custom ' : 'text-dark '}`}>Geographic Node.</h2>
+                                            <h2 className={`mb-2 fw-bold ${isDarkMode ? 'text-custom ' : 'text-dark '}`}>Geographic Node.</h2>
                                             <p className={`lead fs-6 opacity-90 mb-4 ${isDarkMode ? 'text-muted' : 'text-dark'}`}>
                                                 Operating locally from Cebu City, with full availability for remote collaboration globally.
                                             </p>
@@ -151,13 +161,18 @@ export default function About() {
                                                 </table>
                                             </div>
                                         </div>
-                                        <div className="col-lg-5 text-center mt-3 mt-lg-0">
-                                            <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                                        <div className="col-lg-5 text-center mt-4 mt-lg-0">
+                                            <div className="position-relative p-3 mx-auto d-inline-block">
+                                                <div className={`position-absolute border-top border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-tl`}></div>
+                                                <div className={`position-absolute border-top border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-tr`}></div>
+                                                <div className={`position-absolute border-bottom border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-bl`}></div>
+                                                <div className={`position-absolute border-bottom border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-br`}></div>
+
                                                 <img 
                                                     src={PhilippinesMapImg} 
-                                                    alt="" 
-                                                    className="w-100 h-100 object-fit-contain"
-                                                    style={{ maxHeight: '180px' }}
+                                                    alt="Location Map" 
+                                                    className="img-fluid object-fit-contain z-2 position-relative"
+                                                    style={{ maxHeight: '200px' }}
                                                 />
                                             </div>
                                         </div>

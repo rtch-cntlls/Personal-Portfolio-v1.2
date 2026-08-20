@@ -71,9 +71,10 @@ export default function Project() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}>
-          <h4 className={`title mb-0 ${isDarkMode ? 'text-white' : 'text-dark'}`}>
-            Selected Project
-          </h4>
+            <div>
+              <small className="text-uppercase tracking-wider opacity-75 font-monospace">Sample Projects</small>
+              <h4 className="mb-2 title">Selected Project</h4>
+            </div>
           <a 
             href="#all-projects" 
             className={`text-decoration-underline small fw-semibold ${isDarkMode ? 'text-light opacity-75' : 'text-dark'}`}>
