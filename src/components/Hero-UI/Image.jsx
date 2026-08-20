@@ -77,7 +77,7 @@ export default function Image({ isDarkMode }) {
                 <FaLinkedin size={15} /> LinkedIn
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/rtch-cntlls"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`btn btn-sm ${isDarkMode ? 'btn-outline-light' : 'btn-outline-dark'} flex-grow-1 d-flex align-items-center justify-content-center gap-1 fw-bold font-monospace shadow-sm`}

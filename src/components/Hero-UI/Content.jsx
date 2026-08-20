@@ -19,7 +19,7 @@ export default function Content({ isDarkMode, currentText }) {
     {
       id: 'tech-stack',
       icon: <HiCommandLine />,
-      value: '10+',
+      value: '20+',
       label: 'Technologies',
     },
   ];

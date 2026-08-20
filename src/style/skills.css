@@ -1,0 +1,53 @@
+.skill-container {
+    min-height: 275px;
+    width: 100%;
+}
+
+.skill-col {
+    flex: 0 0 16.6667%;
+    max-width: 16.6667%;
+}
+
+@media (max-width: 992px) {
+    .skill-col {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+}
+
+@media (max-width: 576px) {
+    .skill-col {
+        flex: 0 0 33.3333%;
+        max-width: 33.3333%;
+    }
+}
+
+.icon-wrapper {
+    font-size: 3rem;
+}
+
+.btn-custom {
+    background-color: #d1d1d1;
+    color: #272727;
+}
+.btn-custom:hover {
+    background-color: #d1d1d1 !important;
+    color: #272727 !important;
+    border-color: #bababa !important;
+}
+.btn-outline-secondary:hover {
+    background-color: #6c757d !important;
+    color: #fff !important;
+    border-color: #6c757d !important;
+}
+
+.btn-outline-dark:hover {
+    background-color: #212529 !important;
+    color: #fff !important;
+    border-color: #212529 !important;
+}
+.skill-img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}

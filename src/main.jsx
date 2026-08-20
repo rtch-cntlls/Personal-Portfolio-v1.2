@@ -5,6 +5,7 @@ import App from './App.jsx';
 import './style/index.css';
 import './style/hero.css';
 import './style/about.css';
+import './style/skills.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

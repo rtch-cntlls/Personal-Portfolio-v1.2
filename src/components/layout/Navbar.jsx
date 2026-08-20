@@ -55,7 +55,7 @@ export default function Navbar() {
 
   return (
     <nav className={`navbar navbar-expand-lg ${darkMode ? 'navbar-dark bg-black text-light border-bottom border-secondary border-opacity-50' : 'navbar-light bg-white shadow-sm'} fixed-top`}>
-      <div className="container">
+      <div className="container px-5">
         <a className="navbar-brand" href="#hero">
           <div className={`${darkMode ? 'bg-dark' : 'bg-white'} d-flex align-items-center justify-content-center logo`}>
             <img 

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import PhilippinesMapImg from '../assets/images/PH.png';
+import HelloWorld from '../assets/images/Bio.png';
+import CTU from '../assets/images/CTU.png';
 
 export default function About() {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -23,9 +25,9 @@ export default function About() {
         <section id="about" className={`position-relative transition-all ${isDarkMode ? 'bg-black text-light' : 'text-dark'}`}>
             <div className="container py-4 px-5 position-relative z-2">
                 
-                <div className={`shadow-sm ${isDarkMode ? 'bg-black border-secondary border-opacity-50 text-light' : 'bg-light border-dark text-dark'}`}>
+                <div className={`shadow-sm border border-secondary-subtle ${isDarkMode ? 'bg-black border-secondary text-light' : 'bg-light border-dark text-dark'}`}>
                     
-                    <div className={`px-3 py-2 d-flex align-items-center justify-content-between ${isDarkMode ? 'bg-dark border-secondary border-opacity-50' : 'bg-secondary-subtle border-dark'}`}>
+                    <div className={`px-3 py-2 d-flex align-items-center justify-content-between border-bottom ${isDarkMode ? 'bg-dark border-secondary' : 'bg-secondary-subtle border-dark-subtle'}`}>
                         <div className="d-flex align-items-center gap-2">
                             <span className="window-dot bg-danger rounded-circle d-inline-block window-dot-size"></span>
                             <span className="window-dot bg-warning rounded-circle d-inline-block window-dot-size"></span>
@@ -34,14 +36,14 @@ export default function About() {
                         </div>
                     </div>
 
-                    <div className={`path-bar px-3 py-2 border-bottom border-secondary border-opacity-50 font-monospace small d-flex align-items-center gap-2 ${isDarkMode ? 'border-secondary border-opacity-50 bg-black' : 'border-dark bg-white'}`}>
+                    <div className={`path-bar px-3 py-2 border-bottom font-monospace small d-flex align-items-center gap-2 ${isDarkMode ? 'border-secondary bg-black' : 'border-dark-subtle bg-white'}`}>
                         <span className="opacity-50">Path:</span>
                         <span className="badge bg-dark rounded-0 fw-normal">C:/portfolio/about_me/{activeFile}.md</span>
                     </div>
 
                     <div className="row g-0">
                         
-                        <div className={`col-md-3 border-end border-secondary border-opacity-50 p-3 font-monospace small ${isDarkMode ? 'border-secondary border-opacity-50' : 'border-dark'}`}>
+                        <div className={`col-md-3 border-end p-3 font-monospace small ${isDarkMode ? 'border-secondary' : 'border-dark-subtle'}`}>
                             <div className="fw-bold text-uppercase opacity-50 mb-3">Directories</div>
                             <ul className="list-unstyled d-flex flex-column gap-2 mb-0">
                                 <li 
@@ -66,19 +68,33 @@ export default function About() {
                             {activeFile === 'bio' && (
                                 <>
                                     <div className="font-monospace mb-2 text-uppercase small opacity-75">// Active File: bio.md</div>
-                                    <h2 className={`mb-2 title ${isDarkMode ? 'text-custom ' : 'text-dark '}`}>Hello, World.</h2>
-                                    <p className={`lead fs-6 opacity-90 mb-4 ${isDarkMode ? 'text-muted' : 'text-dark'}`}>
-                                        I'm a passionate developer who bridges the gap between creative visual design and robust software engineering. 
-                                        I like building things that live on the web, combining clean user interfaces with efficient logic.
-                                    </p>
-                                    <div className="table-responsive">
-                                        <table className={`table table-sm font-monospace small ${isDarkMode ? 'table-dark text-light' : ''}`}>
-                                            <tbody>
-                                                <tr><td className="opacity-50 w-25">File type:</td><td>Markdown Document</td></tr>
-                                                <tr><td className="opacity-50">Role:</td><td>Full-Stack Developer & UI/UX Design</td></tr>
-                                                <tr><td className="opacity-50">Status:</td><td><span className="text-success fw-bold">● Available for hire / collaboration</span></td></tr>
-                                            </tbody>
-                                        </table>
+                                    <div className="row align-items-center">
+                                        <div className="col-lg-7">
+                                            <h2 className={`mb-2 title ${isDarkMode ? 'text-custom ' : 'text-dark '}`}>Hello, World.</h2>
+                                            <p className={`lead fs-6 opacity-90 mb-4 ${isDarkMode ? 'text-muted' : 'text-dark'}`}>
+                                                I'm a passionate developer who bridges the gap between creative visual design and robust software engineering. 
+                                                I like building things that live on the web, combining clean user interfaces with efficient logic.
+                                            </p>
+                                            <div className="table-responsive">
+                                                <table className={`table table-sm font-monospace small ${isDarkMode ? 'table-dark text-light' : ''}`}>
+                                                    <tbody>
+                                                        <tr><td className="opacity-50 w-25">File type:</td><td>Markdown Document</td></tr>
+                                                        <tr><td className="opacity-50">Role:</td><td>Full-Stack Developer & UI/UX Design</td></tr>
+                                                        <tr><td className="opacity-50">Status:</td><td><span className="text-success fw-bold">● Available for hire / collaboration</span></td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-5 text-center mt-3 mt-lg-0">
+                                            <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                                                <img 
+                                                    src={HelloWorld} 
+                                                    alt="" 
+                                                    className="w-100 h-100 object-fit-contain"
+                                                    style={{ maxHeight: '180px' }}
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
                                 </>
                             )}
@@ -86,18 +102,32 @@ export default function About() {
                             {activeFile === 'education' && (
                                 <>
                                     <div className="font-monospace mb-2 text-uppercase small opacity-75">// Active File: education.md</div>
-                                    <h2 className={`mb-2 title ${isDarkMode ? 'text-custom ' : 'text-dark '}`}>Academic Background.</h2>
-                                    <p className={`lead fs-6 opacity-90 mb-4 ${isDarkMode ? 'text-muted' : 'text-dark'}`}>
-                                        Continuously expanding technical foundations through formal studies and persistent self-driven engineering projects.
-                                    </p>
-                                    <div className="table-responsive">
-                                        <table className={`table table-sm font-monospace small ${isDarkMode ? 'table-dark text-light' : ''}`}>
-                                            <tbody>
-                                                <tr><td className="opacity-50 w-25">Degree:</td><td>Bachelor of Science in Information Technology</td></tr>
-                                                <tr><td className="opacity-50">Focus:</td><td>Web Development & IT Infrastructure</td></tr>
-                                                <tr><td className="opacity-50">Status:</td><td>Graduate / Lifelong Learner</td></tr>
-                                            </tbody>
-                                        </table>
+                                    <div className="row align-items-center">
+                                        <div className="col-lg-7">
+                                            <h2 className={`mb-2 title ${isDarkMode ? 'text-custom ' : 'text-dark '}`}>Academic Background.</h2>
+                                            <p className={`lead fs-6 opacity-90 mb-4 ${isDarkMode ? 'text-muted' : 'text-dark'}`}>
+                                                Continuously expanding technical foundations through formal studies and persistent self-driven engineering projects.
+                                            </p>
+                                            <div className="table-responsive">
+                                                <table className={`table table-sm font-monospace small ${isDarkMode ? 'table-dark text-light' : ''}`}>
+                                                    <tbody>
+                                                        <tr><td className="opacity-50 w-25">Degree:</td><td>Bachelor of Science in Information Technology</td></tr>
+                                                        <tr><td className="opacity-50">Focus:</td><td>Web Development & IT Infrastructure</td></tr>
+                                                        <tr><td className="opacity-50">Status:</td><td>Graduate / Lifelong Learner</td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-5 text-center mt-3 mt-lg-0">
+                                            <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                                                <img 
+                                                    src={CTU} 
+                                                    alt="" 
+                                                    className="w-100 h-100 object-fit-contain"
+                                                    style={{ maxHeight: '180px' }}
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
                                 </>
                             )}
@@ -108,14 +138,14 @@ export default function About() {
                                     <div className="row align-items-center">
                                         <div className="col-lg-7">
                                             <h2 className={`mb-2 title ${isDarkMode ? 'text-custom ' : 'text-dark '}`}>Geographic Node.</h2>
-                                            <p  className={`lead fs-6 opacity-90 mb-4  ${isDarkMode ? 'text-muted' : 'text-dark'}`}>
+                                            <p className={`lead fs-6 opacity-90 mb-4 ${isDarkMode ? 'text-muted' : 'text-dark'}`}>
                                                 Operating locally from Cebu City, with full availability for remote collaboration globally.
                                             </p>
                                             <div className="table-responsive">
                                                 <table className={`table table-sm font-monospace small text-muted ${isDarkMode ? 'table-dark text-light' : ''}`}>
                                                     <tbody>
-                                                        <tr><td className="opacity-50 w-25">Base:</td><td>Cebu City, PH</td></tr>
-                                                        <tr><td className="opacity-50">Timezone:</td><td>UTC+8 (PST)</td></tr>
+                                                        <tr><td className="opacity-50 w-25">Base:</td><td>Cebu City, Philippines</td></tr>
+                                                        <tr><td className="opacity-50">Timezone:</td><td>UTC+8 (Philippine Standard Time)</td></tr>
                                                         <tr><td className="opacity-50">Status:</td><td><span className="text-success fw-bold">● Active</span></td></tr>
                                                     </tbody>
                                                 </table>
@@ -125,7 +155,7 @@ export default function About() {
                                             <div className="w-100 h-100 d-flex align-items-center justify-content-center">
                                                 <img 
                                                     src={PhilippinesMapImg} 
-                                                    alt="Philippines Map" 
+                                                    alt="" 
                                                     className="w-100 h-100 object-fit-contain"
                                                     style={{ maxHeight: '180px' }}
                                                 />

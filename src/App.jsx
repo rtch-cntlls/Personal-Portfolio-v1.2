@@ -3,6 +3,7 @@ import Grid from './components/layout/UI';
 import Hero from './sections/Hero';
 import About from './sections/About';
 import Project from './sections/Project';
+import Skill from './sections/Skill';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Hero />
       <About />
       <Project />
+      <Skill />
     </div>
   );
 }
