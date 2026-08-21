@@ -1,4 +1,5 @@
 import Nav from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
 import Grid from './components/layout/UI';
 import Hero from './sections/Hero';
 import About from './sections/About';
@@ -16,6 +17,7 @@ function App() {
       <Project />
       <Service />
       <Skill />
+      <Footer />
     </div>
   );
 }

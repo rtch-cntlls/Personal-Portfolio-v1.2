@@ -23,7 +23,7 @@ export default function About() {
 
     return (
         <section id="about" className={`position-relative transition-all ${isDarkMode ? 'bg-black text-light' : 'text-dark'}`}>
-            <div className="container py-4 px-5 position-relative z-2">
+           <div className="container py-4 px-2 px-md-5 position-relative z-2">
                 
                 <div className={`shadow-sm border border-secondary-subtle ${isDarkMode ? 'bg-black border-secondary text-light' : 'bg-light border-dark text-dark'}`}>
                     

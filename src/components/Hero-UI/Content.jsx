@@ -117,7 +117,7 @@ export default function Content({ isDarkMode, currentText }) {
 
       <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start gap-3 mb-4">
         <a
-          href="#projects"
+          href="#project"
           className={`btn ${isDarkMode ? 'btn-light' : 'btn-dark'} d-inline-flex align-items-center gap-2 px-4 py-2 shadow-sm`}>
           View Projects <HiOutlineArrowRight size={18} />
         </a>
@@ -134,11 +134,11 @@ export default function Content({ isDarkMode, currentText }) {
         initial="hidden"
         animate="show"
       >
-        <div className="row g-3 justify-content-center justify-content-lg-start">
+        <div className="row g-2 g-lg-3 justify-content-center justify-content-lg-start">
           {stats.map((stat) => (
             <motion.div className="col-4" key={stat.id} variants={cardVariants}>
               <div 
-                className={`position-relative p-3 rounded-0 border h-100 d-flex flex-column align-items-center align-items-lg-start bg-transparent stat-card-box ${
+                className={`position-relative p-2 p-lg-3 rounded-0 border h-100 d-flex flex-column align-items-center align-items-lg-start bg-transparent stat-card-box ${
                   isDarkMode ? 'border-secondary text-light' : 'border-dark-subtle text-dark'
                 }`} 
               >
@@ -149,12 +149,12 @@ export default function Content({ isDarkMode, currentText }) {
                 <span className="position-absolute stat-handle handle-bm"></span>
                 <span className="position-absolute stat-handle handle-br"></span>
 
-                <div className="d-flex align-items-center justify-content-start gap-3 w-100 mb-1">
-                  <div className={`fs-4 ${isDarkMode ? 'text-light' : 'text-secondary'}`}>
+                <div className="d-flex flex-column flex-lg-row align-items-center justify-content-start gap-1 gap-lg-3 w-100 mb-1 text-center text-lg-start">
+                  <div className={`fs-4 d-none d-lg-block ${isDarkMode ? 'text-light' : 'text-secondary'}`}>
                     {stat.icon}
                   </div>
                   <div>
-                    <h2 className="fw-bold fs-5 m-0 lh-1">{stat.value}</h2>
+                    <h2 className="fw-bold fs-6 fs-lg-5 m-0 lh-1">{stat.value}</h2>
                     <span className="small text-uppercase opacity-75 d-block mt-1 stat-label">
                       {stat.label}
                     </span>

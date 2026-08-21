@@ -118,7 +118,7 @@ export default function Skill() {
 
     return (
         <section id="skills" className={`position-relative transition-all py-4 ${isDarkMode ? 'bg-black text-light' : 'text-dark'}`}>
-            <div className="container px-5">
+            <div className="container px-3 px-md-5">
                 <div>
                     <small className="text-uppercase tracking-wider opacity-75 font-monospace">Tech Stack & Tools</small>
                     <h4 className="mb-2 title">My Expertise</h4>
@@ -126,8 +126,7 @@ export default function Skill() {
                 <div 
                     className="row g-4 align-items-start"
                     onMouseEnter={() => setIsPaused(true)}
-                    onMouseLeave={() => setIsPaused(false)}
-                >
+                    onMouseLeave={() => setIsPaused(false)} >
                     
                     <div className="col-lg-3">
                         <div className="d-flex flex-column gap-2">
@@ -139,9 +138,8 @@ export default function Skill() {
                                         activeCategory === key 
                                             ? 'btn-custom shadow-sm fw-medium' 
                                             : isDarkMode ? 'btn-outline-secondary text-light' : 'btn-outline-dark text-secondary'
-                                    }`}
-                                >
-                                    <span>💻 {data.title}</span>
+                                    }`} >
+                                    <span>📁 {data.title}</span>
                                     <span className={`badge rounded-pill ${activeCategory === key ? 'bg-white text-dark bg-opacity-75' : isDarkMode ? 'bg-secondary text-dark' : 'bg-secondary text-white'} font-monospace`} style={{ fontSize: '0.7rem' }}>
                                          {data.skills.length}
                                     </span>

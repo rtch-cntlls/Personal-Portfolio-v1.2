@@ -51,7 +51,7 @@ export default function Hero() {
 
   return (
     <section id="hero" className="d-flex align-items-center pt-5 overflow-hidden position-relative">
-      <div className="container py-5 px-5 position-relative z-2">
+      <div className="container py-5 px-3 px-md-5 position-relative z-2">
         <div className="row align-items-center">
           <Content isDarkMode={isDarkMode} currentText={currentText} />
           <Image isDarkMode={isDarkMode} />

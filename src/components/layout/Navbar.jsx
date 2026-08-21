@@ -55,17 +55,24 @@ export default function Navbar() {
 
   return (
     <nav className={`navbar navbar-expand-lg ${darkMode ? 'navbar-dark bg-black text-light border-bottom border-secondary border-opacity-50' : 'navbar-light bg-white shadow-sm'} fixed-top`}>
-      <div className="container px-5">
+      <div className="container px-3 px-md-5">
         <a className="navbar-brand" href="#hero">
-          <div className={`${darkMode ? 'bg-dark' : 'bg-white'} d-flex align-items-center justify-content-center logo`}>
+          <div className={`${darkMode ? 'bg-dark' : 'bg-white'} d-flex align-items-center justify-content-center gap-1 logo`}>
             <img 
               src={Logo} 
               alt="Rtch Cntlls Logo" 
-              className={`w-100 h-100 logo-img ${darkMode ? 'dark-mode-logo' : ''}`} 
+              className={`w-100 h-100 logo-img object-fit-contain ${darkMode ? 'dark-mode-logo' : ''}`} 
             />
+            <div className="d-flex flex-column lh-1">
+                <span className={`name ${darkMode ? 'text-light' : 'text-dark'}`}>
+                  RTCH
+                </span>
+                <span className={`name ${darkMode ? 'text-light' : 'text-a'}`}>
+                  CNTLLS
+                </span>
+            </div>
           </div>
         </a>
- 
         <div className="d-flex align-items-center gap-2 d-lg-none">
           <div className="form-check form-switch m-0 ps-0">
             <input

@@ -64,7 +64,7 @@ export default function Project() {
 
   return (
     <section id="project">
-      <div className="container px-5 py-4">
+      <div className="container px-3 px-md-5 py-4">
         <motion.div 
           className="d-flex justify-content-between align-items-center mb-4"
           initial={{ opacity: 0, y: -20 }}

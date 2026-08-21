@@ -6,6 +6,15 @@
 .logo {
     width: 46px;
 }
+
+@font-face {
+  font-family: name;
+  src: url(../assets/fonts/custom-font.ttf);
+}
+.name{
+  font-family: name;
+  font-size: 0.9rem;
+}
 @font-face {
   font-family: nav-link ;
   src: url(../assets//fonts/head.ttf);
@@ -130,3 +139,20 @@
 .sq-29 { top: 1140px; left: 980px; }
 .sq-30 { top: 1220px; left: 1240px; }
 .sq-31 { top: 1100px; left: 1580px; }
+
+@media (max-width: 767.98px) {
+  .logo {
+    width: 30px;
+  }
+  .name{
+    display: none;
+  }
+  .theme-switch-input {
+    cursor: pointer;
+    width: 3rem !important;
+    height: 1.5rem !important;
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}

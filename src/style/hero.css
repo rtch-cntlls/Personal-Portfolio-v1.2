@@ -4,7 +4,7 @@
 }
 .headline h1, .r, .tch, .c, .n, .tl, .l, .s{
     font-family: headline;
-    font-size: 6rem;
+    font-size: 5.5rem;
 }
 .r, .n, .l{
     background-color: #0f0f0f;
@@ -111,7 +111,7 @@
 
 @font-face {
     font-family: ui;
-    src: url(../assets/fonts/ui.otf);
+    src: url(../assets/fonts/custom-font.ttf);
 }
 .sub-headline .ui{
     font-family: ui;
@@ -211,4 +211,37 @@
     right: -6px;
     width: 16px;
     height: 16px;
+}
+@media (max-width: 767.98px) {
+    .headline h1, .r, .tch, .c, .n, .tl, .l, .s{
+        font-size: 3rem;
+    }
+    .head h1 span{
+        font-size: 1.4rem;
+    }
+    .designer, .stack {
+        font-size: 1.8rem;
+    }
+    .sub-headline .ui{
+        font-size: 1.8rem;
+    }
+    .sub-headline .full, .f, .and, .d{
+        font-size: 1.8rem;
+    }
+    .sub-headline .developer, .d{
+        font-size: 1.8rem;
+    }
+    .lead{
+        font-size: 1rem;
+    }
+    .stat-card-box {
+        padding: 0.5rem !important;
+    }
+    .stat-card-box h2 {
+        font-size: 0.9rem !important;
+    }
+    .stat-label {
+        font-size: 0.55rem !important;
+        transform: scale(0.9);
+    }
 }
