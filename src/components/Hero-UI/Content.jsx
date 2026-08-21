@@ -71,13 +71,13 @@ export default function Content({ isDarkMode, currentText }) {
         transition={{ duration: 0.8, delay: 0.2, type: 'spring', stiffness: 200, damping: 20 }}
       >
         <h1 className="m-0">
-          <span className="r">C</span>
-          <span className="me-4 tch">ode</span>
-          <span className="c">By</span>
-          <span className="n">dev</span>
-          <span className="tl">4</span>
-          <span className="l">0</span>
-          <span className="s">4</span>
+          <span className="r">R</span>
+          <span className="me-4 tch">tch</span>
+          <span className="c">C</span>
+          <span className="n">n</span>
+          <span className="tl">tl</span>
+          <span className="l">l</span>
+          <span className="s">s</span>
         </h1>
       </motion.div>
 
