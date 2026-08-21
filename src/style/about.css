@@ -6,10 +6,19 @@
 
 .about-content-area {
     min-height: 330px;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .cursor-pointer {
     cursor: pointer;
+}
+.text-custom{
+    color: #5aacfd;
+}
+.service-description, .text-footer{
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 @font-face {
@@ -19,6 +28,14 @@
 .title{
     font-family: Title;
 }
-.text-custom{
-    color: #5aacfd;
+@media (max-width: 767.98px) { 
+    .about-content-area {
+        font-size: 0.9rem;
+    }
+    .about-title, .service-title{
+        font-size: 1.4rem !important;
+    }
+   .about{
+        font-size: 0.9rem !important;
+   }
 }

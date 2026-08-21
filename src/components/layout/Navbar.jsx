@@ -40,6 +40,7 @@ const navItemVariants = {
 export default function Navbar() {
   const [darkMode, setDarkMode] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [activeSection, setActiveSection] = useState('#hero');
 
   useEffect(() => {
     document.documentElement.setAttribute('data-bs-theme', darkMode ? 'dark' : 'light');
@@ -53,6 +54,31 @@ export default function Navbar() {
     { href: '#skills', icon: <HiOutlineCode size={15} />, label: 'Skills' },
   ];
 
+  // Scroll spy effect using IntersectionObserver with rootMargin adjustment
+  useEffect(() => {
+    const sections = navLinks.map(link => document.querySelector(link.href)).filter(Boolean);
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`);
+          }
+        });
+      },
+      {
+        rootMargin: '-20% 0px -50% 0px',
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
+  }, [navLinks]);
+
   return (
     <nav className={`navbar navbar-expand-lg ${darkMode ? 'navbar-dark bg-black text-light border-bottom border-secondary border-opacity-50' : 'navbar-light bg-white shadow-sm'} fixed-top`}>
       <div className="container px-3 px-md-5">
@@ -65,10 +91,10 @@ export default function Navbar() {
             />
             <div className="d-flex flex-column lh-1">
                 <span className={`name ${darkMode ? 'text-light' : 'text-dark'}`}>
-                  RTCH
+                  R.Dev
                 </span>
                 <span className={`name ${darkMode ? 'text-light' : 'text-a'}`}>
-                  CNTLLS
+                  404
                 </span>
             </div>
           </div>
@@ -96,29 +122,47 @@ export default function Navbar() {
             <span className="navbar-toggler-icon"></span>
           </button>
         </div>
- 
+
         <div className={`collapse navbar-collapse justify-content-between ${isExpanded ? 'show' : ''}`} id="navbarNav">
           <motion.ul 
-            className="navbar-nav align-items-lg-center gap-lg-4 mx-auto"
+            className="navbar-nav align-items-lg-center gap-lg-3 mx-auto"
             variants={navContainerVariants}
             initial="hidden"
             animate="show"
           >
-            {navLinks.map((link, index) => (
-              <motion.li 
-                key={index} 
-                className="nav-item"
-                variants={navItemVariants}
-              >
-                <a 
-                  className={`${darkMode ? 'text-light' : 'text-secondary'} nav-link d-flex align-items-center gap-1`} 
-                  href={link.href}
-                  onClick={() => setIsExpanded(false)}
+            {navLinks.map((link, index) => {
+              const isActive = activeSection === link.href;
+              return (
+                <motion.li 
+                  key={index} 
+                  className="nav-item"
+                  variants={navItemVariants}
                 >
-                  {link.icon} {link.label}
-                </a>
-              </motion.li>
-            ))}
+                  <a 
+                    className={`nav-link d-inline-flex align-items-center gap-1 position-relative px-2 py-1 ${
+                      isActive 
+                        ? darkMode ? 'text-light' : 'text-dark' 
+                        : darkMode ? 'text-light opacity-75' : 'text-secondary'
+                    }`} 
+                    href={link.href}
+                    onClick={() => {
+                      setActiveSection(link.href);
+                      setIsExpanded(false);
+                    }}
+                  >
+                    {isActive && (
+                      <>
+                        <span className={`position-absolute border-top border-start border-2 ${darkMode ? 'border-light' : 'border-dark'} camera-focus-tl`} style={{ top: '0px', left: '0px', width: '6px', height: '6px' }}></span>
+                        <span className={`position-absolute border-top border-end border-2 ${darkMode ? 'border-light' : 'border-dark'} camera-focus-tr`} style={{ top: '0px', right: '0px', width: '6px', height: '6px' }}></span>
+                        <span className={`position-absolute border-bottom border-start border-2 ${darkMode ? 'border-light' : 'border-dark'} camera-focus-bl`} style={{ bottom: '0px', left: '0px', width: '6px', height: '6px' }}></span>
+                        <span className={`position-absolute border-bottom border-end border-2 ${darkMode ? 'border-light' : 'border-dark'} camera-focus-br`} style={{ bottom: '0px', right: '0px', width: '6px', height: '6px' }}></span>
+                      </>
+                    )}
+                    {link.icon} {link.label}
+                  </a>
+                </motion.li>
+              );
+            })}
           </motion.ul>
 
           <div className="d-none d-lg-flex align-items-center">

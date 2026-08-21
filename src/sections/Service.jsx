@@ -1,7 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+function TypingText({ text, className = "", delay = 0 }) {
+    const words = text.split(" ");
+
+    return (
+        <motion.p 
+            className={className}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+        >
+            {words.map((word, i) => (
+                <motion.span
+                    key={i}
+                    variants={{
+                        hidden: { opacity: 0, y: 5 },
+                        visible: { opacity: 1, y: 0 }
+                    }}
+                    transition={{
+                        duration: 0.1,
+                        delay: delay + i * 0.03,
+                    }}
+                    style={{ display: 'inline-block', marginRight: '0.3em' }}
+                >
+                    {word}
+                </motion.span>
+            ))}
+        </motion.p>
+    );
+}
 
 export default function Services() {
     const [selectedService, setSelectedService] = useState(null);
+    const [shiftIndex, setShiftIndex] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
 
     const services = [
         {
@@ -18,7 +51,7 @@ export default function Services() {
             description: "Interactive web applications featuring real-time database integration, secure user authentication, and seamless third-party APIs.",
             details: "Ideal for web apps, SaaS platforms, and e-commerce stores. Features secure backend integration, real-time database syncing, user authentication pipelines, and robust third-party API connections (payment gateways, dashboards, etc.)."
         },
-       {
+        {
             number: "03",
             title: "Deployment & Maintenance",
             category: "Infrastructure & Ops",
@@ -34,6 +67,21 @@ export default function Services() {
         }
     ];
 
+    useEffect(() => {
+        if (isHovered) return;
+
+        const interval = setInterval(() => {
+            setShiftIndex((prev) => (prev + 1) % services.length);
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, [services.length, isHovered]);
+
+    const rotatedServices = [
+        ...services.slice(shiftIndex),
+        ...services.slice(0, shiftIndex)
+    ];
+
     return (
         <section id="services">
             <div className="container px-3 px-md-5 mt-4 mb-3">
@@ -42,13 +90,30 @@ export default function Services() {
                     <h4 className="mb-2 title">What I Do</h4>
                 </div>
 
-                <div className="row g-4">
-                    {services.map((service, index) => {
+                <div 
+                    className="row g-4 overflow-hidden"
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)} >
+                    {rotatedServices.map((service, index) => {
                         const isFeatured = index === 0 || index === 3;
-                        
+
                         return (
-                            <div className={isFeatured ? "col-lg-7" : "col-lg-5"} key={index}>
-                                <div 
+                            <motion.div 
+                                layout
+                                key={service.number}
+                                initial={{ opacity: 0, y: 15, scale: 0.98 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: -15, scale: 0.98 }}
+                                transition={{ 
+                                    layout: { type: "spring", stiffness: 220, damping: 25 },
+                                    opacity: { duration: 0.4 },
+                                    y: { duration: 0.4 }
+                                }}
+                                className={isFeatured ? "col-lg-7" : "col-lg-5"} 
+                            >
+                                <motion.div 
+                                    whileHover={{ y: -6 }}
+                                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
                                     className="position-relative p-3 h-100 service-wrapper cursor-pointer"
                                     onClick={() => setSelectedService(service)}
                                 >
@@ -78,9 +143,11 @@ export default function Services() {
                                                 {service.title}
                                             </h3>
 
-                                            <p className={`small line-height-lg mb-4 flex-grow-1 ${isFeatured ? 'text-light opacity-75' : 'text-muted'}`}>
-                                                {service.description}
-                                            </p>
+                                            <TypingText 
+                                                text={service.description}
+                                                className={`small line-height-lg mb-4 flex-grow-1 service-description ${isFeatured ? 'text-light opacity-75' : 'text-muted'}`}
+                                                delay={0.1}
+                                            />
 
                                             <div className={`small text-decoration-underline mt-2 ${isFeatured ? 'text-warning' : 'text-primary'}`}>
                                                 [Click to view details]
@@ -88,51 +155,75 @@ export default function Services() {
                                         </div>
 
                                     </div>
-                                </div>
-                            </div>
+                                </motion.div>
+                            </motion.div>
                         );
                     })}
                 </div>
-
             </div>
 
-            {selectedService && (
-                <div className="modal fade show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(5px)' }}>
-                    <div className="modal-dialog modal-dialog-centered">
-                        <div className="modal-content rounded-0 border border-secondary bg-body text-body shadow-lg">
-                            <div className="modal-header border-bottom border-secondary border-opacity-25">
-                                <div className="font-monospace small text-uppercase opacity-75">
-                                    // service-{selectedService.number}
+            <AnimatePresence>
+                {selectedService && (
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="modal fade show d-block" 
+                        tabIndex="-1" 
+                        style={{ backgroundColor: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(5px)' }}
+                    >
+                        <div className="modal-dialog modal-dialog-centered">
+                            <motion.div 
+                                initial={{ scale: 0.9, y: 20 }}
+                                animate={{ scale: 1, y: 0 }}
+                                exit={{ scale: 0.9, y: 20 }}
+                                className="modal-content rounded-0 border border-secondary bg-body text-body shadow-lg"
+                            >
+                                <div className="modal-header border-bottom border-secondary border-opacity-25">
+                                    <div className="font-monospace small text-uppercase opacity-75">
+                                        // service-{selectedService.number}
+                                    </div>
+                                    <button 
+                                        type="button" 
+                                        className="btn-close shadow-none" 
+                                        onClick={() => setSelectedService(null)}
+                                        aria-label="Close"
+                                    ></button>
                                 </div>
-                                <button 
-                                    type="button" 
-                                    className="btn-close shadow-none" 
-                                    onClick={() => setSelectedService(null)}
-                                    aria-label="Close"
-                                ></button>
-                            </div>
-                            <div className="modal-body p-4 p-xl-5">
-                                <span className="font-monospace small text-warning text-uppercase tracking-widest d-block mb-2">
-                                    {selectedService.category}
-                                </span>
-                                <h3 className="fw-bold mb-3">{selectedService.title}</h3>
-                                <p className="text-muted mb-4">{selectedService.description}</p>
-                                <hr className="border-secondary opacity-25 mb-4" />
-                                <p className="small mb-0 line-height-lg">{selectedService.details}</p>
-                            </div>
-                            <div className="modal-footer border-top border-secondary border-opacity-25">
-                                <button 
-                                    type="button" 
-                                    className="btn btn-outline-secondary rounded-pill px-4 btn-sm font-monospace"
-                                    onClick={() => setSelectedService(null)}
-                                >
-                                    Close
-                                </button>
-                            </div>
+                                <div className="modal-body p-4 p-xl-5">
+                                    <span className="font-monospace small text-warning text-uppercase tracking-widest d-block mb-2">
+                                        {selectedService.category}
+                                    </span>
+                                    <h3 className="fw-bold mb-3">{selectedService.title}</h3>
+                                    
+                                    <TypingText 
+                                        text={selectedService.description}
+                                        className="text-muted mb-4 service-description"
+                                        delay={0.1}
+                                    />
+                                    
+                                    <hr className="border-secondary opacity-25 mb-4" />
+                                    
+                                    <TypingText 
+                                        text={selectedService.details}
+                                        className="small mb-0 line-height-lg service-description"
+                                        delay={0.3}
+                                    />
+                                </div>
+                                <div className="modal-footer border-top border-secondary border-opacity-25">
+                                    <button 
+                                        type="button" 
+                                        className="btn btn-outline-secondary rounded-pill px-4 btn-sm font-monospace"
+                                        onClick={() => setSelectedService(null)}
+                                    >
+                                        Close
+                                    </button>
+                                </div>
+                            </motion.div>
                         </div>
-                    </div>
-                </div>
-            )}
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
     );
 }

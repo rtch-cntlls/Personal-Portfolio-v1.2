@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import VSCodeIcon from '../assets/icons/VScode.PNG';
 import CanvaIcon from '../assets/icons/Canva.PNG';
 import CapcutIcon from '../assets/icons/Capcut.png';
@@ -117,7 +118,7 @@ export default function Skill() {
     const currentData = skillCategories[activeCategory] || skillCategories.frontend;
 
     return (
-        <section id="skills" className={`position-relative transition-all py-4 ${isDarkMode ? 'bg-black text-light' : 'text-dark'}`}>
+        <section id="skills" className={`position-relative transition-all py-4 mt-5 ${isDarkMode ? 'bg-black text-light' : 'text-dark'}`}>
             <div className="container px-3 px-md-5">
                 <div>
                     <small className="text-uppercase tracking-wider opacity-75 font-monospace">Tech Stack & Tools</small>
@@ -128,7 +129,13 @@ export default function Skill() {
                     onMouseEnter={() => setIsPaused(true)}
                     onMouseLeave={() => setIsPaused(false)} >
                     
-                    <div className="col-lg-3">
+                    <motion.div 
+                        className="col-lg-3"
+                        initial={{ opacity: 0, x: -60 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.8, ease: 'easeOut' }}
+                    >
                         <div className="d-flex flex-column gap-2">
                             {Object.entries(skillCategories).map(([key, data]) => (
                                 <button
@@ -139,16 +146,22 @@ export default function Skill() {
                                             ? 'btn-custom shadow-sm fw-medium' 
                                             : isDarkMode ? 'btn-outline-secondary text-light' : 'btn-outline-dark text-secondary'
                                     }`} >
-                                    <span>📁 {data.title}</span>
+                                    <span className='small'>📁 {data.title}</span>
                                     <span className={`badge rounded-pill ${activeCategory === key ? 'bg-white text-dark bg-opacity-75' : isDarkMode ? 'bg-secondary text-dark' : 'bg-secondary text-white'} font-monospace`} style={{ fontSize: '0.7rem' }}>
                                          {data.skills.length}
                                     </span>
                                 </button>
                             ))}
                         </div>
-                    </div>
+                    </motion.div>
 
-                    <div className="col-lg-9">
+                    <motion.div 
+                        className="col-lg-9"
+                        initial={{ opacity: 0, x: 60 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+                    >
                         <div className="position-relative">
                             
                             <div className={`p-4 d-flex flex-column justify-content-start skill-container position-relative rounded-0 ${isDarkMode ? 'bg-black border border-secondary border-opacity-50 text-light' : 'bg-light border border-dark-subtle text-dark'} shadow-sm`}>
@@ -189,7 +202,7 @@ export default function Skill() {
 
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
                 </div>
 

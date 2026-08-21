@@ -64,29 +64,44 @@ export default function Content({ isDarkMode, currentText }) {
         </h1>
       </div>
 
-      <div className="headline">
+      <motion.div 
+        className="headline"
+        initial={{ opacity: 0, scale: 0.8, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2, type: 'spring', stiffness: 200, damping: 20 }}
+      >
         <h1 className="m-0">
-          <span className="r">R</span>
-          <span className="me-4 tch">tch</span>
-          <span className="c">C</span>
-          <span className="n">n</span>
-          <span className="tl">tl</span>
-          <span className="l">l</span>
-          <span className="s">s</span>
+          <span className="r">C</span>
+          <span className="me-4 tch">ode</span>
+          <span className="c">By</span>
+          <span className="n">dev</span>
+          <span className="tl">4</span>
+          <span className="l">0</span>
+          <span className="s">4</span>
         </h1>
-      </div>
+      </motion.div>
 
       <div className="sub-headline mb-4">
         <h1 className="m-0 lh-1">
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -80 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
+          >
             <span className="full"><span className="f">F</span>Ull</span>
             <span className="stack me-2">stack</span>
             <span className="developer ms-2">
               <span className="d">D</span>
               eveloper
             </span>
-          </div>
-          <div className="text-lg-end text-center mt-2 sub-headline-wrapper">
+          </motion.div>
+
+          <motion.div 
+            className="text-lg-end text-center mt-2 sub-headline-wrapper"
+            initial={{ opacity: 0, x: 80 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: 'easeOut' }}
+          >
             <span className={`and me-1 ${isDarkMode ? 'text-light' : ''}`}>&</span>
             <span className="ui">UI/UX</span>
             
@@ -107,7 +122,7 @@ export default function Content({ isDarkMode, currentText }) {
               <span className="resize-handle handle-br"></span>
               <span className="designer px-3 py-1">Designer</span>
             </motion.span>
-          </div>
+          </motion.div>
         </h1>
       </div>
 
@@ -115,18 +130,43 @@ export default function Content({ isDarkMode, currentText }) {
         I build exceptional, high-performing digital experiences, clean web interfaces, and robust backend systems with modern technologies.
       </p>
 
-      <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start gap-3 mb-4">
-        <a
+      <motion.div
+        className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start gap-3 mb-4"
+        initial="hidden"
+        animate="show"
+        variants={{
+          show: {
+            transition: {
+              staggerChildren: 0.2,
+              delayChildren: 0.8
+            }
+          }
+        }}  >
+        
+        <motion.a
           href="#project"
-          className={`btn ${isDarkMode ? 'btn-light' : 'btn-dark'} d-inline-flex align-items-center gap-2 px-4 py-2 shadow-sm`}>
-          View Projects <HiOutlineArrowRight size={18} />
-        </a>
-        <a
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 300 } }
+          }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className={`btn btn-sm ${isDarkMode ? 'btn-light' : 'btn-dark'} d-inline-flex align-items-center gap-2 px-4 py-2 shadow-sm`}>
+          View Projects <HiOutlineArrowRight className="btn-icon-mobile" />
+        </motion.a>
+
+        <motion.a
           href="#contact"
-          className={`btn ${isDarkMode ? 'btn-outline-light' : 'btn-outline-secondary'} d-inline-flex align-items-center gap-2 px-4 py-2`} >
-          Download CV <HiOutlineDownload size={18} />
-        </a>
-      </div>
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 300 } }
+          }}
+          whileHover={{ scale: 1.05, backgroundColor: isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }}
+          whileTap={{ scale: 0.95 }}
+          className={`btn btn-sm ${isDarkMode ? 'btn-outline-light' : 'btn-outline-secondary'} d-inline-flex align-items-center gap-2 px-4 py-2`} >
+          Download CV <HiOutlineDownload className="btn-icon-mobile" />
+        </motion.a>
+      </motion.div>
 
       <motion.div 
         className="stats-cards-section pt-2"
@@ -140,8 +180,7 @@ export default function Content({ isDarkMode, currentText }) {
               <div 
                 className={`position-relative p-2 p-lg-3 rounded-0 border h-100 d-flex flex-column align-items-center align-items-lg-start bg-transparent stat-card-box ${
                   isDarkMode ? 'border-secondary text-light' : 'border-dark-subtle text-dark'
-                }`} 
-              >
+                }`}  >
                 <span className="position-absolute stat-handle handle-tl"></span>
                 <span className="position-absolute stat-handle handle-tm"></span>
                 <span className="position-absolute stat-handle handle-tr"></span>

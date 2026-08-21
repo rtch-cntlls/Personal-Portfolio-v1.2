@@ -66,7 +66,7 @@ export default function Footer() {
               transition={{ duration: 0.5 }}
             >
               <h3 className="fw-bold mb-3 tracking-tight">Let's Build Together.</h3>
-              <p className={`${isDark ? 'text-muted' : 'text-secondary'} mb-4`} style={{ maxWidth: '400px' }}>
+              <p className={`small text-footer ${isDark ? 'text-muted' : 'text-secondary'} mb-4`} style={{ maxWidth: '400px' }}>
                 Crafting performant, accessible, and user-centric web applications from Cebu City to the world. Always open to interesting conversations and ideas.
               </p>
               

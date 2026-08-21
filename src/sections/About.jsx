@@ -1,7 +1,38 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import PhilippinesMapImg from '../assets/images/PH.png';
 import HelloWorld from '../assets/images/1.png';
 import CTU from '../assets/images/2.png';
+
+function TypingText({ text, className = "", delay = 0 }) {
+    const words = text.split(" ");
+
+    return (
+        <motion.p 
+            className={className}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+        >
+            {words.map((word, i) => (
+                <motion.span
+                    key={i}
+                    variants={{
+                        hidden: { opacity: 0, y: 5 },
+                        visible: { opacity: 1, y: 0 }
+                    }}
+                    transition={{
+                        duration: 0.1,
+                        delay: delay + i * 0.04,
+                    }}
+                    style={{ display: 'inline-block', marginRight: '0.3em' }}
+                >
+                    {word}
+                </motion.span>
+            ))}
+        </motion.p>
+    );
+}
 
 export default function About() {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -43,7 +74,13 @@ export default function About() {
 
                     <div className="row g-0">
                         
-                        <div className={`col-md-3 border-end p-3 font-monospace small ${isDarkMode ? 'border-secondary' : 'border-dark-subtle'}`}>
+                        <motion.div 
+                            className={`col-md-3 border-end p-3 font-monospace small ${isDarkMode ? 'border-secondary' : 'border-dark-subtle'}`}
+                            initial={{ opacity: 0, x: -60 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                            transition={{ duration: 0.8, ease: 'easeOut' }}
+                        >
                             <div className="fw-bold text-uppercase opacity-50 mb-3">Directories</div>
                             <ul className="list-unstyled d-flex flex-column gap-2 mb-0">
                                 <li 
@@ -62,7 +99,7 @@ export default function About() {
                                     📁 location.md
                                 </li>
                             </ul>
-                        </div>
+                        </motion.div>
 
                         <div className="col-md-9 p-4 about-content-area">
                             {activeFile === 'bio' && (
@@ -70,12 +107,27 @@ export default function About() {
                                     <div className="font-monospace mb-2 text-uppercase small opacity-75">// Active File: bio.md</div>
                                     <div className="row align-items-center">
                                         <div className="col-lg-7">
-                                            <h2 className={`mb-2 fw-bold ${isDarkMode ? 'text-custom ' : 'text-dark '}`}>Hello, World.</h2>
-                                            <p className={`lead fs-6 opacity-90 mb-4 ${isDarkMode ? 'text-muted' : 'text-dark'}`}>
-                                                I'm a passionate developer who bridges the gap between creative visual design and robust software engineering. 
-                                                I like building things that live on the web, combining clean user interfaces with efficient logic.
-                                            </p>
-                                            <div className="table-responsive">
+                                            <motion.h2 
+                                                className={`mb-2 fw-bold about-title ${isDarkMode ? 'text-custom ' : 'text-dark '}`}
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                transition={{ duration: 0.4 }}
+                                            >
+                                                Hello, World.
+                                            </motion.h2>
+                                            
+                                            <TypingText 
+                                                text="I'm a passionate developer who bridges the gap between creative visual design and robust software engineering. I like building things that live on the web, combining clean user interfaces with efficient logic."
+                                                className={`lead fs-6 opacity-90 mb-4 about ${isDarkMode ? 'text-muted' : 'text-dark'}`}
+                                                delay={0.1}
+                                            />
+
+                                            <motion.div 
+                                                className="table-responsive"
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ duration: 0.5, delay: 0.4 }}
+                                            >
                                                 <table className={`table table-sm font-monospace small ${isDarkMode ? 'table-dark text-light' : ''}`}>
                                                     <tbody>
                                                         <tr><td className="opacity-50 w-25">File type:</td><td>Markdown Document</td></tr>
@@ -83,9 +135,16 @@ export default function About() {
                                                         <tr><td className="opacity-50">Status:</td><td><span className="text-success fw-bold">● Available for hire / collaboration</span></td></tr>
                                                     </tbody>
                                                 </table>
-                                            </div>
+                                            </motion.div>
                                         </div>
-                                        <div className="col-lg-5 text-center mt-4 mt-lg-0">
+
+                                        <motion.div 
+                                            className="col-lg-5 text-center mt-4 mt-lg-0"
+                                            initial={{ opacity: 0, x: 60 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            viewport={{ once: true, amount: 0.2 }}
+                                            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+                                        >
                                             <div className="position-relative p-3 mx-auto d-inline-block">
                                                 <div className={`position-absolute border-top border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-tl`}></div>
                                                 <div className={`position-absolute border-top border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-tr`}></div>
@@ -99,7 +158,7 @@ export default function About() {
                                                     style={{ maxHeight: '250px' }}
                                                 />
                                             </div>
-                                        </div>
+                                        </motion.div>
                                     </div>
                                 </>
                             )}
@@ -109,11 +168,27 @@ export default function About() {
                                     <div className="font-monospace mb-2 text-uppercase small opacity-75">// Active File: education.md</div>
                                     <div className="row align-items-center">
                                         <div className="col-lg-7">
-                                            <h2 className={`mb-2 fw-bold ${isDarkMode ? 'text-custom ' : 'text-dark '}`}>Academic Background.</h2>
-                                            <p className={`lead fs-6 opacity-90 mb-4 ${isDarkMode ? 'text-muted' : 'text-dark'}`}>
-                                            As an Information Technology graduate, I love building my technical skills through hands-on personal projects. I am always exploring new tools to expand what I can create.
-                                            </p>
-                                            <div className="table-responsive">
+                                            <motion.h2 
+                                                className={`mb-2 fw-bold about-title ${isDarkMode ? 'text-custom ' : 'text-dark '}`}
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                transition={{ duration: 0.4 }}
+                                            >
+                                                Academic Background.
+                                            </motion.h2>
+
+                                            <TypingText 
+                                                text="As an Information Technology graduate, I love building my technical skills through hands-on personal projects. I am always exploring new tools to expand what I can create."
+                                                className={`lead fs-6 opacity-90 mb-4 about ${isDarkMode ? 'text-muted' : 'text-dark'}`}
+                                                delay={0.1}
+                                            />
+
+                                            <motion.div 
+                                                className="table-responsive"
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ duration: 0.5, delay: 0.4 }}
+                                            >
                                                 <table className={`table table-sm font-monospace small ${isDarkMode ? 'table-dark text-light' : ''}`}>
                                                     <tbody>
                                                         <tr><td className="opacity-50 w-25">Degree:</td><td>Bachelor of Science in Information Technology</td></tr>
@@ -121,9 +196,16 @@ export default function About() {
                                                         <tr><td className="opacity-50">Status:</td><td><span className="text-success fw-bold">● Graduate / Lifelong Learner</span></td></tr>
                                                     </tbody>
                                                 </table>
-                                            </div>
+                                            </motion.div>
                                         </div>
-                                        <div className="col-lg-5 text-center mt-4 mt-lg-0">
+
+                                        <motion.div 
+                                            className="col-lg-5 text-center mt-4 mt-lg-0"
+                                            initial={{ opacity: 0, x: 60 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            viewport={{ once: true, amount: 0.2 }}
+                                            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+                                        >
                                             <div className="position-relative p-3 mx-auto d-inline-block">
                                                 <div className={`position-absolute border-top border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-tl`}></div>
                                                 <div className={`position-absolute border-top border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-tr`}></div>
@@ -137,7 +219,7 @@ export default function About() {
                                                     style={{ maxHeight: '250px' }}
                                                 />
                                             </div>
-                                        </div>
+                                        </motion.div>
                                     </div>
                                 </>
                             )}
@@ -147,11 +229,27 @@ export default function About() {
                                     <div className="font-monospace mb-2 text-uppercase small opacity-75">// Active File: location.md</div>
                                     <div className="row align-items-center">
                                         <div className="col-lg-7">
-                                            <h2 className={`mb-2 fw-bold ${isDarkMode ? 'text-custom ' : 'text-dark '}`}>Geographic Node.</h2>
-                                            <p className={`lead fs-6 opacity-90 mb-4 ${isDarkMode ? 'text-muted' : 'text-dark'}`}>
-                                                Operating locally from Cebu City, with full availability for remote collaboration globally.
-                                            </p>
-                                            <div className="table-responsive">
+                                            <motion.h2 
+                                                className={`mb-2 fw-bold about-title ${isDarkMode ? 'text-custom ' : 'text-dark '}`}
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                transition={{ duration: 0.4 }}
+                                            >
+                                                Geographic Node.
+                                            </motion.h2>
+
+                                            <TypingText 
+                                                text="Operating locally from Cebu City, with full availability for remote collaboration globally."
+                                                className={`lead fs-6 opacity-90 mb-4 about ${isDarkMode ? 'text-muted' : 'text-dark'}`}
+                                                delay={0.1}
+                                            />
+
+                                            <motion.div 
+                                                className="table-responsive"
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ duration: 0.5, delay: 0.4 }}
+                                            >
                                                 <table className={`table table-sm font-monospace small text-muted ${isDarkMode ? 'table-dark text-light' : ''}`}>
                                                     <tbody>
                                                         <tr><td className="opacity-50 w-25">Base:</td><td>Cebu City, Philippines</td></tr>
@@ -159,9 +257,16 @@ export default function About() {
                                                         <tr><td className="opacity-50">Status:</td><td><span className="text-success fw-bold">● Active</span></td></tr>
                                                     </tbody>
                                                 </table>
-                                            </div>
+                                            </motion.div>
                                         </div>
-                                        <div className="col-lg-5 text-center mt-4 mt-lg-0">
+
+                                        <motion.div 
+                                            className="col-lg-5 text-center mt-4 mt-lg-0"
+                                            initial={{ opacity: 0, x: 60 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            viewport={{ once: true, amount: 0.2 }}
+                                            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+                                        >
                                             <div className="position-relative p-3 mx-auto d-inline-block">
                                                 <div className={`position-absolute border-top border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-tl`}></div>
                                                 <div className={`position-absolute border-top border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-tr`}></div>
@@ -175,7 +280,7 @@ export default function About() {
                                                     style={{ maxHeight: '200px' }}
                                                 />
                                             </div>
-                                        </div>
+                                        </motion.div>
                                     </div>
                                 </>
                             )}

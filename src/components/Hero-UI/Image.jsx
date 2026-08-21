@@ -1,7 +1,36 @@
 import { HiOutlineMail } from 'react-icons/hi';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import AvatarImg from '../../assets/images/profile1.webp';
+import AvatarImg from '../../assets/images/pfp1.jpg';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.3, 
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { 
+    y: -200, 
+    opacity: 0 
+  },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: 'spring',
+      stiffness: 80,
+      damping: 12,
+      mass: 0.8, 
+    },
+  },
+};
+
 
 export default function Image({ isDarkMode }) {
   return (
@@ -60,31 +89,45 @@ export default function Image({ isDarkMode }) {
           </div>
 
           <div className="mt-3 pt-2 z-2 position-relative text-start">
-            <span className={`d-block font-monospace fw-bold small mb-2 text-uppercase ${isDarkMode ? 'text-light' : 'text-dark'}`}>💬 Let's Connect:</span>
-            <div className="d-flex gap-2">
-              <a
+            <motion.span 
+              variants={itemVariants} 
+              className={`d-block font-monospace fw-bold small mb-2 text-uppercase ${isDarkMode ? 'text-light' : 'text-dark'}`}
+            >
+                💬 Let's Connect:
+            </motion.span>
+
+            <motion.div 
+              initial="hidden"
+              animate="visible"
+              variants={containerVariants}
+              className="d-flex gap-2" >
+
+              <motion.a
+                variants={itemVariants}
                 href="mailto:your.rtchcntlls@gmail.com"
                 className={`btn btn-sm ${isDarkMode ? 'btn-outline-light' : 'btn-outline-dark'} flex-grow-1 d-flex align-items-center justify-content-center gap-1 fw-bold font-monospace shadow-sm`}
                 title="Email Me" >
                 <HiOutlineMail size={16} /> Email
-              </a>
-              <a
+              </motion.a>
+              <motion.a
+                variants={itemVariants}
                 href="https://linkedin.com/in/rtch-cntlls-314543419"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`btn btn-sm ${isDarkMode ? 'btn-outline-light' : 'btn-outline-dark'} flex-grow-1 d-flex align-items-center justify-content-center gap-1 fw-bold font-monospace shadow-sm`}
                 title="LinkedIn Profile"  >
                 <FaLinkedin size={15} /> LinkedIn
-              </a>
-              <a
+              </motion.a>
+              <motion.a
+                variants={itemVariants}
                 href="https://github.com/rtch-cntlls"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`btn btn-sm ${isDarkMode ? 'btn-outline-light' : 'btn-outline-dark'} flex-grow-1 d-flex align-items-center justify-content-center gap-1 fw-bold font-monospace shadow-sm`}
                 title="GitHub Profile" >
                 <FaGithub size={15} /> GitHub
-              </a>
-            </div>
+              </motion.a>
+            </motion.div>
           </div>
         </div>
         <div className={`position-absolute top-0 start-0 w-100 h-100 ${isDarkMode ? 'bg-secondary bg-opacity-25' : 'bg-secondary'} rounded-0 img-backdrop-shadow`}></div>

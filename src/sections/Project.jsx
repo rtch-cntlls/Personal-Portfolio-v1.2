@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import ProjectImg1 from '../assets/project/1.png'; 
-import ProjectImg2 from '../assets/project/1.png';
-import ProjectImg3 from '../assets/project/1.png';
+import ProjectImg1 from '../assets/project/e-commerce/1.png'; 
+import ProjectImg2 from '../assets/project/nces/1.png';
+import ProjectImg3 from '../assets/project/rent/1.png';
 
 export default function Project() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -30,7 +30,7 @@ export default function Project() {
     },
     {
       id: 'proj-2',
-      title: 'NCES Web App',
+      title: 'Web App',
       image: ProjectImg2,
       description: 'Student Record Management System',
     },
@@ -101,16 +101,18 @@ export default function Project() {
                 <div className={`img-panel h-100 ${isDarkMode ? 'bg-black text-light' : 'bg-white text-dark'} shadow-sm rounded-0 position-relative d-flex flex-column`}>
                   
                   <div className="bg-dark rounded-0 overflow-hidden position-relative z-2 mb-3" style={{ height: '220px' }}>
-                    <img
+                    <motion.img
                       src={project.image}
                       alt={project.title}
                       className="w-100 h-100 object-fit-cover"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.4, ease: 'easeOut' }}
                     />
                   </div>
 
                   <div className="px-3 pb-3 flex-grow-1 d-flex flex-column justify-content-between text-start z-2">
                     <div>
-                      <h5 className={`fw-bold mb-2 ${isDarkMode ? 'text-light' : 'text-dark'}`}>
+                      <h5 className={`fw-bold mb-2 about-title ${isDarkMode ? 'text-light' : 'text-dark'}`}>
                         {project.title}
                       </h5>
                       <p className={`small mb-0 ${isDarkMode ? 'text-light opacity-75' : 'text-muted'}`}>

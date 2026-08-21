@@ -126,6 +126,8 @@
 .hero-lead-text {
     max-width: 540px;
     font-size: 1.1rem;
+    text-align: justify;
+    text-justify: inter-word;
 }
 .img-container {
     max-width: 420px;
@@ -212,6 +214,11 @@
     width: 16px;
     height: 16px;
 }
+
+.btn-icon-mobile {
+    font-size: 14px;
+}
+
 @media (max-width: 767.98px) {
     .headline h1, .r, .tch, .c, .n, .tl, .l, .s{
         font-size: 3rem;
@@ -232,7 +239,8 @@
         font-size: 1.8rem;
     }
     .lead{
-        font-size: 1rem;
+        font-size: 0.9rem;
+        padding: 10px;
     }
     .stat-card-box {
         padding: 0.5rem !important;
@@ -243,5 +251,9 @@
     .stat-label {
         font-size: 0.55rem !important;
         transform: scale(0.9);
+    }
+    .btn-sm{
+        font-size: 0.7rem;
+        font-family: sans-serif !important;
     }
 }
