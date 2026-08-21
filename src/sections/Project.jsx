@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ProjectImg1 from '../assets/project/e-commerce/1.png'; 
-import ProjectImg2 from '../assets/project/nces/1.png';
+import ProjectImg2 from '../assets/project/nces/1.PNG';
 import ProjectImg3 from '../assets/project/rent/1.png';
 
 export default function Project() {
