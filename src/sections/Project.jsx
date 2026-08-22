@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ProjectImg1 from '../assets/project/e-commerce/1.png'; 
 import ProjectImg2 from '../assets/project/nces/1.PNG';
-import ProjectImg3 from '../assets/project/rent/1.png';
+import ProjectImg3 from '../assets/project/rent/1.PNG';
 
 export default function Project() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -104,7 +104,7 @@ export default function Project() {
                     <motion.img
                       src={project.image}
                       alt={project.title}
-                      className="w-100 h-100 object-fit-cover"
+                      className="w-100 h-100 object-fit-fill"
                       whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.4, ease: 'easeOut' }}
                     />
