@@ -91,7 +91,7 @@ export default function Project() {
                 <div className={`position-absolute bottom-0 end-0 border-bottom border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark-subtle'} z-3 camera-focus-br`} style={{ width: '10px', height: '10px' }}></div>
 
                 <div className={`img-panel h-100 ${isDarkMode ? 'bg-black text-light' : 'bg-white text-dark'} shadow-sm rounded-0 position-relative d-flex flex-column border ${isDarkMode ? 'border-secondary' : 'border-dark-subtle'}`}>
-                  <div className="bg-dark rounded-0 overflow-hidden position-relative z-2 mb-3 project-img" style={{ height: '220px' }}>
+                  <div className="bg-dark rounded-0 overflow-hidden position-relative z-2 mb-3 project-img">
                     <motion.img
                       src={project.image}
                       alt={project.title}
