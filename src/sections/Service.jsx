@@ -12,20 +12,22 @@ function TypingText({ text, className = "", delay = 0 }) {
             viewport={{ once: true }}
         >
             {words.map((word, i) => (
-                <motion.span
-                    key={i}
-                    variants={{
-                        hidden: { opacity: 0, y: 5 },
-                        visible: { opacity: 1, y: 0 }
-                    }}
-                    transition={{
-                        duration: 0.1,
-                        delay: delay + i * 0.03,
-                    }}
-                    style={{ display: 'inline-block', marginRight: '0.3em' }}
-                >
-                    {word}
-                </motion.span>
+                <React.Fragment key={i}>
+                    <motion.span
+                        variants={{
+                            hidden: { opacity: 0, y: 5 },
+                            visible: { opacity: 1, y: 0 }
+                        }}
+                        transition={{
+                            duration: 0.1,
+                            delay: delay + i * 0.03,
+                        }}
+                        style={{ display: 'inline' }}
+                    >
+                        {word}
+                    </motion.span>
+                    {i < words.length - 1 && " "} 
+                </React.Fragment>
             ))}
         </motion.p>
     );

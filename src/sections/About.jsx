@@ -15,20 +15,22 @@ function TypingText({ text, className = "", delay = 0 }) {
             viewport={{ once: true }}
         >
             {words.map((word, i) => (
-                <motion.span
-                    key={i}
-                    variants={{
-                        hidden: { opacity: 0, y: 5 },
-                        visible: { opacity: 1, y: 0 }
-                    }}
-                    transition={{
-                        duration: 0.1,
-                        delay: delay + i * 0.04,
-                    }}
-                    style={{ display: 'inline-block', marginRight: '0.3em' }}
-                >
-                    {word}
-                </motion.span>
+                <span key={i}>
+                    <motion.span
+                        variants={{
+                            hidden: { opacity: 0, y: 5 },
+                            visible: { opacity: 1, y: 0 }
+                        }}
+                        transition={{
+                            duration: 0.1,
+                            delay: delay + i * 0.04,
+                        }}
+                        style={{ display: 'inline' }}
+                    >
+                        {word}
+                    </motion.span>
+                    {i < words.length - 1 && " "}
+                </span>
             ))}
         </motion.p>
     );
@@ -49,7 +51,7 @@ export default function About() {
         const observer = new MutationObserver(checkTheme);
         observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-bs-theme'] });
 
-        return () => observer.disconnect();
+        return () => observer.observer ? observer.disconnect() : observer.disconnect();
     }, []);
 
     return (
@@ -118,7 +120,7 @@ export default function About() {
                                             
                                             <TypingText 
                                                 text="I'm a passionate developer who bridges the gap between creative visual design and robust software engineering. I like building things that live on the web, combining clean user interfaces with efficient logic."
-                                                className={`lead fs-6 opacity-90 mb-4 about ${isDarkMode ? 'text-muted' : 'text-dark'}`}
+                                                className={`lead fs-6 opacity-90 mb-4 about service-description ${isDarkMode ? 'text-muted' : 'text-dark'}`}
                                                 delay={0.1}
                                             />
 
@@ -179,7 +181,7 @@ export default function About() {
 
                                             <TypingText 
                                                 text="As an Information Technology graduate, I love building my technical skills through hands-on personal projects. I am always exploring new tools to expand what I can create."
-                                                className={`lead fs-6 opacity-90 mb-4 about ${isDarkMode ? 'text-muted' : 'text-dark'}`}
+                                                className={`lead fs-6 opacity-90 mb-4 about service-description ${isDarkMode ? 'text-muted' : 'text-dark'}`}
                                                 delay={0.1}
                                             />
 
@@ -240,7 +242,7 @@ export default function About() {
 
                                             <TypingText 
                                                 text="Operating locally from Cebu City, with full availability for remote collaboration globally."
-                                                className={`lead fs-6 opacity-90 mb-4 about ${isDarkMode ? 'text-muted' : 'text-dark'}`}
+                                                className={`lead fs-6 opacity-90 mb-4 about service-description ${isDarkMode ? 'text-muted' : 'text-dark'}`}
                                                 delay={0.1}
                                             />
 
