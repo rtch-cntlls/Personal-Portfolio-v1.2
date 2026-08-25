@@ -58,8 +58,9 @@ export default function Project() {
           </Link>
         </motion.div>
 
+        {/* Carousel container with proper snap and flex wrapper */}
         <motion.div 
-          className="d-flex flex-row flex-md-row overflow-x-auto pb-3 g-md-4 row mx-0 flex-nowrap flex-md-wrap"
+          className="d-flex flex-row overflow-x-auto pb-4 pt-2 flex-nowrap flex-md-wrap row mx-0 g-4"
           style={{ scrollbarWidth: 'thin', WebkitOverflowScrolling: 'touch', scrollSnapType: 'x mandatory' }}
           variants={containerVariants}
           initial="hidden"
@@ -67,19 +68,21 @@ export default function Project() {
           viewport={{ once: true }} >
           {displayedProjects.map((project) => (
             <motion.div 
-              className="col-10 col-sm-8 col-md-4 flex-shrink-0 flex-grow-0 px-2 px-md-3" 
+              className="col-12 col-md-4 flex-shrink-0 flex-grow-0 px-2 px-md-0" 
               key={project.id} 
               variants={cardVariants}
               style={{ scrollSnapAlign: 'start' }}
             >
-              <div className="position-relative p-2 h-100">
-                <div className={`position-absolute border-top border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark-subtle'} z-3 camera-focus-tl`}></div>
-                <div className={`position-absolute border-top border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark-subtle'} z-3 camera-focus-tr`}></div>
-                <div className={`position-absolute border-bottom border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark-subtle'} z-3 camera-focus-bl`}></div>
-                <div className={`position-absolute border-bottom border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark-subtle'} z-3 camera-focus-br`}></div>
+              <div className="position-relative p-3 h-100">
+                
+                <div className={`position-absolute top-0 start-0 border-top border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark-subtle'} z-3 camera-focus-tl`} style={{ width: '10px', height: '10px' }}></div>
+                <div className={`position-absolute top-0 end-0 border-top border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark-subtle'} z-3 camera-focus-tr`} style={{ width: '10px', height: '10px' }}></div>
+                <div className={`position-absolute bottom-0 start-0 border-bottom border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark-subtle'} z-3 camera-focus-bl`} style={{ width: '10px', height: '10px' }}></div>
+                <div className={`position-absolute bottom-0 end-0 border-bottom border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark-subtle'} z-3 camera-focus-br`} style={{ width: '10px', height: '10px' }}></div>
 
-                <div className={`img-panel h-100 ${isDarkMode ? 'bg-black text-light' : 'bg-white text-dark'} shadow-sm rounded-0 position-relative d-flex flex-column`}>
-                  <div className="bg-dark rounded-0 overflow-hidden position-relative z-2 mb-3 project-img" style={{ height: '220px' }}>
+                <div className={`img-panel h-100 ${isDarkMode ? 'bg-black text-light' : 'bg-white text-dark'} shadow-sm rounded-0 position-relative d-flex flex-column border`}>
+                  
+                  <div className="bg-dark rounded-0 overflow-hidden position-relative z-2 mb-3 project-img">
                     <motion.img
                       src={project.image}
                       alt={project.title}
@@ -100,14 +103,17 @@ export default function Project() {
                     </div>
 
                     <div className="d-flex gap-2 pt-2 border-top border-secondary border-opacity-25">
-                      <a href={project.detailsLink} className={`btn btn-sm rounded-0 flex-grow-1 ${isDarkMode ? 'btn-outline-light' : 'btn-outline-dark'}`}>
+                      <Link to="/projects" className={`btn btn-sm rounded-0 flex-grow-1 ${isDarkMode ? 'btn-outline-light' : 'btn-outline-dark'}`}>
                         View Details
-                      </a>
-                      <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className={`btn btn-sm rounded-0 flex-grow-1 ${isDarkMode ? 'btn-light text-dark' : 'btn-dark text-light'}`}>
-                        Visit Site &rarr;
-                      </a>
+                      </Link>
+                      {project.liveLink && (
+                        <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className={`btn btn-sm rounded-0 flex-grow-1 ${isDarkMode ? 'btn-light text-dark' : 'btn-dark text-light'}`}>
+                          Visit Site &rarr;
+                        </a>
+                      )}
                     </div>
                   </div>
+
                 </div>
               </div>
             </motion.div>
