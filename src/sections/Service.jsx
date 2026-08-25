@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 function TypingText({ text, className = "", delay = 0 }) {
@@ -35,8 +35,6 @@ function TypingText({ text, className = "", delay = 0 }) {
 
 export default function Services() {
     const [selectedService, setSelectedService] = useState(null);
-    const [shiftIndex, setShiftIndex] = useState(0);
-    const [isHovered, setIsHovered] = useState(false);
 
     const services = [
         {
@@ -69,48 +67,21 @@ export default function Services() {
         }
     ];
 
-    useEffect(() => {
-        if (isHovered) return;
-
-        const interval = setInterval(() => {
-            setShiftIndex((prev) => (prev + 1) % services.length);
-        }, 5000);
-
-        return () => clearInterval(interval);
-    }, [services.length, isHovered]);
-
-    const rotatedServices = [
-        ...services.slice(shiftIndex),
-        ...services.slice(0, shiftIndex)
-    ];
-
     return (
         <section id="services">
             <div className="container px-3 px-md-5 mt-4 mb-3">
                 <div className="mb-4">
-                    <small className="text-uppercase tracking-wider opacity-75 font-monospace">Services Offer</small>
-                    <h4 className="mb-2 title">What I Do</h4>
+                    <small className="text-uppercase tracking-wider opacity-75 font-monospace">Services I Offer</small>
+                    <h4 className="mb-2 fw-bold">What I can do for you</h4>
                 </div>
 
-                <div 
-                    className="row g-4 overflow-hidden"
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)} >
-                    {rotatedServices.map((service, index) => {
+                <div className="row g-4 overflow-hidden">
+                    {services.map((service, index) => {
                         const isFeatured = index === 0 || index === 3;
 
                         return (
-                            <motion.div 
-                                layout
+                            <div 
                                 key={service.number}
-                                initial={{ opacity: 0, y: 15, scale: 0.98 }}
-                                animate={{ opacity: 1, y: 0, scale: 1 }}
-                                exit={{ opacity: 0, y: -15, scale: 0.98 }}
-                                transition={{ 
-                                    layout: { type: "spring", stiffness: 220, damping: 25 },
-                                    opacity: { duration: 0.4 },
-                                    y: { duration: 0.4 }
-                                }}
                                 className={isFeatured ? "col-lg-7" : "col-lg-5"} 
                             >
                                 <motion.div 
@@ -158,7 +129,7 @@ export default function Services() {
 
                                     </div>
                                 </motion.div>
-                            </motion.div>
+                            </div>
                         );
                     })}
                 </div>
@@ -179,7 +150,7 @@ export default function Services() {
                                 initial={{ scale: 0.9, y: 20 }}
                                 animate={{ scale: 1, y: 0 }}
                                 exit={{ scale: 0.9, y: 20 }}
-                                className="modal-content rounded-0 border border-secondary bg-body text-body shadow-lg"
+                                className="modal-content rounded-2 border border-secondary bg-body text-body shadow-lg"
                             >
                                 <div className="modal-header border-bottom border-secondary border-opacity-25">
                                     <div className="font-monospace small text-uppercase opacity-75">

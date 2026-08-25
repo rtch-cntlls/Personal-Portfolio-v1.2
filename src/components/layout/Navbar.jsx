@@ -54,7 +54,6 @@ export default function Navbar() {
     { href: '#skills', icon: <HiOutlineCode size={15} />, label: 'Skills' },
   ];
 
-  // Scroll spy effect using IntersectionObserver with rootMargin adjustment
   useEffect(() => {
     const sections = navLinks.map(link => document.querySelector(link.href)).filter(Boolean);
     

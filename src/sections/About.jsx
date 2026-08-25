@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import PhilippinesMapImg from '../assets/images/PH.png';
-import HelloWorld from '../assets/images/1.png';
-import CTU from '../assets/images/2.png';
+import { aboutFiles } from '../data/aboutData';
 
 function TypingText({ text, className = "", delay = 0 }) {
     const words = text.split(" ");
@@ -38,7 +36,8 @@ function TypingText({ text, className = "", delay = 0 }) {
 
 export default function About() {
     const [isDarkMode, setIsDarkMode] = useState(false);
-    const [activeFile, setActiveFile] = useState('bio');
+    const [activeFileKey, setActiveFileKey] = useState('bio');
+    const activeData = aboutFiles[activeFileKey];
 
     useEffect(() => {
         const checkTheme = () => {
@@ -65,19 +64,38 @@ export default function About() {
                             <span className="window-dot bg-danger rounded-circle d-inline-block window-dot-size"></span>
                             <span className="window-dot bg-warning rounded-circle d-inline-block window-dot-size"></span>
                             <span className="window-dot bg-success rounded-circle d-inline-block window-dot-size"></span>
-                            <span className="font-monospace small ms-2 text-uppercase opacity-75">About_Me.exe - {activeFile}.md</span>
+                            <span className="font-monospace small ms-2 text-uppercase opacity-75">About_Me.exe - {activeData.fileName}</span>
                         </div>
                     </div>
 
                     <div className={`path-bar px-3 py-2 border-bottom font-monospace small d-flex align-items-center gap-2 ${isDarkMode ? 'border-secondary bg-black' : 'border-dark-subtle bg-white'}`}>
                         <span className="opacity-50">Path:</span>
-                        <span className="badge bg-dark rounded-0 fw-normal">C:/portfolio/about_me/{activeFile}.md</span>
+                        <span className="badge bg-dark rounded-0 fw-normal">C:/portfolio/about_me/{activeData.fileName}</span>
+                    </div>
+
+                    <div className={`d-block d-md-none border-bottom p-2 font-monospace small ${isDarkMode ? 'border-secondary bg-dark' : 'border-dark-subtle bg-light'}`}>
+                        <div className="text-uppercase opacity-50 mb-1 px-1" style={{ fontSize: '0.75rem' }}>Select File:</div>
+                        <div className="d-flex gap-2 overflow-auto">
+                            {Object.keys(aboutFiles).map((key) => (
+                                <button
+                                    key={key}
+                                    onClick={() => setActiveFileKey(key)}
+                                    className={`btn btn-sm font-monospace rounded-0 text-nowrap ${
+                                        activeFileKey === key 
+                                            ? 'btn-primary text-white' 
+                                            : isDarkMode ? 'btn-outline-secondary text-light' : 'btn-outline-dark'
+                                    }`}
+                                >
+                                    📁 {aboutFiles[key].fileName}
+                                </button>
+                            ))}
+                        </div>
                     </div>
 
                     <div className="row g-0">
                         
                         <motion.div 
-                            className={`col-md-3 border-end p-3 font-monospace small ${isDarkMode ? 'border-secondary' : 'border-dark-subtle'}`}
+                            className={`col-md-3 border-end p-3 font-monospace small d-none d-md-block ${isDarkMode ? 'border-secondary' : 'border-dark-subtle'}`}
                             initial={{ opacity: 0, x: -60 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true, amount: 0.2 }}
@@ -85,207 +103,87 @@ export default function About() {
                         >
                             <div className="fw-bold text-uppercase opacity-50 mb-3">Directories</div>
                             <ul className="list-unstyled d-flex flex-column gap-2 mb-0">
-                                <li 
-                                    onClick={() => setActiveFile('bio')}
-                                    className={`p-2 cursor-pointer transition-all ${activeFile === 'bio' ? 'bg-primary bg-opacity-10 border border-secondary rounded text-secondary fw-bold' : 'opacity-75 hover-opacity-100'}`}>
-                                    📁 bio.md
-                                </li>
-                                <li 
-                                    onClick={() => setActiveFile('education')}
-                                    className={`p-2 cursor-pointer transition-all ${activeFile === 'education' ? 'bg-primary bg-opacity-10 border border-secondary rounded text-secondary fw-bold' : 'opacity-75 hover-opacity-100'}`}>
-                                    📁 education.md
-                                </li>
-                                <li 
-                                    onClick={() => setActiveFile('location')}
-                                    className={`p-2 cursor-pointer transition-all ${activeFile === 'location' ? 'bg-primary bg-opacity-10 border border-secondary rounded text-secondary fw-bold' : 'opacity-75 hover-opacity-100'}`}>
-                                    📁 location.md
-                                </li>
+                                {Object.keys(aboutFiles).map((key) => (
+                                    <li 
+                                        key={key}
+                                        onClick={() => setActiveFileKey(key)}
+                                        className={`p-2 cursor-pointer transition-all ${activeFileKey === key ? 'bg-primary bg-opacity-10 border border-secondary rounded text-secondary fw-bold' : 'opacity-75 hover-opacity-100'}`}>
+                                        📁 {aboutFiles[key].fileName}
+                                    </li>
+                                ))}
                             </ul>
                         </motion.div>
 
-                        <div className="col-md-9 p-4 about-content-area">
-                            {activeFile === 'bio' && (
-                                <>
-                                    <div className="font-monospace mb-2 text-uppercase small opacity-75">// Active File: bio.md</div>
-                                    <div className="row align-items-center">
-                                        <div className="col-lg-7">
-                                            <motion.h2 
-                                                className={`mb-2 fw-bold about-title ${isDarkMode ? 'text-custom ' : 'text-dark '}`}
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: 1 }}
-                                                transition={{ duration: 0.4 }}
-                                            >
-                                                Hello, World.
-                                            </motion.h2>
-                                            
-                                            <TypingText 
-                                                text="I'm a passionate developer who bridges the gap between creative visual design and robust software engineering. I like building things that live on the web, combining clean user interfaces with efficient logic."
-                                                className={`lead fs-6 opacity-90 mb-4 about service-description ${isDarkMode ? 'text-muted' : 'text-dark'}`}
-                                                delay={0.1}
-                                            />
+                        <div className="col-12 col-md-9 p-4 about-content-area">
+                            <div className="font-monospace mb-2 text-uppercase small opacity-75">// Active File: {activeData.fileName}</div>
+                            <div className="row align-items-center">
+                                <div className="col-lg-7">
+                                    <motion.h2 
+                                        key={activeData.id + '-title'}
+                                        className={`mb-2 fw-bold about-title ${isDarkMode ? 'text-custom ' : 'text-dark '}`}
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ duration: 0.4 }}
+                                    >
+                                        {activeData.title}
+                                    </motion.h2>
+                                    
+                                    <TypingText 
+                                        key={activeData.id + '-text'}
+                                        text={activeData.text}
+                                        className={`lead fs-6 opacity-90 mb-4 about service-description ${isDarkMode ? 'text-muted' : 'text-dark'}`}
+                                        delay={0.1}
+                                    />
 
-                                            <motion.div 
-                                                className="table-responsive"
-                                                initial={{ opacity: 0, y: 10 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                transition={{ duration: 0.5, delay: 0.4 }}
-                                            >
-                                                <table className={`table table-sm font-monospace small ${isDarkMode ? 'table-dark text-light' : ''}`}>
-                                                    <tbody>
-                                                        <tr><td className="opacity-50 w-25">File type:</td><td>Markdown Document</td></tr>
-                                                        <tr><td className="opacity-50">Role:</td><td>Full-Stack Developer & UI/UX Design</td></tr>
-                                                        <tr><td className="opacity-50">Status:</td><td><span className="text-success fw-bold">● Available for hire / collaboration</span></td></tr>
-                                                    </tbody>
-                                                </table>
-                                            </motion.div>
-                                        </div>
+                                    <motion.div 
+                                        key={activeData.id + '-table'}
+                                        className="table-responsive"
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.5, delay: 0.4 }}
+                                    >
+                                        <table className={`table table-sm font-monospace small ${isDarkMode ? 'table-dark text-light' : ''}`}>
+                                            <tbody>
+                                                {activeData.details.map((detail, idx) => (
+                                                    <tr key={idx}>
+                                                        <td className="opacity-50 w-25">{detail.label}</td>
+                                                        <td>
+                                                            {detail.statusClass ? (
+                                                                <span className={detail.statusClass}>{detail.value}</span>
+                                                            ) : (
+                                                                detail.value
+                                                            )}
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </motion.div>
+                                </div>
 
-                                        <motion.div 
-                                            className="col-lg-5 text-center mt-4 mt-lg-0"
-                                            initial={{ opacity: 0, x: 60 }}
-                                            whileInView={{ opacity: 1, x: 0 }}
-                                            viewport={{ once: true, amount: 0.2 }}
-                                            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-                                        >
-                                            <div className="position-relative p-3 mx-auto d-inline-block">
-                                                <div className={`position-absolute border-top border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-tl`}></div>
-                                                <div className={`position-absolute border-top border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-tr`}></div>
-                                                <div className={`position-absolute border-bottom border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-bl`}></div>
-                                                <div className={`position-absolute border-bottom border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-br`}></div>
+                                <motion.div 
+                                    key={activeData.id + '-img'}
+                                    className="col-lg-5 text-center mt-4 mt-lg-0"
+                                    initial={{ opacity: 0, x: 60 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true, amount: 0.2 }}
+                                    transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+                                >
+                                    <div className="position-relative p-3 mx-auto d-inline-block">
+                                        <div className={`position-absolute border-top border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-tl`}></div>
+                                        <div className={`position-absolute border-top border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-tr`}></div>
+                                        <div className={`position-absolute border-bottom border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-bl`}></div>
+                                        <div className={`position-absolute border-bottom border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-br`}></div>
 
-                                                <img 
-                                                    src={HelloWorld} 
-                                                    alt="Bio" 
-                                                    className="img-fluid object-fit-contain z-2 position-relative"
-                                                    style={{ maxHeight: '250px' }}
-                                                />
-                                            </div>
-                                        </motion.div>
+                                        <img 
+                                            src={activeData.image} 
+                                            alt={activeData.imageAlt} 
+                                            className="img-fluid object-fit-contain z-2 position-relative"
+                                            style={{ maxHeight: activeData.imageMaxHeight }}
+                                        />
                                     </div>
-                                </>
-                            )}
-
-                            {activeFile === 'education' && (
-                                <>
-                                    <div className="font-monospace mb-2 text-uppercase small opacity-75">// Active File: education.md</div>
-                                    <div className="row align-items-center">
-                                        <div className="col-lg-7">
-                                            <motion.h2 
-                                                className={`mb-2 fw-bold about-title ${isDarkMode ? 'text-custom ' : 'text-dark '}`}
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: 1 }}
-                                                transition={{ duration: 0.4 }}
-                                            >
-                                                Academic Background.
-                                            </motion.h2>
-
-                                            <TypingText 
-                                                text="As an Information Technology graduate, I love building my technical skills through hands-on personal projects. I am always exploring new tools to expand what I can create."
-                                                className={`lead fs-6 opacity-90 mb-4 about service-description ${isDarkMode ? 'text-muted' : 'text-dark'}`}
-                                                delay={0.1}
-                                            />
-
-                                            <motion.div 
-                                                className="table-responsive"
-                                                initial={{ opacity: 0, y: 10 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                transition={{ duration: 0.5, delay: 0.4 }}
-                                            >
-                                                <table className={`table table-sm font-monospace small ${isDarkMode ? 'table-dark text-light' : ''}`}>
-                                                    <tbody>
-                                                        <tr><td className="opacity-50 w-25">Degree:</td><td>Bachelor of Science in Information Technology</td></tr>
-                                                        <tr><td className="opacity-50">Focus:</td><td>Web Development & IT Infrastructure</td></tr>
-                                                        <tr><td className="opacity-50">Status:</td><td><span className="text-success fw-bold">● Graduate / Lifelong Learner</span></td></tr>
-                                                    </tbody>
-                                                </table>
-                                            </motion.div>
-                                        </div>
-
-                                        <motion.div 
-                                            className="col-lg-5 text-center mt-4 mt-lg-0"
-                                            initial={{ opacity: 0, x: 60 }}
-                                            whileInView={{ opacity: 1, x: 0 }}
-                                            viewport={{ once: true, amount: 0.2 }}
-                                            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-                                        >
-                                            <div className="position-relative p-3 mx-auto d-inline-block">
-                                                <div className={`position-absolute border-top border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-tl`}></div>
-                                                <div className={`position-absolute border-top border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-tr`}></div>
-                                                <div className={`position-absolute border-bottom border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-bl`}></div>
-                                                <div className={`position-absolute border-bottom border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-br`}></div>
-
-                                                <img 
-                                                    src={CTU} 
-                                                    alt="CTU" 
-                                                    className="img-fluid object-fit-contain z-2 position-relative"
-                                                    style={{ maxHeight: '250px' }}
-                                                />
-                                            </div>
-                                        </motion.div>
-                                    </div>
-                                </>
-                            )}
-
-                            {activeFile === 'location' && (
-                                <>
-                                    <div className="font-monospace mb-2 text-uppercase small opacity-75">// Active File: location.md</div>
-                                    <div className="row align-items-center">
-                                        <div className="col-lg-7">
-                                            <motion.h2 
-                                                className={`mb-2 fw-bold about-title ${isDarkMode ? 'text-custom ' : 'text-dark '}`}
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: 1 }}
-                                                transition={{ duration: 0.4 }}
-                                            >
-                                                Geographic Node.
-                                            </motion.h2>
-
-                                            <TypingText 
-                                                text="Operating locally from Cebu City, with full availability for remote collaboration globally."
-                                                className={`lead fs-6 opacity-90 mb-4 about service-description ${isDarkMode ? 'text-muted' : 'text-dark'}`}
-                                                delay={0.1}
-                                            />
-
-                                            <motion.div 
-                                                className="table-responsive"
-                                                initial={{ opacity: 0, y: 10 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                transition={{ duration: 0.5, delay: 0.4 }}
-                                            >
-                                                <table className={`table table-sm font-monospace small text-muted ${isDarkMode ? 'table-dark text-light' : ''}`}>
-                                                    <tbody>
-                                                        <tr><td className="opacity-50 w-25">Base:</td><td>Cebu City, Philippines</td></tr>
-                                                        <tr><td className="opacity-50">Timezone:</td><td>UTC+8 (Philippine Standard Time)</td></tr>
-                                                        <tr><td className="opacity-50">Status:</td><td><span className="text-success fw-bold">● Active</span></td></tr>
-                                                    </tbody>
-                                                </table>
-                                            </motion.div>
-                                        </div>
-
-                                        <motion.div 
-                                            className="col-lg-5 text-center mt-4 mt-lg-0"
-                                            initial={{ opacity: 0, x: 60 }}
-                                            whileInView={{ opacity: 1, x: 0 }}
-                                            viewport={{ once: true, amount: 0.2 }}
-                                            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-                                        >
-                                            <div className="position-relative p-3 mx-auto d-inline-block">
-                                                <div className={`position-absolute border-top border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-tl`}></div>
-                                                <div className={`position-absolute border-top border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-tr`}></div>
-                                                <div className={`position-absolute border-bottom border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-bl`}></div>
-                                                <div className={`position-absolute border-bottom border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark'} z-3 camera-focus-br`}></div>
-
-                                                <img 
-                                                    src={PhilippinesMapImg} 
-                                                    alt="Location Map" 
-                                                    className="img-fluid object-fit-contain z-2 position-relative"
-                                                    style={{ maxHeight: '200px' }}
-                                                />
-                                            </div>
-                                        </motion.div>
-                                    </div>
-                                </>
-                            )}
+                                </motion.div>
+                            </div>
                         </div>
 
                     </div>
