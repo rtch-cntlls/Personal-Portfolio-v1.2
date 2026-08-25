@@ -1,7 +1,7 @@
 import { HiOutlineMail } from 'react-icons/hi';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import AvatarImg from '../../assets/images/pfp1.jpg';
+import AvatarImg from '../../assets/images/profile1.webp';
 
 const containerVariants = {
   hidden: { opacity: 0 },
