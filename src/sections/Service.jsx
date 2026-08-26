@@ -1,202 +1,181 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-function TypingText({ text, className = "", delay = 0 }) {
-    const words = text.split(" ");
-
-    return (
-        <motion.p 
-            className={className}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-        >
-            {words.map((word, i) => (
-                <React.Fragment key={i}>
-                    <motion.span
-                        variants={{
-                            hidden: { opacity: 0, y: 5 },
-                            visible: { opacity: 1, y: 0 }
-                        }}
-                        transition={{
-                            duration: 0.1,
-                            delay: delay + i * 0.03,
-                        }}
-                        style={{ display: 'inline' }}
-                    >
-                        {word}
-                    </motion.span>
-                    {i < words.length - 1 && " "} 
-                </React.Fragment>
-            ))}
-        </motion.p>
-    );
-}
+import { servicesData } from '../data/servicesData';
+import ServiceModal from '../components/ServiceModal';
 
 export default function Services() {
     const [selectedService, setSelectedService] = useState(null);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [liked, setLiked] = useState({});
+    const [isDarkMode, setIsDarkMode] = useState(false);
 
-    const services = [
-        {
-            number: "01",
-            title: "Static Website",
-            category: "Development & Delivery",
-            description: "Lightning-fast, ultra-secure landing pages and portfolios built with modern technologies tailored for optimal conversion.",
-            details: "Perfect for personal portfolios, landing pages, and small business sites. Built using modern technologies. Optimized for maximum search engine performance, lightning-fast load times, and top-tier security standards."
-        },
-        {
-            number: "02",
-            title: "Dynamic Website",
-            category: "FullStack Architecture",
-            description: "Interactive web applications featuring real-time database integration, secure user authentication, and seamless third-party APIs.",
-            details: "Ideal for web apps, SaaS platforms, and e-commerce stores. Features secure backend integration, real-time database syncing, user authentication pipelines, and robust third-party API connections (payment gateways, dashboards, etc.)."
-        },
-        {
-            number: "03",
-            title: "Deployment & Maintenance",
-            category: "Infrastructure & Ops",
-            description: "Seamless Git-based deployment, cloud hosting setup, continuous security updates, and dependable performance monitoring.",
-            details: "Ensure your apps stay online without a hitch. Includes seamless Git-based deployment workflows, cloud hosting server setup (Cloudflare, Hostinger, Vercel, Netlify), continuous security patching, and dependable performance tracking."
-        },
-        {
-            number: "04",
-            title: "UI/UX & Optimization",
-            category: "Design & Refinement",
-            description: "Performance tuning, SEO enhancements, and bespoke responsive design to keep your digital products running at top speed.",
-            details: "Turn visitors into long-term users. Focuses on deep code refactoring, Core Web Vitals optimization, advanced on-page SEO enhancements, and responsive mobile-first layouts tailored for exceptional user experience."
-        }
-    ];
+    useEffect(() => {
+        const checkTheme = () => {
+            const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+            setIsDarkMode(currentTheme === 'dark');
+        };
+
+        checkTheme();
+        const observer = new MutationObserver(checkTheme);
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-bs-theme'] });
+
+        return () => observer.disconnect();
+    }, []);
+
+    const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % servicesData.length);
+    const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + servicesData.length) % servicesData.length);
+
+    const toggleLike = (number) => {
+        setLiked(prev => ({ ...prev, [number]: !prev[number] }));
+    };
 
     return (
-        <section id="services">
-            <div className="container px-3 px-md-5 mt-4 mb-3">
-                <div className="mb-4">
-                    <small className="text-uppercase tracking-wider opacity-75 font-monospace">Services I Offer</small>
-                    <h4 className="mb-2 fw-bold">What I can do for you</h4>
+        <section id="services" className={`py-5 ${isDarkMode ? 'bg-black text-light' : 'bg-white text-dark'} overflow-hidden`}>
+            <div className="container px-2 px-md-5 my-4">
+                
+                <div className="text-center mb-4">
+                    <h4 className="fw-bold mb-2">What I can do for you</h4>
                 </div>
 
-                <div className="row g-4 overflow-hidden">
-                    {services.map((service, index) => {
-                        const isFeatured = index === 0 || index === 3;
+                <div className="position-relative d-flex align-items-center justify-content-center carousel-container">
+                    <div className="d-flex align-items-center justify-content-center w-100 position-relative carousel-track">
+                        <AnimatePresence initial={false}>
+                            {servicesData.map((service, index) => {
+                                const offset = (index - currentIndex + servicesData.length) % servicesData.length;
+                                const isCenter = offset === 0;
+                                const isLeft = offset === servicesData.length - 1;
+                                const isRight = offset === 1;
 
-                        return (
-                            <div 
-                                key={service.number}
-                                className={isFeatured ? "col-lg-7" : "col-lg-5"} 
-                            >
-                                <motion.div 
-                                    whileHover={{ y: -6 }}
-                                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                                    className="position-relative p-3 h-100 service-wrapper cursor-pointer"
-                                    onClick={() => setSelectedService(service)}
-                                >
-                                    <div className="position-absolute border-top border-start border-2 border-secondary z-3 camera-focus camera-focus-tl"></div>
-                                    <div className="position-absolute border-top border-end border-2 border-secondary z-3 camera-focus camera-focus-tr"></div>
-                                    <div className="position-absolute border-bottom border-start border-2 border-secondary z-3 camera-focus camera-focus-bl"></div>
-                                    <div className="position-absolute border-bottom border-end border-2 border-secondary z-3 camera-focus camera-focus-br"></div>
+                                if (!isCenter && !isLeft && !isRight) return null;
 
-                                    <div className={`card h-100 border-0 rounded-0 p-4 p-xl-5 service-card position-relative overflow-hidden ${
-                                            isFeatured 
-                                                ? 'bg-black text-light shadow' 
-                                                : 'bg-body text-body border border-secondary border-opacity-25'
-                                        }`}>
-                                        
-                                        <div className="position-absolute top-0 end-0 p-4 opacity-10 font-monospace fw-bold display-4 service-number">
-                                            {service.number}
-                                        </div>
-
-                                        <div className="card-body d-flex flex-column p-0 z-1">
-                                            <div className="d-flex justify-content-between align-items-center mb-4">
-                                                <span className={`font-monospace small tracking-widest text-uppercase ${isFeatured ? 'text-warning' : 'text-muted'}`}>
-                                                    {service.category}
-                                                </span>
+                                return (
+                                    <motion.div
+                                        key={service.number}
+                                        layout
+                                        className={`position-absolute px-2 carousel-card-wrapper ${isCenter ? 'center' : 'clickable'}`}
+                                        initial={{
+                                            scale: 0.7,
+                                            opacity: 0,
+                                            x: isLeft ? -400 : isRight ? 400 : 0
+                                        }}
+                                        animate={{
+                                            scale: isCenter ? 1 : 0.82,
+                                            x: isCenter ? 0 : isLeft ? -320 : 320,
+                                            opacity: isCenter ? 1 : 0.4,
+                                            filter: isCenter ? 'blur(0px)' : 'blur(4px)',
+                                            zIndex: isCenter ? 10 : 1
+                                        }}
+                                        exit={{
+                                            scale: 0.7,
+                                            opacity: 0,
+                                            filter: 'blur(10px)'
+                                        }}
+                                        transition={{
+                                            type: "spring",
+                                            stiffness: 200,
+                                            damping: 26,
+                                            mass: 0.8
+                                        }}
+                                        onClick={() => {
+                                            if (isLeft) prevSlide();
+                                            else if (isRight) nextSlide();
+                                        }} >
+                                        <div className={`card ${isDarkMode ? 'bg-black text-light border-3 border-secondary' : 'bg-white text-dark border-light'} rounded-5 shadow-lg position-relative overflow-hidden carousel-card`}>
+                                            
+                                            <div className={`d-flex justify-content-between align-items-center px-4 pt-3 pb-1 ${isDarkMode ? 'bg-black text-light' : 'bg-white text-dark'} z-3 status-bar-time`}>
+                                                <span className="fw-bold">4:04</span>
+                                                <div className={`${isDarkMode ? 'bg-light' : 'bg-dark'} rounded-pill position-absolute start-50 translate-middle-x status-bar-notch`}></div>
+                                                <div className={`d-flex align-items-center gap-1 ${isDarkMode ? 'text-light' : 'text-dark'}`}>
+                                                    <svg width="15" height="11" viewBox="0 0 15 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="0.5"/><rect x="4" y="5" width="3" height="6" rx="0.5"/><rect x="8" y="2" width="3" height="9" rx="0.5"/><rect x="12" y="0" width="3" height="11" rx="0.5"/></svg>
+                                                    <svg width="15" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+                                                    <svg width="22" height="11" viewBox="0 0 25 12" fill="none" stroke="currentColor" strokeWidth="2"><rect x="1" y="1" width="20" height="10" rx="2" /><line x1="23" y1="4" x2="23" y2="8" strokeLinecap="round" /><rect x="3" y="3" width="15" height="6" fill="currentColor" /></svg>
+                                                </div>
                                             </div>
 
-                                            <h3 className={`fw-bold mb-3 service-title ${isFeatured ? 'text-white' : ''}`} style={{ fontSize: '1.75rem' }}>
-                                                {service.title}
-                                            </h3>
-
-                                            <TypingText 
-                                                text={service.description}
-                                                className={`small line-height-lg mb-4 flex-grow-1 service-description ${isFeatured ? 'text-light opacity-75' : 'text-muted'}`}
-                                                delay={0.1}
-                                            />
-
-                                            <div className={`small text-decoration-underline mt-2 ${isFeatured ? 'text-warning' : 'text-primary'}`}>
-                                                [Click to view details]
+                                            <div className={`d-flex align-items-center justify-content-between px-3 py-2 border-bottom ${isDarkMode ? 'border-secondary border-opacity-25' : 'border-light'}`}>
+                                                <div className="d-flex align-items-center gap-2">
+                                                    <div className="rounded-circle bg-gradient bg-primary text-white d-flex align-items-center justify-content-center fw-bold profile-avatar">
+                                                        RC
+                                                    </div>
+                                                    <div>
+                                                        <h6 className={`mb-0 profile-handle text-uppercase ${isDarkMode ? 'text-light' : 'text-dark'}`}>RtchCntlls</h6>
+                                                    </div>
+                                                </div>
+                                                <span className="text-muted fw-bold">&#8230;</span>
                                             </div>
-                                        </div>
 
-                                    </div>
-                                </motion.div>
-                            </div>
-                        );
-                    })}
+                                            <div 
+                                                className={`position-relative p-4 d-flex flex-column justify-content-center align-items-center text-center border-bottom ${isDarkMode ? 'border-secondary border-opacity-25' : 'border-light'} service-hero-header`} 
+                                                style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url(${service.bgImage})` }}>
+                                                <h4 className="fw-bold mb-0 text-white service-hero-title">
+                                                    {service.title}
+                                                </h4>
+                                            </div>
+
+                                            <div className="p-3 d-flex flex-column justify-content-between flex-grow-1">
+                                                <div>
+                                                    <div className="d-flex align-items-center justify-content-between mb-2">
+                                                        <div className="d-flex align-items-center gap-3">
+                                                            <button 
+                                                                className="btn p-0 border-0 shadow-none bg-transparent" 
+                                                                onClick={() => toggleLike(service.number)}
+                                                                aria-label="Like post"
+                                                            >
+                                                                <svg width="22" height="22" viewBox="0 0 24 24" fill={liked[service.number] ? "#dc3545" : "none"} stroke={liked[service.number] ? "#dc3545" : "currentColor"} strokeWidth="2">
+                                                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                                                </svg>
+                                                            </button>
+                                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                                                        </div>
+                                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                                                    </div>
+
+                                                    <div className="fw-bold mb-1 like-count">
+                                                        {liked[service.number] ? (parseInt(service.likes.replace(',', '')) + 1).toLocaleString() : service.likes} likes
+                                                    </div>
+
+                                                    <p className={`small mb-2 service-description ${isDarkMode ? 'text-light opacity-75' : 'text-muted'}`}>
+                                                        {service.description}
+                                                    </p>
+                                                </div>
+
+                                                <div className="text-center pb-2">
+                                                    <button 
+                                                        className={`btn w-100 rounded-pill py-2 fw-bold shadow-sm btn-action ${isDarkMode ? 'btn-light text-dark' : 'btn-dark text-white'}`}
+                                                        onClick={() => isCenter && setSelectedService(service)}
+                                                    >
+                                                        {isCenter ? "View Details" : "Focus This Card"}
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <div className={`position-absolute bottom-0 start-50 translate-middle-x ${isDarkMode ? 'bg-light' : 'bg-dark'} rounded-pill mb-1 home-indicator`}></div>
+                                        </div>
+                                    </motion.div>
+                                );
+                            })}
+                        </AnimatePresence>
+                    </div>
+                </div>
+
+                <div className="d-flex justify-content-center align-items-center gap-3 mt-5">
+                    <button className={`btn rounded-circle p-2 d-flex align-items-center justify-content-center shadow-sm carousel-nav-btn ${isDarkMode ? 'btn-outline-light' : 'btn-outline-dark'}`} onClick={prevSlide}>
+                        &larr;
+                    </button>
+                    <div className={`font-monospace fw-bold px-3 ${isDarkMode ? 'text-light' : 'text-dark'}`}>
+                        {currentIndex + 1} / {servicesData.length}
+                    </div>
+                    <button className={`btn rounded-circle p-2 d-flex align-items-center justify-content-center shadow-sm carousel-nav-btn ${isDarkMode ? 'btn-outline-light' : 'btn-outline-dark'}`} onClick={nextSlide}>
+                        &rarr;
+                    </button>
                 </div>
             </div>
 
-            <AnimatePresence>
-                {selectedService && (
-                    <motion.div 
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="modal fade show d-block" 
-                        tabIndex="-1" 
-                        style={{ backgroundColor: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(5px)' }}
-                    >
-                        <div className="modal-dialog modal-dialog-centered">
-                            <motion.div 
-                                initial={{ scale: 0.9, y: 20 }}
-                                animate={{ scale: 1, y: 0 }}
-                                exit={{ scale: 0.9, y: 20 }}
-                                className="modal-content rounded-2 border border-secondary bg-body text-body shadow-lg"
-                            >
-                                <div className="modal-header border-bottom border-secondary border-opacity-25">
-                                    <div className="font-monospace small text-uppercase opacity-75">
-                                        // service-{selectedService.number}
-                                    </div>
-                                    <button 
-                                        type="button" 
-                                        className="btn-close shadow-none" 
-                                        onClick={() => setSelectedService(null)}
-                                        aria-label="Close"
-                                    ></button>
-                                </div>
-                                <div className="modal-body p-4 p-xl-5">
-                                    <span className="font-monospace small text-warning text-uppercase tracking-widest d-block mb-2">
-                                        {selectedService.category}
-                                    </span>
-                                    <h3 className="fw-bold mb-3">{selectedService.title}</h3>
-                                    
-                                    <TypingText 
-                                        text={selectedService.description}
-                                        className="text-muted mb-4 service-description"
-                                        delay={0.1}
-                                    />
-                                    
-                                    <hr className="border-secondary opacity-25 mb-4" />
-                                    
-                                    <TypingText 
-                                        text={selectedService.details}
-                                        className="small mb-0 line-height-lg service-description"
-                                        delay={0.3}
-                                    />
-                                </div>
-                                <div className="modal-footer border-top border-secondary border-opacity-25">
-                                    <button 
-                                        type="button" 
-                                        className="btn btn-outline-secondary rounded-pill px-4 btn-sm font-monospace"
-                                        onClick={() => setSelectedService(null)}
-                                    >
-                                        Close
-                                    </button>
-                                </div>
-                            </motion.div>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+            <ServiceModal 
+                service={selectedService} 
+                onClose={() => setSelectedService(null)} 
+            />
         </section>
     );
 }

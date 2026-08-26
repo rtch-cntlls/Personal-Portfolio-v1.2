@@ -58,7 +58,7 @@ export default function Project() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}>
             <div>
-              <small className="text-uppercase tracking-wider opacity-75 font-monospace">Sample Web Based Projects</small>
+              <small className="text-uppercase tracking-wider opacity-75 font-monospace">Web Based Projects</small>
               <h4 className="mb-2 fw-bold">Selected Project</h4>
             </div>
           <Link 
@@ -95,7 +95,7 @@ export default function Project() {
                     <motion.img
                       src={project.image}
                       alt={project.title}
-                      className="w-100 h-100 object-fit-fill"
+                      className="w-100 h-100 object-fit-cover"
                       whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.4, ease: 'easeOut' }}
                     />

@@ -16,10 +16,6 @@
 .text-custom{
     color: #5aacfd;
 }
-.service-description, .text-footer{
-    text-align: justify;
-    text-justify: inter-word;
-}
 @font-face {
     font-family: Title;
     src: url(../assets/fonts/head.ttf);

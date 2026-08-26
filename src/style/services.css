@@ -1,0 +1,97 @@
+.carousel-container {
+    min-height: 600px;
+}
+
+.carousel-track {
+    max-width: 1100px;
+    overflow: visible;
+}
+
+.carousel-card-wrapper {
+    width: 360px;
+    max-width: 92vw;
+}
+
+.carousel-card-wrapper.clickable {
+    cursor: pointer;
+}
+
+.carousel-card-wrapper.center {
+    cursor: default;
+}
+
+.carousel-card {
+    height: 580px;
+}
+
+.status-bar-time {
+    font-size: 0.8rem;
+}
+
+.status-bar-notch {
+    width: 90px;
+    height: 22px;
+    top: 8px;
+}
+
+.profile-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 0.85rem;
+}
+
+.profile-handle {
+    font-size: 0.85rem;
+}
+
+.profile-location {
+    font-size: 0.7rem;
+}
+
+.service-hero-header {
+    height: 210px;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.4s ease-in-out;
+}
+
+.service-hero-title {
+    font-size: 1.35rem;
+}
+
+.like-count {
+    font-size: 0.8rem;
+}
+
+.btn-action {
+    font-size: 0.85rem;
+}
+
+.home-indicator {
+    width: 100px;
+    height: 4px;
+}
+
+.carousel-nav-btn {
+    width: 45px;
+    height: 45px;
+}
+
+.service-description, .text-footer {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.transition-colors {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-bs-theme="black"] .theme-action-btn {
+    color: #f8f9fa;
+    border-color: #6c757d;
+}
+
+[data-bs-theme="black"] .theme-action-btn:hover {
+    background-color: #f8f9fa;
+    color: #212529;
+}

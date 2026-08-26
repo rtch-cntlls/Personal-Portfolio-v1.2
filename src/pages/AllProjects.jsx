@@ -114,7 +114,7 @@ export default function AllProjects() {
                         disabled 
                         className={`btn btn-sm rounded-0 px-4 opacity-50 ${isDarkMode ? 'btn-outline-light' : 'btn-outline-dark'}`}
                       >
-                        Coming Soon
+                        Not Available
                       </button>
                     )}
                   </div>
