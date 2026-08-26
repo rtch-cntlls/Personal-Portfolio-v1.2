@@ -1,53 +1,71 @@
-.skill-container {
-    min-height: 275px;
-    width: 100%;
-}
-
-.skill-col {
-    flex: 0 0 16.6667%;
-    max-width: 16.6667%;
-}
-
-@media (max-width: 992px) {
-    .skill-col {
-        flex: 0 0 25%;
-        max-width: 25%;
-    }
-}
-
-@media (max-width: 576px) {
-    .skill-col {
-        flex: 0 0 33.3333%;
-        max-width: 33.3333%;
-    }
-}
-
-.icon-wrapper {
-    font-size: 3rem;
-}
-
-.btn-custom {
-    background-color: #d1d1d1;
-    color: #272727;
-}
-.btn-custom:hover {
-    background-color: #d1d1d1 !important;
-    color: #272727 !important;
-    border-color: #bababa !important;
-}
-.btn-outline-secondary:hover {
-    background-color: #6c757d !important;
-    color: #fff !important;
-    border-color: #6c757d !important;
-}
-
-.btn-outline-dark:hover {
-    background-color: #212529 !important;
-    color: #fff !important;
-    border-color: #212529 !important;
-}
-.skill-img {
-    width: 48px;
-    height: 48px;
+.tool-icon {
+    width: 30px;
+    height: 30px;
     object-fit: contain;
+}
+
+.filter-invert {
+    filter: brightness(0) invert(1);
+}
+
+.icon-bootstrap {
+    color: #7952b3;
+}
+
+.icon-php {
+    color: #777bb3;
+}
+
+.tool-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tool-card:hover {
+    transform: translateY(-2px);
+}
+
+.tool-card-label {
+    font-size: 0.75rem;
+}
+
+.tool-card .corner-border {
+    display: none;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    z-index: 3;
+}
+
+.tool-card:hover .corner-border {
+    display: block;
+}
+
+.corner-tl {
+    top: -3px;
+    left: -3px;
+}
+
+.corner-tr {
+    top: -3px;
+    right: -3px;
+}
+
+.corner-bl {
+    bottom: -3px;
+    left: -3px;
+}
+
+.corner-br {
+    bottom: -3px;
+    right: -3px;
+}
+
+.timeline-node {
+    width: 40px;
+    height: 40px;
+    left: -25px !important;
+}
+
+.skill-tag-badge {
+    font-size: 0.7rem;
 }

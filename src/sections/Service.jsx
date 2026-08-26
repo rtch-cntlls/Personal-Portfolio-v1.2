@@ -30,7 +30,7 @@ export default function Services() {
     };
 
     return (
-        <section id="services" className={`py-5 ${isDarkMode ? 'bg-black text-light' : 'bg-white text-dark'} overflow-hidden`}>
+        <section id="services" className={`py-5 ${isDarkMode ? 'bg-black text-light' : 'text-dark'} overflow-hidden`}>
             <div className="container px-2 px-md-5 my-4">
                 
                 <div className="text-center mb-4">
@@ -38,6 +38,17 @@ export default function Services() {
                 </div>
 
                 <div className="position-relative d-flex align-items-center justify-content-center carousel-container">
+
+                <button 
+                    className={`btn rounded-circle position-absolute start-0 translate-middle-y top-50 p-2 d-flex align-items-center justify-content-center shadow ${isDarkMode ? 'btn-dark text-light border-secondary' : 'btn-light text-dark'}`}
+                    style={{ marginLeft: '-15px', width: '48px', height: '48px', zIndex: 20 }}
+                    onClick={prevSlide}
+                    aria-label="Previous slide" >
+                    <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fillRule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                </button>
+
                     <div className="d-flex align-items-center justify-content-center w-100 position-relative carousel-track">
                         <AnimatePresence initial={false}>
                             {servicesData.map((service, index) => {
@@ -157,17 +168,15 @@ export default function Services() {
                             })}
                         </AnimatePresence>
                     </div>
-                </div>
 
-                <div className="d-flex justify-content-center align-items-center gap-3 mt-5">
-                    <button className={`btn rounded-circle p-2 d-flex align-items-center justify-content-center shadow-sm carousel-nav-btn ${isDarkMode ? 'btn-outline-light' : 'btn-outline-dark'}`} onClick={prevSlide}>
-                        &larr;
-                    </button>
-                    <div className={`font-monospace fw-bold px-3 ${isDarkMode ? 'text-light' : 'text-dark'}`}>
-                        {currentIndex + 1} / {servicesData.length}
-                    </div>
-                    <button className={`btn rounded-circle p-2 d-flex align-items-center justify-content-center shadow-sm carousel-nav-btn ${isDarkMode ? 'btn-outline-light' : 'btn-outline-dark'}`} onClick={nextSlide}>
-                        &rarr;
+                    <button 
+                        className={`btn rounded-circle position-absolute end-0 translate-middle-y top-50 p-2 d-flex align-items-center justify-content-center shadow ${isDarkMode ? 'btn-dark text-light border-secondary' : 'btn-light text-dark'}`}
+                        style={{ marginRight: '-15px', width: '48px', height: '48px', zIndex: 20 }}
+                        onClick={nextSlide}
+                        aria-label="Next slide" >
+                        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                        </svg>
                     </button>
                 </div>
             </div>
