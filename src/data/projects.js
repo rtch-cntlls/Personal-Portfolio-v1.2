@@ -1,6 +1,7 @@
 import ProjectImg1 from '../assets/project/e-commerce/1.jpeg'; 
 import ProjectImg2 from '../assets/project/nces/1.PNG';
 import ProjectImg3 from '../assets/project/erent/1.PNG';
+import ProjectImg4 from '../assets/project/inv/1.PNG';
 
 export const projects = [
   {
@@ -19,7 +20,7 @@ export const projects = [
     description: 'Student Permanent Record Management System',
     longDescription: 'A streamlined web application designed to track and organize student records, grades, and attendance metrics efficiently with role-based access controls.',
     liveLink: '',
-    techStack: ['Next JS', 'CSS', 'Bootstrap', 'Supabase', 'PostgreSQL'],
+    techStack: ['Next JS', 'CSS', 'Bootstrap', 'Supabase', 'PostgreSQL', 'HCatpcha'],
   },
   {
     id: 'proj-3',
@@ -31,4 +32,13 @@ export const projects = [
     techStack: ['Laravel', 'CSS5', 'Bootstrap', 'Javascript', 'MySQL'],
 
   },
+  {
+    id: 'proj-4',
+    title: 'School Inventory Management System',
+    image: ProjectImg4,
+    description: 'Smart Asset & Inventory Tracking Platform for Schools',
+    longDescription: 'An easy-to-use inventory management system designed for schools to seamlessly track classroom devices, sports equipment, and campus assets helping staff assign items, monitor repair statuses, and prevent lost equipment.',
+    liveLink: '',
+    techStack: ['Next JS', 'CSS5', 'Bootstrap', 'Supabase', 'PostgreSQL'],
+  }
 ];
