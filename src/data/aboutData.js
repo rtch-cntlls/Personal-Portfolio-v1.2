@@ -17,30 +17,30 @@ export const aboutFiles = {
             { label: 'Status:', value: '● Available for hire / collaboration', statusClass: 'text-success fw-bold' }
         ]
     },
-    // education: {
-    //     id: 'education',
-    //     fileName: 'education.md',
-    //     title: 'Academic Background.',
-    //     text: "As an Information Technology graduate, I love building my technical skills through hands-on personal projects. I am always exploring new tools to expand what I can create.",
-    //     image: CTU,
-    //     imageAlt: 'CTU',
-    //     imageMaxHeight: '250px',
-    //     details: [
-    //         { label: 'Degree:', value: 'Bachelor of Science in Information Technology' },
-    //         { label: 'Focus:', value: 'Web Development & IT Infrastructure' },
-    //         { label: 'Status:', value: '● Graduate / Lifelong Learner', statusClass: 'text-success fw-bold' }
-    //     ]
-    // },
+    education: {
+        id: 'education',
+        fileName: 'education.md',
+        title: 'Academic Background.',
+        text: "As an Information Technology graduate, I love building my technical skills through hands-on personal projects. I am always exploring new tools to expand what I can create.",
+        image: CTU,
+        imageAlt: 'CTU',
+        imageMaxHeight: '250px',
+        details: [
+            { label: 'Degree:', value: 'Bachelor of Science in Information Technology' },
+            { label: 'Focus:', value: 'Web Development & IT Infrastructure' },
+            { label: 'Status:', value: '● Graduate / Lifelong Learner', statusClass: 'text-success fw-bold' }
+        ]
+    },
     location: {
         id: 'location',
         fileName: 'location.md',
         title: 'Geographic Node.',
-        text: "Operating locally from Cebu City, with full availability for remote collaboration globally.",
+        text: "Operating locally from Philippines, with full availability for remote collaboration globally.",
         image: PhilippinesMapImg,
         imageAlt: 'Location Map',
         imageMaxHeight: '200px',
         details: [
-            { label: 'Base:', value: 'Cebu City, Philippines' },
+            { label: 'Base:', value: 'Philippines' },
             { label: 'Timezone:', value: 'UTC+8 (Philippine Standard Time)' },
             { label: 'Status:', value: '● Active', statusClass: 'text-success fw-bold' }
         ]
