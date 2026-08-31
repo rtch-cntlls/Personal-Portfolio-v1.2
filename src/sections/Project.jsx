@@ -115,11 +115,6 @@ export default function Project() {
                       <Link to="/projects" className={`btn btn-sm rounded-0 flex-grow-1 ${isDarkMode ? 'btn-outline-light' : 'btn-outline-dark'}`}>
                         View Details
                       </Link>
-                      {project.liveLink && (
-                        <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className={`btn btn-sm rounded-0 flex-grow-1 ${isDarkMode ? 'btn-light text-dark' : 'btn-dark text-light'}`}>
-                          Visit Site &rarr;
-                        </a>
-                      )}
                     </div>
                   </div>
                 </div>

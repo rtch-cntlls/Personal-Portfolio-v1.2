@@ -1,6 +1,6 @@
-.tool-icon {
-    width: 30px;
-    height: 30px;
+.tool-icon, .fs-1 {
+    width: 80px;
+    height: 80px;
     object-fit: contain;
 }
 
@@ -18,14 +18,12 @@
 
 .tool-card {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    aspect-ratio: 1 / 1;
 }
 
 .tool-card:hover {
     transform: translateY(-2px);
-}
-
-.tool-card-label {
-    font-size: 0.75rem;
 }
 
 .tool-card .corner-border {
@@ -68,4 +66,84 @@
 
 .skill-tag-badge {
     font-size: 0.7rem;
+}
+
+.tag-xs {
+    font-size: 0.65rem;
+}
+
+.tools-ticker-wrapper {
+    mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+}
+
+.tools-ticker-height {
+    height: 600px;
+}
+
+.tools-ticker-col {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+@keyframes scrollUp {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+.ticker-up {
+    animation: scrollUp 20s linear infinite;
+}
+
+.ticker-up-delayed {
+    animation: scrollUp 25s linear infinite reverse;
+}
+
+.lead-preview-img {
+    max-height: 140px;
+}
+
+.bg-cover-left {
+    background-size: cover;
+    background-position: left center;
+    background-image: linear-gradient(90deg, var(--overlay-dark) 50%, rgba(0, 0, 0, 0) 100%), var(--bg-image);
+}
+
+[data-bs-theme="dark"] .bg-cover-left,
+.bg-dark .bg-cover-left {
+    background-image: linear-gradient(90deg, var(--overlay-dark) 50%, rgba(0, 0, 0, 0) 100%), var(--bg-image);
+}
+
+:not([data-bs-theme="dark"]) .bg-cover-left {
+    background-image: linear-gradient(90deg, var(--overlay-light) 50%, rgba(0, 0, 0, 0) 100%), var(--bg-image);
+}
+
+.responsive-overlap-img {
+    transform: scale(1.1);
+    transform-origin: right center;
+}
+
+.scattered-img-wrapper {
+    width: 70px;
+    height: 45px;
+}
+
+.scatter-rotate-left {
+    transform: rotate(-6deg);
+}
+
+.scatter-rotate-right {
+    transform: rotate(6deg);
+}
+
+@media (max-width: 767.98px) {
+    .tool-icon, .fs-1 {
+        width: 35px;
+        height: 35px;
+    }
 }

@@ -51,7 +51,7 @@ export default function Navbar() {
     { href: '#about', icon: <HiOutlineUser size={15} />, label: 'About' },
     { href: '#project', icon: <HiOutlineBriefcase size={15} />, label: 'Projects' },
     { href: '#services', icon: <HiOutlineCog size={15} />, label: 'Services' },
-    { href: '#skills', icon: <HiOutlineCode size={15} />, label: 'Skills' },
+    { href: '#skillsandtools', icon: <HiOutlineCode size={15} />, label: 'Skills & Tools' },
   ];
 
   useEffect(() => {

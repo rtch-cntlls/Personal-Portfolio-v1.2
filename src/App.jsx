@@ -7,6 +7,7 @@ import About from './sections/About';
 import Project from './sections/Project';
 import Service from './sections/Service';
 import Skill from './sections/Skill';
+import Tools from './sections/Tools';
 import AllProjects from './pages/AllProjects';
 
 function Home() {
@@ -17,6 +18,7 @@ function Home() {
       <Project />
       <Service />
       <Skill />
+      <Tools />
     </>
   );
 }

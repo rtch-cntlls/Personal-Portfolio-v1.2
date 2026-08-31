@@ -114,7 +114,7 @@
     src: url(../assets/fonts/custom-font.ttf);
 }
 .sub-headline .ui, .profile-handle{
-    font-family: ui;
+    font-family: head;
     font-size: 2.5rem;
     text-transform: uppercase;
 }

@@ -1,29 +1,6 @@
-import { useState, useEffect, memo } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-
-import { TIMELINE_SKILLS, getToolsUsed } from '../data/skillsData';
-
-const ToolCard = memo(({ tool, isDarkMode }) => (
-    <div className="col-4 col-sm-3 col-md-3">
-        <div className={`tool-card position-relative p-2 rounded-2 d-flex flex-column align-items-center justify-content-center gap-1 h-100 ${
-            isDarkMode 
-                ? 'bg-dark bg-opacity-25 border border-secondary border-opacity-25' 
-                : 'bg-light border border-light-subtle'
-        }`}>
-            <div className={`corner-border corner-tl border-top border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark'}`} />
-            <div className={`corner-border corner-tr border-top border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark'}`} />
-            <div className={`corner-border corner-bl border-bottom border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark'}`} />
-            <div className={`corner-border corner-br border-bottom border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark'}`} />
-
-            <div className="d-flex align-items-center justify-content-center">
-                {tool.icon}
-            </div>
-            <span className="font-monospace text-center opacity-90 tool-card-label">
-                {tool.name}
-            </span>
-        </div>
-    </div>
-));
+import { TIMELINE_SKILLS } from '../data/skillsData';
 
 export default function Skill() {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -41,80 +18,148 @@ export default function Skill() {
         return () => observer.disconnect();
     }, []);
 
-    const toolsUsed = getToolsUsed(isDarkMode);
+    const leadArticle = TIMELINE_SKILLS[0];
+    const designArticle = TIMELINE_SKILLS[1];
+    const responsiveArticle = TIMELINE_SKILLS[2];
+    const editingArticle = TIMELINE_SKILLS[3];
 
     return (
-        <section id="skills" className={`position-relative transition-all py-5 ${isDarkMode ? 'bg-black text-light' : 'text-dark'}`}>
+        <section id="skillsandtools" className={`position-relative transition-all ${isDarkMode ? 'bg-black text-light' : 'text-dark'}`}>
             <div className="container px-3 px-md-5">
-                <div className="mb-5">
-                    <small className="text-uppercase tracking-wider opacity-75 font-monospace">Capabilities & Tools</small>
-                    <h4 className="mb-2 fw-bold">My Expertise & Toolkit</h4>
+                <div className="mb-3">
+                    <small className="text-uppercase tracking-wider opacity-75 font-monospace">Capabilities & Editorial</small>
+                    <h4 className=" fw-bold font-serif mt-1">Expertise & Insights</h4>
                 </div>
 
-                <div className="row g-5 align-items-start">
-                    <motion.div 
-                        className="col-lg-6"
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, amount: 0.2 }}
-                        transition={{ duration: 0.8, ease: 'easeOut' }}
-                    >
-                        <div className="position-relative ps-4 border-start border-1 border-secondary border-opacity-50 ms-2">
-                            {TIMELINE_SKILLS.map((item, index) => (
-                                <div key={index} className="position-relative mb-4 pb-2">
-                                    <div 
-                                        className={`timeline-node position-absolute top-0 start-0 translate-middle rounded-circle p-2 d-flex align-items-center justify-content-center shadow-sm ${
-                                            isDarkMode ? 'bg-black border border-secondary text-light' : 'bg-white border-dark text-dark'
-                                        }`}
-                                    >
-                                        {item.icon}
+                <motion.div 
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.8, ease: 'easeOut' }}
+                >
+                    <div className="row g-4">
+                        
+                        <div className="col-lg-6">
+                            {leadArticle && (
+                                <div className={`magazine-card p-4 rounded position-relative overflow-visible h-100 ${
+                                    isDarkMode ? 'bg-black border border-primary border-opacity-50' : 'bg-white shadow-sm'}`} >
+                                    <div className="row align-items-center h-100">
+                                        <div className="col-md-6 z-1">
+                                            <span className="badge font-monospace text-uppercase px-2 py-1 bg-primary text-white mb-2">Lead Focus</span>
+                                            <h3 className="fw-bold mb-2 h4 font-serif">{leadArticle.title}</h3>
+                                            <p className="opacity-75 mb-3 small lh-base">{leadArticle.description}</p>
+                                            <div className="d-flex flex-wrap gap-1">
+                                                {leadArticle.tags.map((tag, tagIdx) => (
+                                                    <span key={tagIdx} className="badge font-monospace skill-tag-badge bg-secondary bg-opacity-25 text-light">
+                                                        {tag}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <div className="col-md-6 mt-4 mt-md-0 position-relative">
+                                            <div 
+                                                className="position-relative" 
+                                                style={{ 
+                                                    transform: 'scale(1.2) rotate(3deg)', 
+                                                    zIndex: 5,
+                                                    transformOrigin: 'center center'
+                                                }} >
+                                                <img src={leadArticle.previewImage} alt="Website Sample" className="img-fluid w-100 object-fit-contain" style={{ maxHeight: '180px' }} />
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className={`ms-4 p-3 rounded-3 transition-all ${
-                                        isDarkMode 
-                                            ? 'bg-dark bg-opacity-50 border border-secondary border-opacity-25' 
-                                            : 'bg-white border border-light-subtle shadow-sm'
-                                    }`}>
-                                        <h6 className="fw-bold mb-1">{item.title}</h6>
-                                        <p className="small mb-2 opacity-75">{item.description}</p>
-                                        <div className="d-flex flex-wrap gap-1 mt-2">
-                                            {item.tags.map((tag, tagIdx) => (
-                                                <span 
-                                                    key={tagIdx} 
-                                                    className={`badge font-monospace skill-tag-badge ${
-                                                        isDarkMode 
-                                                            ? 'bg-secondary bg-opacity-25 text-light border border-secondary border-opacity-50' 
-                                                            : 'bg-light text-dark border border-secondary border-opacity-25'
-                                                    }`}
-                                                >
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="col-lg-6">
+                            {designArticle && (
+                                <div 
+                                    className={`magazine-card p-4 rounded position-relative overflow-hidden h-100 bg-cover-left ${
+                                        isDarkMode ? 'bg-black bg-opacity-40 border border-primary border-opacity-50' : 'bg-white border shadow-sm'
+                                    }`}
+                                    style={{ 
+                                        '--bg-image': `url(${designArticle.bgImage})`, 
+                                        '--overlay-dark': 'rgba(15,15,15,0.95)', 
+                                        '--overlay-light': 'rgba(255,255,255,0.92)',
+                                        borderColor: 'rgba(255, 193, 7, 0.5)' 
+                                    }}
+                                >
+                                    <div className="col-md-12">
+                                        <div className="mb-2 text-primary fs-4">{designArticle.icon}</div>
+                                        <h4 className="fw-bold mb-2 h5">{designArticle.title}</h4>
+                                        <p className="small opacity-75 mb-3">{designArticle.description}</p>
+                                        <div className="d-flex flex-wrap gap-1">
+                                            {designArticle.tags.map((tag, tagIdx) => (
+                                                <span key={tagIdx} className="badge bg-secondary bg-opacity-10 text-muted font-monospace tag-xs">
                                                     {tag}
                                                 </span>
                                             ))}
                                         </div>
                                     </div>
                                 </div>
-                            ))}
+                            )}
                         </div>
-                    </motion.div>
 
-                    <motion.div 
-                        className="col-lg-6"
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, amount: 0.2 }}
-                        transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }} >
-                        <div className={`p-4 position-relative rounded-2 ${
-                            isDarkMode 
-                                ? 'bg-black' 
-                                : 'bg-transparent'
-                        }`}>
-                            <div className="row g-3">
-                                {toolsUsed.map((tool, index) => (
-                                    <ToolCard key={index} tool={tool} isDarkMode={isDarkMode} />
-                                ))}
-                            </div>
+                        <div className="col-lg-6">
+                            {responsiveArticle && (
+                                <div className={`magazine-card p-4 rounded position-relative overflow-hidden h-100 ${
+                                    isDarkMode ? 'bg-black bg-opacity-40 border border-primary border-opacity-50' : 'bg-white shadow-sm'}`}>
+                                    <div className="row align-items-center h-100">
+                                        <div className="col-md-5 mb-3 mb-md-0 text-start">
+                                            <img src={responsiveArticle.overlapImage} alt="Responsive Mockup" className="img-fluid rounded-2 shadow-sm border border-secondary border-opacity-25 responsive-overlap-img" />
+                                        </div>
+                                        <div className="col-md-7">
+                                            <div className="mb-2 text-success fs-4">{responsiveArticle.icon}</div>
+                                            <h4 className="fw-bold mb-2 h5">{responsiveArticle.title}</h4>
+                                            <p className="small opacity-75 mb-3">{responsiveArticle.description}</p>
+                                            <div className="d-flex flex-wrap gap-1">
+                                                {responsiveArticle.tags.map((tag, tagIdx) => (
+                                                    <span key={tagIdx} className="badge bg-secondary bg-opacity-10 text-muted font-monospace tag-xs">
+                                                        {tag}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
-                    </motion.div>
-                </div>
+
+                        <div className="col-lg-6">
+                            {editingArticle && (
+                                <div className={`magazine-card p-4 rounded position-relative overflow-hidden h-100 ${
+                                    isDarkMode ? 'bg-black bg-opacity-40 border border-primary border-opacity-50' : 'bg-white shadow-sm' }`}>
+                                    <div className="d-flex gap-2 mb-3 justify-content-start align-items-center position-relative">
+                                        {editingArticle.scatterImages.map((img, imgIdx) => {
+                                            const imgSrc = typeof img === 'object' ? img.src : img;
+                                            const shouldInvert = typeof img === 'object' && img.invertInDarkMode && isDarkMode;
+                                            return (
+                                                <div key={imgIdx} className={`scattered-img-wrapper overflow-hidden ${imgIdx === 0 ? 'scatter-rotate-left' : 'scatter-rotate-right'}`}>
+                                                    <img src={imgSrc} alt="Scatter preview" className={`w-100 h-100 object-fit-contain ${shouldInvert ? 'filter-invert' : ''}`} />
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+
+                                    <div className="d-flex align-items-center gap-2 mb-1">
+                                        <span className="fs-5">{editingArticle.icon}</span>
+                                        <h4 className="fw-bold mb-0 h5">{editingArticle.title}</h4>
+                                    </div>
+                                    <p className="small opacity-75 mb-2 mt-2">{editingArticle.description}</p>
+                                    <div className="d-flex flex-wrap gap-1">
+                                        {editingArticle.tags.map((tag, tagIdx) => (
+                                            <span key={tagIdx} className="badge font-monospace skill-tag-badge bg-secondary bg-opacity-10 text-muted">
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
+                    </div>
+                </motion.div>
             </div>
         </section>
     );
