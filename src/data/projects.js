@@ -38,7 +38,7 @@ export const projects = [
     image: ProjectImg4,
     description: 'Smart Asset & Inventory Tracking Platform for Schools',
     longDescription: 'An easy-to-use inventory management system designed for schools to seamlessly track classroom devices, sports equipment, and campus assets helping staff assign items, monitor repair statuses, and prevent lost equipment.',
-    liveLink: '',
+    liveLink: 'https://school-ims.vercel.app',
     techStack: ['Next JS', 'CSS5', 'Bootstrap', 'Supabase', 'PostgreSQL'],
   }
 ];

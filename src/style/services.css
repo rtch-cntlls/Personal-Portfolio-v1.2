@@ -77,7 +77,7 @@
     height: 45px;
 }
 
-.service-description, .text-footer {
+.service-description, .text-footer, .project-description {
     text-align: justify;
     text-justify: inter-word;
 }

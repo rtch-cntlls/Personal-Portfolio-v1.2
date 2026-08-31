@@ -53,11 +53,11 @@ export default function AllProjects() {
               <div className="row g-4 align-items-center">
                 
                 <div className="col-lg-5">
-                  <div className="bg-secondary rounded-0 overflow-hidden position-relative" style={{ height: '260px' }}>
+                  <div className="bg-secondary rounded-0 overflow-hidden position-relative">
                     <motion.img
                       src={project.image}
                       alt={project.title}
-                      className="w-100 h-100 object-fit-cover"
+                      className="w-100 h-100 object-fit-contain"
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.4, ease: 'easeOut' }}
                     />
@@ -76,7 +76,7 @@ export default function AllProjects() {
                       {project.description}
                     </p>
 
-                    <p className={`small mb-3 ${isDarkMode ? 'text-light opacity-75' : 'text-muted'}`}>
+                    <p className={`small mb-3 project-description ${isDarkMode ? 'text-light opacity-75' : 'text-muted'}`}>
                       {project.longDescription || 
                         "This is a comprehensive full-stack system designed to optimize operational workflows, track user activities, and deliver seamless responsive experiences."}
                     </p>
@@ -107,7 +107,7 @@ export default function AllProjects() {
                         rel="noopener noreferrer" 
                         className={`btn btn-sm rounded-0 px-4 ${isDarkMode ? 'btn-light text-dark' : 'btn-dark text-light'}`}
                       >
-                        Visit Site &rarr;
+                        Visit Demo Site &rarr;
                       </a>
                     ) : (
                       <button 
