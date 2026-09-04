@@ -1,0 +1,81 @@
+
+[data-bs-theme="dark"] #about,
+[data-bs-theme="dark"] #skillsandtools,
+[data-bs-theme="dark"] #project,
+[data-bs-theme="dark"] #hero {
+    background-color: #000 !important;
+    color: #f8f9fa !important;
+}
+
+.tool-card-theme {
+    background-color: #f8f9fa;
+    border: 1px solid rgba(0, 0, 0, 0.075);
+}
+[data-bs-theme="dark"] .tool-card-theme {
+    background-color: rgba(33, 37, 41, 0.25) !important;
+    border-color: rgba(108, 117, 125, 0.25) !important;
+}
+[data-bs-theme="dark"] .tool-card-theme .corner-border {
+    border-color: #f8f9fa !important;
+}
+
+.themed-card {
+    background-color: #ffffff;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+}
+[data-bs-theme="dark"] .themed-card {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    border: 1px solid rgba(13, 110, 253, 0.5) !important;
+}
+[data-bs-theme="dark"] .filter-invert-dark {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+.themed-panel {
+    background-color: #ffffff;
+    color: #212529;
+}
+[data-bs-theme="dark"] .themed-panel {
+    background-color: #000000 !important;
+    color: #f8f9fa !important;
+    border: 0 !important;
+}
+[data-bs-theme="dark"] .themed-border {
+    border-color: #f8f9fa !important;
+}
+.project-view-all-link {
+    color: #212529;
+}
+[data-bs-theme="dark"] .project-view-all-link {
+    color: rgba(248, 249, 250, 0.75) !important;
+}
+.themed-title {
+    color: #0d6efd;
+}
+[data-bs-theme="dark"] .themed-title {
+    color: #f8f9fa !important;
+}
+.themed-desc {
+    color: #6c757d;
+}
+[data-bs-theme="dark"] .themed-desc {
+    color: rgba(248, 249, 250, 0.75) !important;
+}
+.themed-btn {
+    color: #212529;
+    border-color: #212529;
+}
+[data-bs-theme="dark"] .themed-btn {
+    color: #f8f9fa !important;
+    border-color: #f8f9fa !important;
+}
+[data-bs-theme="dark"] .themed-btn:hover {
+    background-color: #f8f9fa !important;
+    color: #000 !important;
+}
+.themed-dot-active {
+    background-color: #212529;
+}
+[data-bs-theme="dark"] .themed-dot-active {
+    background-color: #f8f9fa !important;
+}

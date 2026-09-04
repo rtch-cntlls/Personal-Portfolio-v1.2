@@ -5,7 +5,6 @@ import Grid from './components/layout/UI';
 import Hero from './sections/Hero';
 import About from './sections/About';
 import Project from './sections/Project';
-import Service from './sections/Service';
 import Skill from './sections/Skill';
 import Tools from './sections/Tools';
 import AllProjects from './pages/AllProjects';
@@ -14,11 +13,10 @@ function Home() {
   return (
     <>
       <Hero />
-      <About />
       <Project />
-      <Service />
       <Skill />
       <Tools />
+       <About />
     </>
   );
 }

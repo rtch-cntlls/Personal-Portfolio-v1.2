@@ -1,6 +1,6 @@
 .tool-icon, .fs-1 {
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
     object-fit: contain;
 }
 
@@ -18,7 +18,6 @@
 
 .tool-card {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    width: 100%;
     aspect-ratio: 1 / 1;
 }
 
@@ -72,36 +71,31 @@
     font-size: 0.65rem;
 }
 
-.tools-ticker-wrapper {
-    mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
-    -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+.tools-ticker-wrapper-horizontal {
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
 
-.tools-ticker-height {
-    height: 600px;
-}
-
-.tools-ticker-col {
+.tools-ticker-row {
     display: flex;
-    flex-direction: column;
-    width: 100%;
+    width: max-content;
 }
 
-@keyframes scrollUp {
+@keyframes scrollLeft {
     0% {
-        transform: translateY(0);
+        transform: translateX(0);
     }
     100% {
-        transform: translateY(-50%);
+        transform: translateX(-33.333%);
     }
 }
 
-.ticker-up {
-    animation: scrollUp 20s linear infinite;
+.ticker-left {
+    animation: scrollLeft 25s linear infinite;
 }
 
-.ticker-up-delayed {
-    animation: scrollUp 25s linear infinite reverse;
+.ticker-left-delayed {
+    animation: scrollLeft 30s linear infinite reverse;
 }
 
 .lead-preview-img {
@@ -129,8 +123,8 @@
 }
 
 .scattered-img-wrapper {
-    width: 70px;
-    height: 45px;
+    width: 100px;
+    height: 65px;
 }
 
 .scatter-rotate-left {

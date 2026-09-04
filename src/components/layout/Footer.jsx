@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import { 
   HiOutlineMail, 
   HiOutlineArrowUp 
@@ -14,24 +13,6 @@ import { motion } from 'framer-motion';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    const checkTheme = () => {
-      const theme = document.documentElement.getAttribute('data-bs-theme');
-      setIsDark(theme === 'dark');
-    };
-
-    checkTheme();
-
-    const observer = new MutationObserver(checkTheme);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-bs-theme']
-    });
-
-    return () => observer.disconnect();
-  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -41,8 +22,7 @@ export default function Footer() {
     { href: '#hero', label: 'Home' },
     { href: '#about', label: 'About' },
     { href: '#project', label: 'Projects' },
-    { href: '#services', label: 'Services' },
-    { href: '#skills', label: 'Skills' },
+    { href: '#skills', label: 'Skills & Tools' },
   ];
 
   const socialLinks = [
@@ -54,7 +34,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className={`position-relative border-top ${isDark ? 'bg-black text-light border-secondary border-opacity-50' : 'bg-light text-dark border-dark-subtle'} py-5 mt-5 overflow-hidden`}>
+    <footer className="position-relative border-top py-5 mt-5 overflow-hidden">
       <div className="container px-3 px-md-5">
         <div className="row g-5 justify-content-between align-items-start mb-5">
           
@@ -66,7 +46,7 @@ export default function Footer() {
               transition={{ duration: 0.5 }}
             >
               <h3 className="fw-bold mb-3 tracking-tight">Let's Build Together.</h3>
-              <p className={`small text-footer ${isDark ? 'text-muted' : 'text-secondary'} mb-4`} style={{ maxWidth: '400px' }}>
+              <p className="small text-secondary mb-4" style={{ maxWidth: '400px' }}>
                 Crafting performant, accessible, and user-centric web applications from Cebu City to the world. Always open to interesting conversations and ideas.
               </p>
               
@@ -75,7 +55,7 @@ export default function Footer() {
                   <span className="animate-ping position-absolute inline-flex h-100 w-100 rounded-circle bg-success opacity-75"></span>
                   <span className="position-relative inline-flex rounded-circle h-2 w-2 bg-success m-auto" style={{ width: '8px', height: '8px' }}></span>
                 </span>
-                <span className={`small font-monospace ${isDark ? 'text-light' : 'text-dark'} fw-medium`}>
+                <span className="small font-monospace fw-medium">
                   Available for select opportunities
                 </span>
               </div>
@@ -89,7 +69,7 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <h6 className={`fw-bold mb-3 font-monospace small text-uppercase ${isDark ? 'text-muted' : 'text-secondary'}`}>
+              <h6 className="fw-bold mb-3 font-monospace small text-uppercase text-secondary">
                 Navigation
               </h6>
               <ul className="list-unstyled d-flex flex-column gap-2 mb-0">
@@ -97,7 +77,7 @@ export default function Footer() {
                   <li key={idx}>
                     <a 
                       href={link.href} 
-                      className={`text-decoration-none transition-all ${isDark ? 'text-light opacity-75 hover-opacity-100' : 'text-dark opacity-75 hover-opacity-100'}`}
+                      className="text-decoration-none opacity-75 hover-opacity-100 link-body-emphasis transition-all"
                     >
                       {link.label}
                     </a>
@@ -114,7 +94,7 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <h6 className={`fw-bold mb-3 font-monospace small text-uppercase ${isDark ? 'text-muted' : 'text-secondary'}`}>
+              <h6 className="fw-bold mb-3 font-monospace small text-uppercase text-secondary">
                 Socials
               </h6>
               
@@ -126,7 +106,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={social.label}
-                    className={`d-flex align-items-center justify-content-center rounded-circle border ${isDark ? 'border-secondary text-light bg-dark' : 'border-dark-subtle text-dark bg-white'} transition-all`}
+                    className="d-flex align-items-center justify-content-center rounded-circle border border-secondary border-opacity-25 link-body-emphasis transition-all"
                     style={{ width: '38px', height: '38px' }}
                   >
                     {social.icon}
@@ -136,7 +116,7 @@ export default function Footer() {
 
               <a 
                 href="mailto:your.rtchcntlls@gmail.com"
-                className={`btn btn-sm ${isDark ? 'btn-outline-light' : 'btn-outline-dark'} d-inline-flex align-items-center gap-2 rounded-pill px-3 py-2`}
+                className="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-2 rounded-pill px-3 py-2"
               >
                 <HiOutlineMail size={16} />
                 <span>Get in Touch</span>
@@ -146,8 +126,8 @@ export default function Footer() {
 
         </div>
 
-        <div className={`pt-4 border-top ${isDark ? 'border-secondary border-opacity-25' : 'border-dark-subtle'} d-flex flex-column flex-md-row justify-content-between align-items-center gap-3`}>
-          <p className={`small font-monospace mb-0 ${isDark ? 'text-muted' : 'text-secondary'}`}>
+        <div className="pt-4 border-top border-secondary border-opacity-25 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+          <p className="small font-monospace mb-0 text-secondary">
             &copy; {currentYear} Rtch Cntlls
           </p>
 
@@ -155,7 +135,7 @@ export default function Footer() {
             <button
               onClick={scrollToTop}
               aria-label="Scroll to top"
-              className={`btn btn-sm ${isDark ? 'btn-dark border-secondary text-light' : 'btn-light border text-dark'} d-flex align-items-center justify-content-center rounded-circle`}
+              className="btn btn-sm border border-secondary border-opacity-25 link-body-emphasis d-flex align-items-center justify-content-center rounded-circle"
               style={{ width: '36px', height: '36px' }}
             >
               <HiOutlineArrowUp size={16} />

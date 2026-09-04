@@ -10,7 +10,7 @@ import GeminiIcon from '../assets/icons/Gemini.PNG';
 
 import SampleWebsiteImg from '../assets/images/development.png';
 import DesignBgImg from '../assets/images/wireframe.png';
-import ResponsiveMockupImg from '../assets/images/wireframe.png';
+import ResponsiveMockupImg from '../assets/images/responsive.png';
 import EditSample1 from '../assets/icons/Capcut.png';
 import EditSample2 from '../assets/icons/Canva.PNG';
 
@@ -57,36 +57,39 @@ export const TIMELINE_SKILLS = [
 ];
 
 export const getToolsUsed = (isDarkMode) => [
-    { icon: <FaHtml5 className="text-danger fs-1" /> },
-    { icon: <FaCss3Alt className="text-primary fs-1" /> },
-    { icon: <FaJs className="text-warning fs-1" /> },
-    { icon: <FaReact className="text-info fs-1" /> },
-    { icon: <SiNextdotjs className={`fs-1 ${isDarkMode ? 'text-light' : 'text-dark'}`} /> },
-    { icon: <FaBootstrap className="fs-1 icon-bootstrap" /> },
-    { icon: <FaPhp className="fs-1 icon-php" /> },
-    { icon: <FaLaravel className="text-danger fs-1" /> },
-    { icon: <SiSupabase className="text-success fs-1" /> },
-    { icon: <SiMysql className="text-primary fs-1" /> },
-    { icon: <SiPostgresql className="text-info fs-1" /> },
-    { icon: <FaJava className="text-danger fs-1" /> },
-    { icon: <img src={CIcon} alt="C Icon" className="tool-icon" /> },
-    { icon: <img src={FigmaIcon} alt="Figma Icon" className="tool-icon" /> },
-    { icon: <img src={CanvaIcon} alt="Canva Icon" className="tool-icon" /> },
+    { name: "HTML5", icon: <FaHtml5 className="text-danger fs-1" /> },
+    { name: "CSS3", icon: <FaCss3Alt className="text-primary fs-1" /> },
+    { name: "JavaScript", icon: <FaJs className="text-warning fs-1" /> },
+    { name: "React", icon: <FaReact className="text-info fs-1" /> },
+    { name: "Next.js", icon: <SiNextdotjs className={`fs-1 ${isDarkMode ? 'text-light' : 'text-dark'}`} /> },
+    { name: "Bootstrap", icon: <FaBootstrap className="fs-1 icon-bootstrap" /> },
+    { name: "PHP", icon: <FaPhp className="fs-1 icon-php" /> },
+    { name: "Laravel", icon: <FaLaravel className="text-danger fs-1" /> },
+    { name: "Supabase", icon: <SiSupabase className="text-success fs-1" /> },
+    { name: "MySQL", icon: <SiMysql className="text-primary fs-1" /> },
+    { name: "PostgreSQL", icon: <SiPostgresql className="text-info fs-1" /> },
+    { name: "Java", icon: <FaJava className="text-danger fs-1" /> },
+    { name: "C", icon: <img src={CIcon} alt="C Icon" className="tool-icon" /> },
+    { name: "Figma", icon: <img src={FigmaIcon} alt="Figma Icon" className="tool-icon" /> },
+    { name: "Canva", icon: <img src={CanvaIcon} alt="Canva Icon" className="tool-icon" /> },
     { 
+        name: "CapCut", 
         icon: <img src={CapcutIcon} alt="CapCut Icon" className={`tool-icon ${isDarkMode ? 'filter-invert' : ''}`} /> 
     },
-    { icon: <img src={VSCodeIcon} alt="VS Code Icon" className="tool-icon" /> },
-    { icon: <img src={VisualStudioIcon} alt="Visual Studio Icon" className="tool-icon" /> },
-    { icon: <FaGitAlt className="text-danger fs-1" /> },
-    { icon: <FaGithub className={`fs-1 ${isDarkMode ? 'text-light' : 'text-dark'}`} /> },
-    { icon: <SiGithubcopilot className="text-dark fs-1" /> },
+    { name: "VS Code", icon: <img src={VSCodeIcon} alt="VS Code Icon" className="tool-icon" /> },
+    { name: "Visual Studio", icon: <img src={VisualStudioIcon} alt="Visual Studio Icon" className="tool-icon" /> },
+    { name: "Git", icon: <FaGitAlt className="text-danger fs-1" /> },
+    { name: "GitHub", icon: <FaGithub className={`fs-1 ${isDarkMode ? 'text-light' : 'text-dark'}`} /> },
+    { name: "GitHub Copilot", icon: <SiGithubcopilot className="text-dark fs-1" /> },
     { 
+        name: "Vercel", 
         icon: <img src={VercelIcon} alt="Vercel Icon" className={`tool-icon ${isDarkMode ? 'filter-invert' : ''}`} /> 
     },
     { 
+        name: "ChatGPT", 
         icon: <img src={GPTIcon} alt="ChatGPT Icon" className={`tool-icon ${isDarkMode ? 'filter-invert' : ''}`} /> 
     },
-    { icon: <img src={GeminiIcon} alt="Gemini Icon" className="tool-icon" /> },
-    { icon: <SiWebflow className="text-primary fs-1" /> },
-    { icon: <SiCloudflare className="text-warning fs-1" /> },
+    { name: "Gemini", icon: <img src={GeminiIcon} alt="Gemini Icon" className="tool-icon" /> },
+    { name: "Webflow", icon: <SiWebflow className="text-primary fs-1" /> },
+    { name: "Cloudflare", icon: <SiCloudflare className="text-warning fs-1" /> },
 ];

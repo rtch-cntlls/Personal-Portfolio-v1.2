@@ -1,27 +1,13 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { projects } from '../data/projects';
 
 export default function Project() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollContainerRef = useRef(null);
 
-  useEffect(() => {
-    const checkTheme = () => {
-      const currentTheme = document.documentElement.getAttribute('data-bs-theme');
-      setIsDarkMode(currentTheme === 'dark');
-    };
-
-    checkTheme();
-    const observer = new MutationObserver(checkTheme);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-bs-theme'] });
-
-    return () => observer.disconnect();
-  }, []);
-
-  const displayedProjects = projects.slice(0, 3);
+  const displayedProjects = projects.slice(0, 6);
 
   const handleScroll = () => {
     if (scrollContainerRef.current) {
@@ -63,7 +49,7 @@ export default function Project() {
             </div>
           <Link 
             to="/projects" 
-            className={`text-decoration-underline small fw-semibold ${isDarkMode ? 'text-light opacity-75' : 'text-dark'}`}>
+            className="text-decoration-underline small fw-semibold project-view-all-link">
             View All Projects &rarr;
           </Link>
         </motion.div>
@@ -77,7 +63,7 @@ export default function Project() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }} >
-          {displayedProjects.map((project, index) => (
+          {displayedProjects.map((project) => (
             <motion.div 
               className="col-12 col-md-4 flex-shrink-0 flex-grow-0 px-2 px-md-2" 
               key={project.id} 
@@ -85,12 +71,12 @@ export default function Project() {
               style={{ scrollSnapAlign: 'start' }}
             >
               <div className="position-relative p-3 h-100">
-                <div className={`position-absolute top-0 start-0 border-top border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark-subtle'} z-3 camera-focus-tl`} style={{ width: '10px', height: '10px' }}></div>
-                <div className={`position-absolute top-0 end-0 border-top border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark-subtle'} z-3 camera-focus-tr`} style={{ width: '10px', height: '10px' }}></div>
-                <div className={`position-absolute bottom-0 start-0 border-bottom border-start border-2 ${isDarkMode ? 'border-light' : 'border-dark-subtle'} z-3 camera-focus-bl`} style={{ width: '10px', height: '10px' }}></div>
-                <div className={`position-absolute bottom-0 end-0 border-bottom border-end border-2 ${isDarkMode ? 'border-light' : 'border-dark-subtle'} z-3 camera-focus-br`} style={{ width: '10px', height: '10px' }}></div>
+                <div className="position-absolute top-0 start-0 border-top border-start border-2 z-3 camera-focus-tl themed-border" style={{ width: '10px', height: '10px' }}></div>
+                <div className="position-absolute top-0 end-0 border-top border-end border-2 z-3 camera-focus-tr themed-border" style={{ width: '10px', height: '10px' }}></div>
+                <div className="position-absolute bottom-0 start-0 border-bottom border-start border-2 z-3 camera-focus-bl themed-border" style={{ width: '10px', height: '10px' }}></div>
+                <div className="position-absolute bottom-0 end-0 border-bottom border-end border-2 z-3 camera-focus-br themed-border" style={{ width: '10px', height: '10px' }}></div>
 
-                <div className={`img-panel h-100 ${isDarkMode ? 'bg-black text-light border-0' : 'bg-white text-dark'} shadow-sm rounded-0 position-relative d-flex flex-column border`}>
+                <div className="img-panel themed-panel h-100 shadow-sm rounded-0 position-relative d-flex flex-column border">
                   <div className="bg-dark rounded-0 overflow-hidden position-relative z-2 mb-3 project-img">
                     <motion.img
                       src={project.image}
@@ -103,16 +89,16 @@ export default function Project() {
 
                   <div className="px-3 pb-3 flex-grow-1 d-flex flex-column justify-content-between text-start z-2">
                     <div>
-                      <h5 className={`fw-bold mb-2 about-title ${isDarkMode ? 'text-light' : 'text-primary'}`}>
+                      <h5 className="fw-bold mb-2 about-title themed-title">
                         {project.title}
                       </h5>
-                      <p className={`small mb-3 ${isDarkMode ? 'text-light opacity-75' : 'text-muted'}`}>
+                      <p className="small mb-3 themed-desc">
                         {project.description}
                       </p>
                     </div>
 
                     <div className="d-flex gap-2 pt-2 border-top border-secondary border-opacity-25">
-                      <Link to="/projects" className={`btn btn-sm rounded-0 flex-grow-1 ${isDarkMode ? 'btn-outline-light' : 'btn-outline-dark'}`}>
+                      <Link to="/projects" className="btn btn-sm rounded-0 flex-grow-1 themed-btn">
                         View Details
                       </Link>
                     </div>
@@ -127,7 +113,7 @@ export default function Project() {
           {displayedProjects.map((_, index) => (
             <span
               key={index}
-              className={`rounded-pill transition-all ${activeIndex === index ? (isDarkMode ? 'bg-light' : 'bg-dark') : 'bg-secondary opacity-50'}`}
+              className={`rounded-pill transition-all ${activeIndex === index ? 'themed-dot-active' : 'bg-secondary opacity-50'}`}
               style={{
                 width: activeIndex === index ? '24px' : '8px',
                 height: '8px',

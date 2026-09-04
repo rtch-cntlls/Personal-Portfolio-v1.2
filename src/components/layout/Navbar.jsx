@@ -48,10 +48,9 @@ export default function Navbar() {
 
   const navLinks = [
     { href: '#hero', icon: <HiOutlineHome size={15} />, label: 'Home' },
-    { href: '#about', icon: <HiOutlineUser size={15} />, label: 'About' },
     { href: '#project', icon: <HiOutlineBriefcase size={15} />, label: 'Projects' },
-    { href: '#services', icon: <HiOutlineCog size={15} />, label: 'Services' },
     { href: '#skillsandtools', icon: <HiOutlineCode size={15} />, label: 'Skills & Tools' },
+    { href: '#about', icon: <HiOutlineUser size={15} />, label: 'About' },
   ];
 
   useEffect(() => {
@@ -138,7 +137,7 @@ export default function Navbar() {
                   variants={navItemVariants}
                 >
                   <a 
-                    className={`nav-link d-inline-flex align-items-center gap-1 position-relative px-2 py-1 ${
+                    className={`nav-link d-inline-flex align-items-center gap-1 position-relative px-2 py-1 fw-bold tracking-tight ${
                       isActive 
                         ? darkMode ? 'text-light' : 'text-dark' 
                         : darkMode ? 'text-light opacity-75' : 'text-secondary'

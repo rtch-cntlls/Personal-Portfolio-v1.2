@@ -52,9 +52,9 @@ export default function Content({ isDarkMode, currentText }) {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 1, ease: 'easeOut' }}
     >
-      <div className={`head fw-bold ${isDarkMode ? 'text-light' : 'text-dark'}`}>
+      <div className={`head ${isDarkMode ? 'text-light' : 'text-dark'}`}>
         <h1 className="m-0 d-flex align-items-center justify-content-center justify-content-lg-start">
-          <span>{currentText}</span>
+          <span className="tracking-tight">{currentText}</span>
           <motion.span
             animate={{ opacity: [1, 0, 1] }}
             transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
@@ -72,28 +72,29 @@ export default function Content({ isDarkMode, currentText }) {
       >
         <h1 className="m-0">
           <span className="r">R</span>
-          <span className="me-4 tch">tch</span>
-          <span className="c">C</span>
+          <span className="me-4 tch">ItchIe</span>
+          <span className="c">Ca</span>
           <span className="n">n</span>
-          <span className="tl">tl</span>
+          <span className="tl">tIl</span>
           <span className="l">l</span>
-          <span className="s">s</span>
+          <span className="s">as</span>
         </h1>
       </motion.div>
 
       <div className="sub-headline mb-4">
-        <h1 className="m-0 lh-1">
+        <h1 className="m-0">
           <motion.div
             initial={{ opacity: 0, x: -80 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
           >
-            <span className="full"><span className="f">F</span>Ull</span>
+            {/* <span className="full"><span className="f">F</span>Ull</span>
             <span className="stack me-2">stack</span>
             <span className="developer ms-2">
               <span className="d">D</span>
               eveloper
-            </span>
+            </span> */}
+            <span className='fw-bold tracking-tight text-uppercase'>Full-Stack Developer</span>
           </motion.div>
 
           <motion.div 
@@ -102,9 +103,9 @@ export default function Content({ isDarkMode, currentText }) {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.6, ease: 'easeOut' }}
           >
-            <span className={`and me-1 ${isDarkMode ? 'text-light' : ''}`}>&</span>
-            <span className="ui">UI/UX</span>
-            
+            {/* <span className={`and me-1 ${isDarkMode ? 'text-light' : ''}`}>&</span>
+            <span className="ui">UI/UX</span> */}
+            <span className='fw-bold tracking-tight'> & UI/UX</span>
             <motion.span 
               className="designer-selected-wrapper ms-2 d-inline-block"
               animate={{ y: [-6, 6, -6] }}
@@ -120,7 +121,7 @@ export default function Content({ isDarkMode, currentText }) {
               <span className="resize-handle handle-bl"></span>
               <span className="resize-handle handle-bm"></span>
               <span className="resize-handle handle-br"></span>
-              <span className="designer px-3 py-1">Designer</span>
+              <span className="designer px-3 py-1 fw-bold tracking-tight">Designer</span>
             </motion.span>
           </motion.div>
         </h1>

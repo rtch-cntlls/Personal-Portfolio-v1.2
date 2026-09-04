@@ -15,14 +15,11 @@
   font-family: name;
   font-size: 0.9rem;
 }
-@font-face {
-  font-family: nav-link ;
-  src: url(../assets//fonts/head.ttf);
-}
 .nav-link {
     text-transform: uppercase;
     font-size: 0.9rem;
-    font-family: nav-link ;
+    font-family: sans-serif;
+    font-weight: bolder;
 }
 
 .logo-img.dark-mode-logo {
