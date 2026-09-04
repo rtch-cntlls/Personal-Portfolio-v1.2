@@ -46,8 +46,8 @@ export default function Skill() {
                                     <div className="row align-items-center h-100">
                                         <div className="col-md-6 z-1">
                                             <div className="mb-2 text-primary">{leadArticle.icon}</div>
-                                            <h4 className="fw-bold mb-2">{leadArticle.title}</h4>
-                                            <p className="opacity-75 mb-3 small lh-base">{leadArticle.description}</p>
+                                            <h4 className="fw-bold mb-4">{leadArticle.title}</h4>
+                                            <p className="opacity-75 mb-2 small skill-description">{leadArticle.description}</p>
                                              <div className="d-flex flex-wrap gap-1">
                                                 {leadArticle.tags.map((tag, tagIdx) => (
                                                     <span key={tagIdx} className="badge bg-secondary bg-opacity-10 text-muted font-monospace tag-xs">
@@ -89,8 +89,8 @@ export default function Skill() {
                                     <div style={{ filter: isDarkMode ? 'invert(1) hue-rotate(180deg)' : 'none' }}>
                                         <div className="col-md-6">
                                             <div className="mb-2 text-primary">{designArticle.icon}</div>
-                                            <h4 className="fw-bold mb-2">{designArticle.title}</h4>
-                                            <p className="small opacity-75 mb-3">{designArticle.description}</p>
+                                            <h4 className="fw-bold mb-4">{designArticle.title}</h4>
+                                            <p className="small opacity-75 mb-2 skill-description">{designArticle.description}</p>
                                             <div className="d-flex flex-wrap gap-1">
                                                 {designArticle.tags.map((tag, tagIdx) => (
                                                     <span key={tagIdx} className="badge bg-secondary bg-opacity-10 text-muted font-monospace tag-xs">
@@ -111,8 +111,8 @@ export default function Skill() {
                                     <div className="row align-items-center h-100">
                                         <div className="col-md-7">
                                             <div className="mb-2 text-primary">{responsiveArticle.icon}</div>
-                                            <h4 className="fw-bold mb-2">{responsiveArticle.title}</h4>
-                                            <p className="small opacity-75 mb-3">{responsiveArticle.description}</p>
+                                            <h4 className="fw-bold mb-4">{responsiveArticle.title}</h4>
+                                            <p className="small opacity-75 mb-2 skill-description">{responsiveArticle.description}</p>
                                             <div className="d-flex flex-wrap gap-1">
                                                 {responsiveArticle.tags.map((tag, tagIdx) => (
                                                     <span key={tagIdx} className="badge bg-secondary bg-opacity-10 text-muted font-monospace tag-xs">
@@ -136,8 +136,8 @@ export default function Skill() {
                                     <div className="row align-items-center h-100">
                                         <div className="col-md-7">
                                             <div className="mb-2 text-primary">{editingArticle.icon}</div>
-                                            <h4 className="fw-bold mb-0">{editingArticle.title}</h4>
-                                            <p className="small opacity-75 mb-2 mt-2">{editingArticle.description}</p>
+                                            <h4 className="fw-bold mb-4">{editingArticle.title}</h4>
+                                            <p className="small opacity-75 mb-2 skill-description">{editingArticle.description}</p>
                                             <div className="d-flex flex-wrap gap-1">
                                                 {editingArticle.tags.map((tag, tagIdx) => (
                                                     <span key={tagIdx} className="badge font-monospace skill-tag-badge bg-secondary bg-opacity-10 text-muted">

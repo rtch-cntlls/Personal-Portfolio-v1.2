@@ -1,4 +1,4 @@
-.about-text-content {
+.about-text-content, .skill-description {
     text-align: justify;
     text-justify: inter-word;
 }

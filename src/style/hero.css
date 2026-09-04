@@ -221,22 +221,16 @@
 
 @media (max-width: 767.98px) {
     .headline h1, .r, .tch, .c, .n, .tl, .l, .s{
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
     .head h1 span{
         font-size: 1.4rem;
     }
     .designer, .stack {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
-    .sub-headline .ui{
-        font-size: 1.8rem;
-    }
-    .sub-headline .full, .f, .and, .d{
-        font-size: 1.8rem;
-    }
-    .sub-headline .developer, .d{
-        font-size: 1.8rem;
+    .sub-headline h1{
+        font-size: 1.5rem;
     }
     .lead{
         font-size: 0.9rem;

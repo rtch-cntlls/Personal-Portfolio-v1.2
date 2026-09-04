@@ -11,7 +11,7 @@ export default function About() {
                 </div>
                 <div className="row align-items-center g-5">
                     <motion.div 
-                        className="col-lg-5 text-center"
+                        className="col-lg-5 text-center d-none d-lg-block"
                         initial={{ opacity: 0, x: -40 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, amount: 0.3 }}
