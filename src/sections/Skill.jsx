@@ -28,7 +28,7 @@ export default function Skill() {
             <div className="container px-3 px-md-5">
                 <div className="mb-4">
                     <small className="text-uppercase tracking-wider opacity-75 font-monospace">Capabilities & Editorial</small>
-                    <h4 className=" fw-bold mt-1">Expertise & Insights</h4>
+                    <h4 className="fw-bold mt-1">Expertise & Insights</h4>
                 </div>
 
                 <motion.div 
@@ -42,13 +42,13 @@ export default function Skill() {
                         <div className="col-lg-6">
                             {leadArticle && (
                                 <div className={`magazine-card p-4 rounded position-relative overflow-visible h-100 ${
-                                    isDarkMode ? 'bg-black bg-opacity-40 border border-primary border-opacity-50' : 'bg-white shadow-sm'}`} >
+                                    isDarkMode ? 'bg-black bg-opacity-40 border border-primary border-opacity-50' : 'bg-white shadow-sm'}`}>
                                     <div className="row align-items-center h-100">
                                         <div className="col-md-6 z-1">
                                             <div className="mb-2 text-primary">{leadArticle.icon}</div>
                                             <h4 className="fw-bold mb-4">{leadArticle.title}</h4>
                                             <p className="opacity-75 mb-2 small skill-description">{leadArticle.description}</p>
-                                             <div className="d-flex flex-wrap gap-1">
+                                            <div className="d-flex flex-wrap gap-1">
                                                 {leadArticle.tags.map((tag, tagIdx) => (
                                                     <span key={tagIdx} className="badge bg-secondary bg-opacity-10 text-muted font-monospace tag-xs">
                                                         {tag}
@@ -57,14 +57,8 @@ export default function Skill() {
                                             </div>
                                         </div>
                                         <div className="col-md-6 mt-4 mt-md-0 position-relative">
-                                            <div 
-                                                className="position-relative" 
-                                                style={{ 
-                                                    transform: 'scale(1.2) rotate(3deg)', 
-                                                    zIndex: 5,
-                                                    transformOrigin: 'center center'
-                                                }} >
-                                                <img src={leadArticle.previewImage} alt="Website Sample" className="img-fluid w-100 object-fit-contain" style={{ maxHeight: '180px' }} />
+                                            <div className="position-relative lead-preview-container">
+                                                <img src={leadArticle.previewImage} alt="Website Sample" className="img-fluid w-100 object-fit-contain lead-preview-img" />
                                             </div>
                                         </div>
                                     </div>
@@ -78,15 +72,9 @@ export default function Skill() {
                                     className={`magazine-card p-4 rounded position-relative overflow-hidden h-100 bg-cover-left ${
                                         isDarkMode ? 'bg-black bg-opacity-40 border border-primary border-opacity-50' : 'bg-white shadow-sm'
                                     }`}
-                                    style={{ 
-                                        '--bg-image': `url(${designArticle.bgImage})`, 
-                                        '--overlay-dark': 'rgba(65, 58, 58, 0.95)', 
-                                        '--overlay-light': 'rgba(255, 255, 255, 0.94)',
-                                        borderColor: 'rgba(255, 193, 7, 0.5)',
-                                        filter: isDarkMode ? 'invert(1) hue-rotate(180deg)' : 'none' 
-                                    }}
+                                    style={{ '--bg-image': `url(${designArticle.bgImage})` }}
                                 >
-                                    <div style={{ filter: isDarkMode ? 'invert(1) hue-rotate(180deg)' : 'none' }}>
+                                    <div className="design-article-content">
                                         <div className="col-md-6">
                                             <div className="mb-2 text-primary">{designArticle.icon}</div>
                                             <h4 className="fw-bold mb-4">{designArticle.title}</h4>

@@ -82,7 +82,7 @@ export default function Content({ isDarkMode, currentText }) {
       </motion.div>
 
       <div className="sub-headline mb-4">
-        <h1 className="m-0">
+        <h2 className="m-0">
           <motion.div
             initial={{ opacity: 0, x: -80 }}
             animate={{ opacity: 1, x: 0 }}
@@ -94,7 +94,7 @@ export default function Content({ isDarkMode, currentText }) {
               <span className="d">D</span>
               eveloper
             </span> */}
-            <span className='fw-bold tracking-tight text-uppercase'>Full-Stack Developer</span>
+            <span className=' tracking-tight text-uppercase'>Full-Stack Developer</span>
           </motion.div>
 
           <motion.div 
@@ -105,7 +105,7 @@ export default function Content({ isDarkMode, currentText }) {
           >
             {/* <span className={`and me-1 ${isDarkMode ? 'text-light' : ''}`}>&</span>
             <span className="ui">UI/UX</span> */}
-            <span className='fw-bold tracking-tight'> & UI/UX</span>
+            <span className='tracking-tight'> & UI/UX</span>
             <motion.span 
               className="designer-selected-wrapper ms-2 d-inline-block"
               animate={{ y: [-6, 6, -6] }}
@@ -121,10 +121,10 @@ export default function Content({ isDarkMode, currentText }) {
               <span className="resize-handle handle-bl"></span>
               <span className="resize-handle handle-bm"></span>
               <span className="resize-handle handle-br"></span>
-              <span className="designer px-3 py-1 fw-bold tracking-tight">Designer</span>
+              <span className="designer px-3 py-1  tracking-tight">Designer</span>
             </motion.span>
           </motion.div>
-        </h1>
+        </h2>
       </div>
 
       <p className={`lead mb-4 mx-auto mx-lg-0 hero-lead-text ${isDarkMode ? 'text-light opacity-75' : 'text-muted'}`}>

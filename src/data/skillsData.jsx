@@ -19,7 +19,7 @@ import {
     FaLaravel, FaPhp, FaJava, FaCode, FaPaintBrush, FaMobileAlt, FaVideo
 } from 'react-icons/fa';
 import { 
-    SiNextdotjs, SiSupabase, SiMysql, SiPostgresql , SiWebflow, SiCloudflare, SiGithubcopilot
+    SiNextdotjs, SiSupabase, SiMysql, SiPostgresql, SiWebflow, SiCloudflare, SiGithubcopilot
 } from 'react-icons/si';
 
 export const TIMELINE_SKILLS = [
@@ -56,12 +56,12 @@ export const TIMELINE_SKILLS = [
     }
 ];
 
-export const getToolsUsed = (isDarkMode) => [
+export const getToolsUsed = () => [
     { name: "HTML5", icon: <FaHtml5 className="text-danger fs-1" /> },
     { name: "CSS3", icon: <FaCss3Alt className="text-primary fs-1" /> },
     { name: "JavaScript", icon: <FaJs className="text-warning fs-1" /> },
     { name: "React", icon: <FaReact className="text-info fs-1" /> },
-    { name: "Next.js", icon: <SiNextdotjs className={`fs-1 ${isDarkMode ? 'text-light' : 'text-dark'}`} /> },
+    { name: "Next.js", icon: <SiNextdotjs className="fs-1 theme-adaptive-icon" /> },
     { name: "Bootstrap", icon: <FaBootstrap className="fs-1 icon-bootstrap" /> },
     { name: "PHP", icon: <FaPhp className="fs-1 icon-php" /> },
     { name: "Laravel", icon: <FaLaravel className="text-danger fs-1" /> },
@@ -72,23 +72,14 @@ export const getToolsUsed = (isDarkMode) => [
     { name: "C", icon: <img src={CIcon} alt="C Icon" className="tool-icon" /> },
     { name: "Figma", icon: <img src={FigmaIcon} alt="Figma Icon" className="tool-icon" /> },
     { name: "Canva", icon: <img src={CanvaIcon} alt="Canva Icon" className="tool-icon" /> },
-    { 
-        name: "CapCut", 
-        icon: <img src={CapcutIcon} alt="CapCut Icon" className={`tool-icon ${isDarkMode ? 'filter-invert' : ''}`} /> 
-    },
+    { name: "CapCut", icon: <img src={CapcutIcon} alt="CapCut Icon" className="tool-icon theme-adaptive-icon" /> },
     { name: "VS Code", icon: <img src={VSCodeIcon} alt="VS Code Icon" className="tool-icon" /> },
     { name: "Visual Studio", icon: <img src={VisualStudioIcon} alt="Visual Studio Icon" className="tool-icon" /> },
     { name: "Git", icon: <FaGitAlt className="text-danger fs-1" /> },
-    { name: "GitHub", icon: <FaGithub className={`fs-1 ${isDarkMode ? 'text-light' : 'text-dark'}`} /> },
-    { name: "GitHub Copilot", icon: <SiGithubcopilot className="text-dark fs-1" /> },
-    { 
-        name: "Vercel", 
-        icon: <img src={VercelIcon} alt="Vercel Icon" className={`tool-icon ${isDarkMode ? 'filter-invert' : ''}`} /> 
-    },
-    { 
-        name: "ChatGPT", 
-        icon: <img src={GPTIcon} alt="ChatGPT Icon" className={`tool-icon ${isDarkMode ? 'filter-invert' : ''}`} /> 
-    },
+    { name: "GitHub", icon: <FaGithub className="fs-1 theme-adaptive-icon" /> },
+    { name: "GitHub Copilot", icon: <SiGithubcopilot className="fs-1 theme-adaptive-icon" /> },
+    { name: "Vercel", icon: <img src={VercelIcon} alt="Vercel Icon" className="tool-icon theme-adaptive-icon" /> },
+    { name: "ChatGPT", icon: <img src={GPTIcon} alt="ChatGPT Icon" className="tool-icon theme-adaptive-icon" /> },
     { name: "Gemini", icon: <img src={GeminiIcon} alt="Gemini Icon" className="tool-icon" /> },
     { name: "Webflow", icon: <SiWebflow className="text-primary fs-1" /> },
     { name: "Cloudflare", icon: <SiCloudflare className="text-warning fs-1" /> },

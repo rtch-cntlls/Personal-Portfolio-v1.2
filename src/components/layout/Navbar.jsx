@@ -97,7 +97,7 @@ export default function Navbar() {
             </div>
           </div>
         </a>
-        <div className="d-flex align-items-center gap-2 d-lg-none">
+        <div className="d-flex align-items-center gap-1 d-lg-none">
           <div className="form-check form-switch m-0 ps-0">
             <input
               className={`form-check-input ms-0 shadow-none theme-switch-input ${darkMode ? 'dark-switch' : 'light-switch'}`}
@@ -110,14 +110,14 @@ export default function Navbar() {
             />
           </div>
           <button
-            className="navbar-toggler shadow-none"
+            className="navbar-toggler shadow-none border-0 p-1"
             type="button"
             onClick={() => setIsExpanded(!isExpanded)}
             aria-controls="navbarNav"
             aria-expanded={isExpanded}
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon mobile-toggler-icon"></span>
           </button>
         </div>
 

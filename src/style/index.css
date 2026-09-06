@@ -136,19 +136,49 @@
 .sq-30 { top: 1220px; left: 1240px; }
 .sq-31 { top: 1100px; left: 1580px; }
 
-@media (max-width: 767.98px) {
+@media (max-width: 991.98px) {
   .logo {
     width: 35px;
   }
-  .name{
+  .name {
     display: none;
   }
+
   .theme-switch-input {
     cursor: pointer;
-    width: 3rem !important;
-    height: 1.5rem !important;
-    background-size: 18px 18px;
+    width: 2.2rem !important;
+    height: 1.2rem !important;
+    background-size: 13px 13px !important;
     background-repeat: no-repeat;
     background-position: center;
+  }
+
+  .navbar-toggler {
+    padding: 0.2rem 0.3rem !important;
+  }
+
+  .mobile-toggler-icon {
+    width: 1.2em !important;
+    height: 1.2em !important;
+  }
+
+  .navbar-collapse .nav-link {
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 0.5rem 0.75rem !important;
+    transition: letter-spacing 0.2s ease, opacity 0.2s ease;
+  }
+
+  .navbar-collapse .nav-link svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .navbar-collapse {
+    padding-top: 0.75rem;
+    padding-bottom: 0.5rem;
   }
 }
