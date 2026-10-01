@@ -155,18 +155,6 @@ export default function Content({ isDarkMode, currentText }) {
           className={`btn btn-sm ${isDarkMode ? 'btn-light' : 'btn-dark'} d-inline-flex align-items-center gap-2 px-4 py-2 shadow-sm`}>
           View Projects <HiOutlineArrowRight className="btn-icon-mobile" />
         </motion.a>
-
-        <motion.a
-          href="#contact"
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 300 } }
-          }}
-          whileHover={{ scale: 1.05, backgroundColor: isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }}
-          whileTap={{ scale: 0.95 }}
-          className={`btn btn-sm ${isDarkMode ? 'btn-outline-light' : 'btn-outline-secondary'} d-inline-flex align-items-center gap-2 px-4 py-2`} >
-          Download CV <HiOutlineDownload className="btn-icon-mobile" />
-        </motion.a>
       </motion.div>
 
       <motion.div 

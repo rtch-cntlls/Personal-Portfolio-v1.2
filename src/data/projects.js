@@ -2,6 +2,8 @@ import ProjectImg1 from '../assets/project/e-commerce/1.jpeg';
 import ProjectImg2 from '../assets/project/nces/1.PNG';
 import ProjectImg3 from '../assets/project/erent/1.PNG';
 import ProjectImg4 from '../assets/project/inv/1.png';
+import ProjectImg5 from '../assets/project/gym/1.png';
+import ProjectImg6 from '../assets/project/care/1.png';
 
 export const projects = [
   {
@@ -40,5 +42,23 @@ export const projects = [
     longDescription: 'An easy-to-use inventory management system designed for schools to seamlessly track classroom devices, sports equipment, and campus assets helping staff assign items, monitor repair statuses, and prevent lost equipment.',
     liveLink: 'https://school-ims.vercel.app',
     techStack: ['Next JS', 'CSS5', 'Bootstrap', 'Supabase', 'PostgreSQL'],
+  },
+  {
+    id: 'proj-5',
+    title: 'Gym Management System',
+    image: ProjectImg5,
+    description: 'Fitness Center & Member Subscription Platform',
+    longDescription: 'A comprehensive gym management application designed to handle member registrations, track membership renewals, schedule fitness classes, and monitor daily facility check-ins.',
+    liveLink: '',
+    techStack: ['Python', 'CSS5', 'Bootstrap', 'Javascript', 'MySQL'],
+  },
+  {
+    id: 'proj-6',
+    title: 'Hospital Management System',
+    image: ProjectImg6,
+    description: 'Patient Care & Medical Records Management Platform',
+    longDescription: 'A secure healthcare platform designed to streamline patient appointments, electronic medical records (EMR), doctor schedules, prescription tracking, and hospital billing operations.',
+    liveLink: '',
+    techStack: ['Laravel', 'CSS5', 'Bootstrap', 'Javascript', 'MySQL'],
   }
 ];
